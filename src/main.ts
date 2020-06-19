@@ -1,6 +1,10 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
+import store from "./store";
 
-Vue.config.productionTip = false
+import uView from "uview-ui";
+Vue.use(uView);
 
-new App().$mount()
+Vue.config.productionTip = false;
+
+new App({ store }).$mount();

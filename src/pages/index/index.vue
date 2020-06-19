@@ -1,41 +1,27 @@
 <template>
-	<view class="content">
-        <image class="logo" src="../../static/logo.png"></image>
-		<view>
-            <text class="title">{{title}}</text>
-        </view>
-	</view>
+  <view class="content">
+    <text class="title">{{ title }}</text>
+    <u-button @click="setTitle">按钮</u-button>
+  </view>
 </template>
 
 <script lang="ts">
-    import Vue from 'vue';
-	export default Vue.extend({
-		data() {
-			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
+import { Component, Vue, Watch } from "vue-property-decorator";
+import { templateStore } from "../../store/template";
 
-		},
-		methods: {
+@Component
+export default class Index extends Vue {
+  get title() {
+    return templateStore.title;
+  }
 
-		}
-	});
+  setTitle() {
+    templateStore.title = "Hello Vue~";
+  }
+}
 </script>
 
-<style>
-	.content {
-		text-align: center;
-		height: 400upx;
-	}
-    .logo{
-        height: 200upx;
-        width: 200upx;
-        margin-top: 200upx;
-    }
-	.title {
-		font-size: 36upx;
-		color: #8f8f94;
-	}
+<style lang="stylus" scoped>
+.title
+  font-size 20upx
 </style>
