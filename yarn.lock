@@ -1531,10 +1531,22 @@
   resolved "https://registry.npm.taobao.org/@types/json-schema/download/@types/json-schema-7.0.5.tgz?cache=0&sync_timestamp=1591720875502&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fjson-schema%2Fdownload%2F%40types%2Fjson-schema-7.0.5.tgz#dcce4430e64b443ba8945f0290fb564ad5bac6dd"
   integrity sha1-3M5EMOZLRDuolF8CkPtWStW6xt0=
 
+"@types/lodash@^4.14.155":
+  version "4.14.155"
+  resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.155.tgz#e2b4514f46a261fd11542e47519c20ebce7bc23a"
+  integrity sha1-4rRRT0aiYf0RVC5HUZwg6857wjo=
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.npm.taobao.org/@types/minimatch/download/@types/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha1-PcoOPzOyAPx9ETnAzZbBJoyt/Z0=
+
+"@types/moment@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.npm.taobao.org/@types/moment/download/@types/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
+  integrity sha1-YE69GJvDvDShVIaJQE5hoqSqyJY=
+  dependencies:
+    moment "*"
 
 "@types/node-sass@*", "@types/node-sass@^4.11.1":
   version "4.11.1"
@@ -7033,7 +7045,7 @@ module-alias@^2.1.0:
   resolved "https://registry.npm.taobao.org/module-alias/download/module-alias-2.2.2.tgz#151cdcecc24e25739ff0aa6e51e1c5716974c0e0"
   integrity sha1-FRzc7MJOJXOf8KpuUeHFcWl0wOA=
 
-moment@^2.24.0:
+moment@*, moment@^2.24.0, moment@^2.27.0:
   version "2.27.0"
   resolved "https://registry.npm.taobao.org/moment/download/moment-2.27.0.tgz?cache=0&sync_timestamp=1592516084857&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmoment%2Fdownload%2Fmoment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
   integrity sha1-i/9OPiaiNiIN/j423nVrbrqgEF0=
@@ -9996,6 +10008,11 @@ uglify-js@3.4.x:
     commander "~2.19.0"
     source-map "~0.6.1"
 
+uni-read-pages@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npm.taobao.org/uni-read-pages/download/uni-read-pages-1.0.5.tgz#452c8dcaa8977bbaef600909be926c8d9704387c"
+  integrity sha1-RSyNyqiXe7rvYAkJvpJsjZcEOHw=
+
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
   resolved "https://registry.npm.taobao.org/unicode-canonical-property-names-ecmascript/download/unicode-canonical-property-names-ecmascript-1.0.4.tgz#2619800c4c825800efdd8343af7dd9933cbe2818"
@@ -10195,7 +10212,7 @@ uuid@^3.3.2, uuid@^3.4.0:
 
 uview-ui@^1.3.61:
   version "1.3.61"
-  resolved "https://registry.npm.taobao.org/uview-ui/download/uview-ui-1.3.61.tgz#e272ead80f729d79ec8e5754c40e710df333ae5f"
+  resolved "https://registry.npm.taobao.org/uview-ui/download/uview-ui-1.3.61.tgz?cache=0&sync_timestamp=1592545221469&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fuview-ui%2Fdownload%2Fuview-ui-1.3.61.tgz#e272ead80f729d79ec8e5754c40e710df333ae5f"
   integrity sha1-4nLq2A9ynXnsjldUxA5xDfMzrl8=
 
 v8-to-istanbul@^4.1.3:
