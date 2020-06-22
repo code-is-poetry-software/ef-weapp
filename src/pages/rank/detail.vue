@@ -8,7 +8,7 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class BookingDetail extends Vue {
+export default class Template extends Vue {
   title = "Hello World!";
 }
 </script>

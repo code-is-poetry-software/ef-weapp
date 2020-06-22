@@ -40,7 +40,7 @@
       }
     },
     {
-      "path": "pages/booking/detail",
+      "path": "pages/booking/share",
       "style": {
         "navigationBarTitleText": "uni-app"
       }
@@ -63,6 +63,16 @@
       {
         "name": "支付成功",
         "path": "pages/payment/success",
+        "query": ""
+      },
+      {
+        "name": "分享",
+        "path": "pages/booking/share",
+        "query": ""
+      },
+      {
+        "name": "排行榜",
+        "path": "pages/rank/index",
         "query": ""
       }
     ]

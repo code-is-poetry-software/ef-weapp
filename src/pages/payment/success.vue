@@ -12,7 +12,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 @Component
 export default class PaymentSuccess extends Vue {
   inviteFriend() {
-    uni.navigateTo({ url: "/pages/booking/detail" });
+    uni.navigateTo({ url: "/pages/booking/share" });
   }
 }
 </script>
