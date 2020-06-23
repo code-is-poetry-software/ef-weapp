@@ -54,6 +54,14 @@ http.interceptor.response = response => {
   return response;
 };
 
+export const getAuthUser = () => {
+  return http.request({
+    url: `/auth/user`,
+    method: "GET",
+    dataType: "json"
+  });
+};
+
 export const wechatLogin = ({ code }) => {
   return http.request({
     url: `/wechat/login`,

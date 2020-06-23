@@ -7,6 +7,27 @@ class BookingStore extends VuexModule {
   createBooking() {
     uni.navigateTo({ url: "/pages/payment/success" });
   }
+
+  handlePayment(paymentData) {
+    return new Promise((resolve, reject) => {
+      uni.showLoading();
+      uni.requestPayment({
+        signType: "MD5",
+        ...paymentData,
+        success: res => {
+          console.log(res);
+          resolve({ ...res, ...paymentData });
+        },
+        fail: res => {
+          console.log(res);
+          reject(res);
+        },
+        complete() {
+          uni.hideLoading();
+        }
+      });
+    });
+  }
 }
 
 export const bookingStore = new BookingStore({ store, name: "booking" });
