@@ -13,6 +13,7 @@ global.store = store;
 
 Vue.prototype.moment = _moment;
 Vue.prototype.log = console.log;
+Vue.prototype.uni = uni;
 const app = new Vue({
   ...App,
   store

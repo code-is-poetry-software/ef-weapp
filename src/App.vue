@@ -10,7 +10,7 @@ export default Vue.extend({
   },
   onHide() {
     console.log("App Hide");
-  },
+  }
 });
 </script>
 
@@ -18,4 +18,9 @@ export default Vue.extend({
 @import "uview-ui/theme.scss";
 @import "uview-ui/index.scss";
 /*每个页面公共css */
+</style>
+
+<style lang="stylus">
+.flex
+  display flex
 </style>

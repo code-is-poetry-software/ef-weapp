@@ -16,6 +16,12 @@
       }
     },
     {
+      "path": "pages/rank/detail",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
       "path": "pages/user/index",
       "style": {
         "navigationBarTitleText": "uni-app"
@@ -41,6 +47,24 @@
     },
     {
       "path": "pages/booking/share",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
+      "path": "pages/user/history",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
+      "path": "pages/user/game",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
+      "path": "pages/user/payment",
       "style": {
         "navigationBarTitleText": "uni-app"
       }
@@ -73,6 +97,16 @@
       {
         "name": "排行榜",
         "path": "pages/rank/index",
+        "query": ""
+      },
+      {
+        "name": "排行榜详情",
+        "path": "pages/rank/detail",
+        "query": ""
+      },
+      {
+        "name": "我的",
+        "path": "pages/user/index",
         "query": ""
       }
     ]
