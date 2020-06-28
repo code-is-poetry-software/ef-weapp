@@ -1,11 +1,25 @@
 <template>
-  <view class="index">
+  <view class="index page">
     <get-phonenumber></get-phonenumber>
-    <u-button @click="navigateTo({ url: '/pages/game/car' })">电动赛车</u-button>
-    <u-button @click="navigateTo({ url: '/pages/game/uav' })">竞速潮玩</u-button>
-    <booking-item />
-    <home-menuitem @click="navigateTo({ url: '/pages/rank/index' })" text="排行榜" />
-    <home-menuitem @click="navigateTo({ url: '/pages/user/index' })" text="我的潮玩ID" />
+    <view>
+      <img style="width: 320upx" src="/static/image/img1.png" mode="widthFix" />
+    </view>
+    <view style="margin-top: 60upx">
+      <img style="width: 380upx" src="/static/image/img2.png" mode="widthFix" />
+    </view>
+    <view style="margin-top: 50upx" @click="navigateTo({ url: '/pages/game/car' })">
+      <img style="width: 600upx" src="/static/image/button-car.png" mode="widthFix" />
+    </view>
+    <view style="margin-bottom: 40upx;margin-top: 20upx" @click="navigateTo({ url: '/pages/game/uav' })">
+      <img style="width: 600upx" src="/static/image/button-uav.png" mode="widthFix" />
+    </view>
+    <view style="margin-bottom: 20upx">
+      <booking-item />
+    </view>
+    <view style="margin-bottom: 8upx">
+      <home-menuitem @click="e => navigateTo({ url: '/pages/rank/index' })" text="EF PARK 排行榜" />
+    </view>
+    <home-menuitem @click="e => navigateTo({ url: '/pages/user/index' })" text="我的潮玩ID" />
   </view>
 </template>
 
@@ -23,7 +37,9 @@ export default class Index extends Vue {
 
 <style lang="stylus" scoped>
 .index
+  background #368ad4
   text-align center
+  padding-top 200upx
 .e-button-primary
   width 300upx
   height 200upx

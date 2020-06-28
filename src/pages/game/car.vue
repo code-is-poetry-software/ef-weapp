@@ -1,29 +1,46 @@
 <template>
   <view class="car">
     <view>
-      <text>选择模式</text>
+      <view style="margin-top:150upx;">
+        <button-title text="选择模式" />
+      </view>
+      <view>
+        <img class="icon-user" src="/static/image/icon-user.png" mode="widthFix" />
+      </view>
+
       <view class="mode-list">
-        <view v-for="item in mode.modes" :key="item.label">{{ item.label }}</view>
+        <view v-for="item in mode.modes" :key="item.label" class="list-item">
+          <button-mode :text="item.label" />
+        </view>
       </view>
     </view>
 
-    <u-form :model="form" ref="uForm">
-      <view class="u-flex u-flex-row" @click="date.show = true">
-        <view>选择日期</view>
-        <view>{{ date.selected.result }}</view>
+    <u-form :model="form" ref="uForm" class="form">
+      <view class="u-flex u-flex-row form-item" @click="date.show = true">
+        <button-title text="选择日期" />
+        <view>
+          <span>{{ date.selected.year }}</span>
+          <span>年</span>
+          <span>{{ date.selected.month }}</span>
+          <span>月</span>
+          <span>{{ date.selected.day }}</span>
+          <span>日</span>
+        </view>
         <u-calendar v-model="date.show" mode="date" @change="e => (date.selected = e)"></u-calendar>
       </view>
-      <view class="u-flex u-flex-row" @click="quantity.show = true">
-        <view>选择数量</view>
+      <view class="u-flex u-flex-row form-item" @click="quantity.show = true">
+        <button-title text="选择数量" />
         <view>{{ form.quantity }}</view>
         <u-select mode="single-column" v-model="quantity.show" :list="quantity.list" @confirm="e => (form.quantity = e[0].value)"></u-select>
       </view>
-      <view class="u-flex u-flex-row"  @click="slot.show = true">
-        <view>选择场次</view>
+      <view class="u-flex u-flex-row form-item" @click="slot.show = true">
+        <button-title text="选择场次" />
         <view>{{ form.slot }}</view>
         <u-select mode="single-column" v-model="slot.show" :list="slot.list" @confirm="e => (form.slot = e[0].value)"></u-select>
       </view>
-      <view> 共计: {{ price }} </view>
+      <view>
+        <button-price :text="price" />
+      </view>
 
       <view>
         <button @click="createBooking">立即支付</button>
@@ -49,10 +66,10 @@ export default class Car extends Vue {
   date = {
     show: false,
     selected: {
-      day: 0,
-      month: 0,
+      day: _moment().day(),
+      month: _moment().month(),
       result: _moment().format("YYYY-MM-DD"),
-      year: 0
+      year: _moment().year()
     }
   };
   quantity = {
@@ -87,7 +104,20 @@ export default class Car extends Vue {
 
 <style lang="stylus" scoped>
 .car
+  .icon-user
+    width 41px
+    height 36px
+    position absolute
+    right 61upx
+    top 80upx
   .mode-list
+    margin 40upx 0
     display flex
     flex-direction column
+    align-items center
+    .list-item
+      padding-bottom 20upx
+  .form
+    .form-item
+      margin 18upx 0
 </style>

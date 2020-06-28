@@ -28,5 +28,10 @@ export default class Template extends Vue {}
   justify-content center
   .img
     position absolute
-    z-index -1
+  .info
+    z-index 1
+    font-family Alibaba PuHuiTi
+    font-weight bold
+    letter-spacing 2px
+    color rgba(0, 144, 217, 1)
 </style>

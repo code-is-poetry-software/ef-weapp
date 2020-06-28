@@ -23,4 +23,7 @@ export default Vue.extend({
 <style lang="stylus">
 .flex
   display flex
+.page
+  width 100vw
+  height 100vh
 </style>

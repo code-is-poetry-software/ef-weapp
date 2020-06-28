@@ -1,6 +1,6 @@
 <template>
-  <view class="home-menu-item" @click="$emit('click')">
-    <img class="img" src="/static/image/home-menu-item.png" mode="widthFix" />
+  <view class="button-title" @click="$emit('click')">
+    <img class="img" src="/static/image/button1.png" mode="widthFix" />
     <view class="text">{{ text }}</view>
   </view>
 </template>
@@ -15,20 +15,27 @@ export default class Template extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.home-menu-item
+.button-title
   position relative
-  width 100%
+  width 320upx
   height 80upx
   display flex
   align-items center
   justify-content center
   .img
     position absolute
+    width 400upx
+    right 0
+    top 0
   .text
-    font-size 40upx
+    position absolute
+    left 120upx
+    top 35upx
+    font-size 15px
     font-family Alibaba PuHuiTi
     font-weight bold
     letter-spacing 2px
     color rgba(0, 144, 217, 1)
     z-index 1
+    font-style italic
 </style>
