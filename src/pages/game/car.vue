@@ -1,7 +1,7 @@
 <template>
   <view class="car">
     <view>
-      <view style="margin-top:150upx;">
+      <view style="margin-top:120upx;">
         <button-title text="选择模式" />
       </view>
       <view>
@@ -38,15 +38,17 @@
         <view>{{ form.slot }}</view>
         <u-select mode="single-column" v-model="slot.show" :list="slot.list" @confirm="e => (form.slot = e[0].value)"></u-select>
       </view>
-      <view>
+      <view class="price-bar">
         <button-price :text="price" />
       </view>
 
-      <view>
-        <button @click="createBooking">立即支付</button>
-        <u-radio-group :value="submit.useBalance">
-          <u-radio name="useBalance" @change="radioChange">使用余额支付</u-radio>
-        </u-radio-group>
+      <view class="column-center">
+        <button-pay @click="createBooking" text="立即支付" />
+        <view style="margin-top:20upx">
+          <u-radio-group :value="submit.useBalance">
+            <u-radio name="useBalance" @change="radioChange">使用余额支付</u-radio>
+          </u-radio-group>
+        </view>
       </view>
     </u-form>
   </view>
@@ -109,7 +111,7 @@ export default class Car extends Vue {
     height 36px
     position absolute
     right 61upx
-    top 80upx
+    top 65upx
   .mode-list
     margin 40upx 0
     display flex
@@ -120,4 +122,9 @@ export default class Car extends Vue {
   .form
     .form-item
       margin 18upx 0
+  .price-bar
+    display flex
+    justify-content flex-end
+    padding-right 60upx
+    margin 80upx 0
 </style>

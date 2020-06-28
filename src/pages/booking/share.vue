@@ -1,6 +1,33 @@
 <template>
-  <view class="content">
-    <button @click="join">立即加入</button>
+  <view class="share column-center">
+    <view>
+      <img class="icon-user" src="/static/image/icon-user.png" mode="widthFix" />
+    </view>
+    <view class="user-share column-center">
+      <button-avatar />
+      <view class="share-text">
+        邀请您一起加入潮玩队伍
+      </view>
+    </view>
+    <view class="share-info">
+      <img class="absolute" style="100%;z-index:-1" src="/static/image/view1.png" mode="widthFix" />
+      <view class="text" style="display: flex">
+        <text class="field-text">
+          场次
+        </text>
+        <text style="font-size: 21px">
+          2020-06-08\n12:00-14:00
+        </text>
+      </view>
+      <view class="text">
+        <span class="field-text">项目</span>
+        <span style="font-size: 28px">竞速无人机</span>
+      </view>
+    </view>
+    <view>
+      <button-pay @click="join" text="立即加入" />
+    </view>
+    <text class="remind">为避免入园后长期等待\n 请10:00入场，时段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
   </view>
 </template>
 
@@ -9,13 +36,50 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class BookingDetail extends Vue {
-  async join(){
-
-  }
+  async join() {}
 }
 </script>
 
 <style lang="stylus" scoped>
-.title
-  font-size 20upx
+.share
+  padding-top 220upx
+  .icon-user
+    width 41px
+    height 36px
+    position absolute
+    right 61upx
+    top 65upx
+  .user-share
+    margin-bottom 80upx
+    .share-text
+      color var(--primary)
+      font-size:21px;
+      font-family:Alibaba PuHuiTi;
+      font-weight:bold;
+  .share-info
+    position relative
+    width  540upx
+    height 270upx
+    margin-bottom  160upx
+    display flex
+    flex-direction column
+    justify-content center
+    align-items center
+    .text
+      margin 10upx 0
+      width 340upx
+      z-index 1
+      font-weight bold
+      color var(--primary)
+      font-size 21px
+      font-family Gotham-BoldItalic
+      .field-text
+        font-size 11px
+        margin-right 18upx
+  .remind
+    margin-top 210upx
+    text-align center
+    font-size 13px
+    font-family AlibabaPuHuiTiR-GBpc-EUC-H
+    color #666
 </style>

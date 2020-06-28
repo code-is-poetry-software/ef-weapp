@@ -21,9 +21,19 @@ export default Vue.extend({
 </style>
 
 <style lang="stylus">
+body
+  --primary #3d8ad7
 .flex
   display flex
 .page
   width 100vw
   height 100vh
+.column-center
+  display flex
+  flex-direction column
+  align-items center
+.relative
+  position relative
+.absolute
+  position absolute
 </style>
