@@ -24,8 +24,8 @@
         <span style="font-size: 28px">竞速无人机</span>
       </view>
     </view>
-    <view>
-      <button-pay @click="join" text="立即加入" />
+    <view @click="join">
+      <button-pay text="立即加入" />
     </view>
     <text class="remind">为避免入园后长期等待\n 请10:00入场，时段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
   </view>
@@ -36,13 +36,15 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class BookingDetail extends Vue {
-  async join() {}
+  async join() {
+    uni.navigateTo({ url: "/pages/booking/detail" });
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
 .share
-  padding-top 220upx
+  padding 220upx 0
   .icon-user
     width 41px
     height 36px

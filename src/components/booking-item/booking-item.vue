@@ -1,5 +1,5 @@
 <template>
-  <view class="booking-item" @click="$emit('click')">
+  <view class="booking-item" @click="goDetail">
     <img class="img" src="/static/image/booking-item.png" mode="widthFix" />
     <view class="info">
       <view>场次: 2020-06-08 12:00-14:00</view>
@@ -15,18 +15,23 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class Template extends Vue {}
+export default class Template extends Vue {
+  async goDetail() {
+    // uni.navigateTo({ url: "/pages/booking/share" });
+    uni.navigateTo({ url: "/pages/booking/detail" });
+  }
+}
 </script>
 
 <style lang="stylus" scoped>
 .booking-item
   position relative
-  width 100%
   height 130upx
   display flex
   align-items center
   justify-content center
   .img
+    width 563upx
     position absolute
   .info
     z-index 1

@@ -5,7 +5,7 @@ import { VuexModule, Module, Action } from "vuex-class-modules";
 class BookingStore extends VuexModule {
   @Action
   createBooking() {
-    uni.navigateTo({ url: "/pages/payment/success" });
+    uni.navigateTo({ url: "/pages/booking/detail" });
   }
 
   handlePayment(paymentData) {

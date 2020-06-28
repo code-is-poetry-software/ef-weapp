@@ -32,7 +32,7 @@ export default class PaymentSuccess extends Vue {
 <style lang="stylus" scoped>
 .payment-success
   text-align center
-  padding-top 150rpx
+  padding 150upx 0
   .icon-user
     width 41px
     height 36px

@@ -1,7 +1,7 @@
 <template>
   <view class="car">
     <view>
-      <view style="margin-top:120upx;">
+      <view>
         <button-title text="选择模式" />
       </view>
       <view>
@@ -106,6 +106,7 @@ export default class Car extends Vue {
 
 <style lang="stylus" scoped>
 .car
+  padding 120upx 0
   .icon-user
     width 41px
     height 36px

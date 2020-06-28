@@ -17,12 +17,12 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .home-menu-item
   position relative
-  width 100%
   height 80upx
   display flex
   align-items center
   justify-content center
   .img
+    width 566upx
     position absolute
   .text
     font-size 40upx
