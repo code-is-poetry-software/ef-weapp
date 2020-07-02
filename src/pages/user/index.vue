@@ -5,28 +5,32 @@
     </view>
     <view class="content">
       <view class="user-info">
-        <button size="mini" class="get-phonenubmer" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">获取手机号</button>
+        <button-avatar1 />
+        <!-- <button size="mini" class="get-phonenubmer" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">获取手机号</button> -->
       </view>
 
       <view class="cards">
         <view class="card">
-          <view>余额</view>
-          <view>XXXX</view>
+          <button-userinfo label="余 额" value="XXXX" />
         </view>
         <view class="card">
-          <view>积分</view>
-          <view>XXXX</view>
+          <button-userinfo label="积 分" value="XXXX" />
         </view>
         <view class="card">
-          <view>玩家等级</view>
-          <view>萌新玩家</view>
+          <button-userinfo label="玩家等级" value="萌新玩家" />
         </view>
       </view>
 
       <view class="menus">
-        <view class="menu" @click="navigateTo({ url: '/pages/user/history' })">潮玩记录</view>
-        <view class="menu" @click="navigateTo({ url: '/pages/user/game' })">潮玩项目</view>
-        <view class="menu" @click="navigateTo({ url: '/pages/user/payment' })">消费明细</view>
+        <view class="menu" @click="navigateTo({ url: '/pages/user/history' })">
+          <img style="width: 451upx" src="/static/image/img-user-history.png" mode="widthFix" />
+        </view>
+        <view class="menu" @click="navigateTo({ url: '/pages/user/game' })">
+          <img style="width: 451upx" src="/static/image/img-user-game.png" mode="widthFix" />
+        </view>
+        <view class="menu" @click="navigateTo({ url: '/pages/user/payment' })">
+          <img style="width: 451upx" src="/static/image/img-user-payment.png" mode="widthFix" />
+        </view>
       </view>
     </view>
   </view>
@@ -56,13 +60,10 @@ export default class UserIndex extends Vue {
 <style lang="stylus" scoped>
 .user-index
   .content
-    margin 0 auto
+    margin 200upx auto 0
     width 80%
     .user-info
       display flex
-      background #98d4f9
-      width 600upx
-      height 180upx
       position relative
       .get-phonenubmer
         position absolute
@@ -71,23 +72,19 @@ export default class UserIndex extends Vue {
     .cards
       display flex
       justify-content center
+      margin-top 40upx
       .card
         display flex
         flex-direction column
         justify-content center
         align-items center
         vertical-align center
-        height 180upx
-        width 180upx
-        background #98d4f9
-        margin 10upx
+        margin 0 15upx
     .menus
       display flex
       flex-direction column
       align-items center
+      margin-top 80upx
       .menu
-        margin 20upx 0
-        width 500upx
-        height 100upx
-        background #98d4f9
+        margin 15upx 0
 </style>
