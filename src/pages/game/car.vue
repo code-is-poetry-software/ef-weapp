@@ -11,7 +11,7 @@
 
       <view class="mode-list">
         <view v-for="item in mode.modes" :key="item.label" class="list-item">
-          <button-mode :text="item.label" />
+          <button-mode :text="item.label" :amount.sync="item.amount" />
         </view>
       </view>
     </view>
@@ -79,7 +79,11 @@ export default class Car extends Vue {
   };
 
   mode = {
-    modes: [{ label: "动力方程小赛道" }, { label: "动力方程大赛道" }, { label: "动力方程超级赛道" }]
+    modes: [
+      { label: "动力方程小赛道", amount: "0" },
+      { label: "动力方程大赛道", amount: "6" },
+      { label: "动力方程超级赛道", amount: "1" }
+    ]
   };
 
   get price() {
