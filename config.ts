@@ -1,3 +1,3 @@
 export const config = {
-  API_ENDPOINT: "",
+  API_ENDPOINT: "https://ef.codeispoetry.tech/api"
 };

@@ -1,36 +1,54 @@
 <template>
   <view class="index page">
-    <get-phonenumber></get-phonenumber>
+    <get-phonenumber />
+    <login />
+    <with-bg :showTop="false" />
     <view>
       <img style="width: 320upx" src="/static/image/img1.png" mode="widthFix" />
     </view>
     <view style="margin-top: 60upx">
       <img style="width: 380upx" src="/static/image/img2.png" mode="widthFix" />
     </view>
-    <view style="margin-top: 50upx" @click="navigateTo({ url: '/pages/game/car' })">
+    <view style="margin-top: 50upx" @click="navigateTo({ url: '/pages/game/car', checkMobile: false })">
       <img style="width: 600upx" src="/static/image/button-car.png" mode="widthFix" />
     </view>
-    <view style="margin-bottom: 40upx;margin-top: 20upx" @click="navigateTo({ url: '/pages/game/uav' })">
+    <view style="margin-bottom: 40upx;margin-top: 20upx" @click="navigateTo({ url: '/pages/game/uav', checkMobile: false })">
       <img style="width: 600upx" src="/static/image/button-uav.png" mode="widthFix" />
     </view>
     <view style="margin-bottom: 20upx">
       <booking-item />
     </view>
     <view style="margin-bottom: 8upx">
-      <home-menuitem @click="e => navigateTo({ url: '/pages/rank/index' })" text="EF PARK 排行榜" />
+      <home-menuitem @click="e => navigateTo({ url: '/pages/rank/index', checkAuth: true })" text="EF PARK 排行榜" />
     </view>
-    <home-menuitem @click="e => navigateTo({ url: '/pages/user/index' })" text="我的潮玩ID" />
+    <home-menuitem @click="e => navigateTo({ url: '/pages/user/index', checkAuth: true })" text="我的潮玩ID" />
   </view>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { authStore } from "../../store/auth";
+import { utils } from "../../utils";
 
 @Component
 export default class Index extends Vue {
-  navigateTo({ url }: { url: string }) {
-    uni.navigateTo({ url });
+  onLoad() {
+    this.wechatLogin();
+  }
+
+  onShareAppMessage(res) {
+    return {
+      title: "EFPark",
+      path: `/pages/index/index`
+    };
+  }
+
+  async wechatLogin() {
+    try {
+      await authStore.wechatLogin();
+    } catch (err) {
+      utils.helper.errorHandler(err);
+    }
   }
 }
 </script>

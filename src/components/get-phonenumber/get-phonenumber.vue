@@ -16,6 +16,7 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { authStore } from "../../store/auth";
 import { event } from "../../utils/event";
+import { utils } from "../../utils";
 
 @Component
 export default class Template extends Vue {
@@ -28,6 +29,7 @@ export default class Template extends Vue {
 
   close() {
     authStore.showGetMobile = false;
+    utils.event.removeAllListeners("mobile");
   }
 
   async getPhoneNumber(res) {

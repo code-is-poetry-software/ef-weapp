@@ -4,6 +4,7 @@ import store from "./store";
 
 import uView from "uview-ui";
 import _moment from "moment";
+import { utils } from "./utils/index";
 Vue.use(uView);
 
 Vue.config.productionTip = false;
@@ -14,6 +15,17 @@ global.store = store;
 Vue.prototype.moment = _moment;
 Vue.prototype.log = console.log;
 Vue.prototype.uni = uni;
+
+Vue.prototype.navigateTo = async ({ url, checkAuth, checkMobile }: { url: string; checkAuth?: boolean; checkMobile?: boolean }) => {
+  if (checkAuth) {
+    await utils.hooks.checkLogin();
+  }
+  if (checkMobile) {
+    await utils.hooks.checkMobile();
+  }
+  uni.navigateTo({ url });
+};
+
 const app = new Vue({
   ...App,
   store

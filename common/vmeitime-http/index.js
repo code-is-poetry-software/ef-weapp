@@ -103,7 +103,7 @@ export const getConfigs = () => {
   });
 };
 
-export const getListData = ({ type, data } = {}) => {
+export const getList = ({ type, data } = {}) => {
   data = _.omitBy(data, _.isNil);
   return http.request({
     url: `/${type}`,
