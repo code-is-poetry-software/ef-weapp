@@ -34,8 +34,8 @@ export default class Template extends Vue {
     if (!res.detail.encryptedData) return;
     try {
       await authStore.wechatGetUserInfo();
-      this.close();
       utils.event.emit("login");
+      this.close();
     } catch (error) {
       console.log(error);
       utils.helper.errorHandler(error);
