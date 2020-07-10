@@ -5,7 +5,7 @@
     </view>
     <view class="content">
       <view class="user-info">
-        <button-avatar1 />
+        <button-avatar1 @click="e => navigateTo({ url: '/pages/racing/match' })"/>
         <!-- <button size="mini" class="get-phonenubmer" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">获取手机号</button> -->
       </view>
 

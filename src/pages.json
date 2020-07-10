@@ -75,8 +75,21 @@
       "style": {
         "navigationBarTitleText": "uni-app"
       }
+    },
+	
+    {
+      "path": "pages/racing/playerDetails",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
+      "path": "pages/racing/match",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
     }
-  ],
+    ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
