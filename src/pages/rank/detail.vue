@@ -6,7 +6,7 @@
     </view>
     <view class="list">
       <view class="list-item" v-for="item in curList" :key="item">
-        <view>{{ item }}</view>
+        <button-rank1 :item="item" />
       </view>
     </view>
   </view>
@@ -27,9 +27,66 @@ export default class Template extends Vue {
   };
 
   list = {
-    all: [1, 2, 3, 4, 5],
-    month: [5, 4, 3, 2, 1],
-    week: [2, 3, 4, 5, 6]
+    all: [
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      },
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      },
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      }
+    ],
+    month: [
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      },
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      },
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      }
+    ],
+    week: [
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      },
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      },
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      }
+    ]
   };
 
   get curList() {
