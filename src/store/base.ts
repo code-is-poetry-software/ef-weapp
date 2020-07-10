@@ -13,4 +13,4 @@ class BaseStore extends VuexModule {
   }
 }
 
-export const baseStore = new BaseStore({ store, name: "auth" });
+export const baseStore = new BaseStore({ store, name: "base" });

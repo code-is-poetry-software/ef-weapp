@@ -2,6 +2,7 @@
   <view class="index page">
     <get-phonenumber />
     <login />
+    <with-bg :showTop="false" />
     <view>
       <img style="width: 320upx" src="/static/image/img1.png" mode="widthFix" />
     </view>
