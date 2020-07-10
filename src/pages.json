@@ -76,7 +76,7 @@
         "navigationBarTitleText": "uni-app"
       }
     },
-	
+
     {
       "path": "pages/racing/playerDetails",
       "style": {
@@ -89,7 +89,7 @@
         "navigationBarTitleText": "uni-app"
       }
     }
-    ],
+  ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
@@ -127,6 +127,16 @@
       {
         "name": "我的",
         "path": "pages/user/index",
+        "query": ""
+      },
+      {
+        "name": "racingMatch",
+        "path": "pages/racing/match",
+        "query": ""
+      },
+      {
+        "name": "playerDetails",
+        "path": "pages/racing/playerDetails",
         "query": ""
       }
     ]
