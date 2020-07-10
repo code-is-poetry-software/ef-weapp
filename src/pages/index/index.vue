@@ -1,6 +1,7 @@
 <template>
   <view class="index page">
-    <get-phonenumber></get-phonenumber>
+    <get-phonenumber />
+    <login />
     <view>
       <img style="width: 320upx" src="/static/image/img1.png" mode="widthFix" />
     </view>
@@ -29,6 +30,19 @@ import { authStore } from "../../store/auth";
 
 @Component
 export default class Index extends Vue {
+  onLoad() {}
+
+  onShareAppMessage(res) {
+    return {
+      title: "EFPark",
+      path: `/pages/index/index`
+    };
+  }
+
+  async wecharLogin() {
+    try {
+    } catch (error) {}
+  }
   navigateTo({ url }: { url: string }) {
     uni.navigateTo({ url });
   }

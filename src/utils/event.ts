@@ -1,3 +1,9 @@
 import { EventEmitter } from "events";
+import TypedEmitter from "typed-emitter";
 
-export const event = new EventEmitter();
+interface MessageEvents {
+  mobile: () => void;
+  login: () => void;
+}
+
+export const event = new EventEmitter() as TypedEmitter<MessageEvents>;
