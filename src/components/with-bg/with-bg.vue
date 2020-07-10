@@ -20,11 +20,11 @@ export default class Template extends Vue {
   .img
     width 750upx
   .top
-    position fixed
+    position absolute
     top 0
     left 0
   .bottom
-    position fixed
+    position absolute
     bottom 0
     left 0
 </style>

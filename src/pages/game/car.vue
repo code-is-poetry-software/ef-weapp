@@ -1,6 +1,7 @@
 <template>
   <view class="car">
     <view>
+      <with-bg />
       <view>
         <button-title text="选择模式" />
       </view>
@@ -27,11 +28,6 @@
           <span>日</span>
         </view>
         <u-calendar v-model="date.show" mode="date" @change="e => (date.selected = e)"></u-calendar>
-      </view>
-      <view class="u-flex u-flex-row form-item" @click="quantity.show = true">
-        <button-title text="选择数量" />
-        <view>{{ form.quantity }}</view>
-        <u-select mode="single-column" v-model="quantity.show" :list="quantity.list" @confirm="e => (form.quantity = e[0].value)"></u-select>
       </view>
       <view class="u-flex u-flex-row form-item" @click="slot.show = true">
         <button-title text="选择场次" />
@@ -73,10 +69,6 @@ export default class Car extends Vue {
       result: _moment().format("YYYY-MM-DD"),
       year: _moment().year()
     }
-  };
-  quantity = {
-    show: false,
-    list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => ({ value: i, label: i }))
   };
   slot = {
     show: false,
