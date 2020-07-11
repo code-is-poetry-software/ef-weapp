@@ -1,7 +1,7 @@
 <template>
-  <view class="user-history">
+  <view class="user-history page">
     <with-bg />
-    <view style="margin:140upx 0 113upx 58upx">
+    <view style="padding:140upx 0 113upx 58upx">
       <button-title1 text="潮玩项目" />
     </view>
     <view class="tabs" style="margin: 0 0 18upx 0">
@@ -11,7 +11,7 @@
     <view class="list">
       <view class="list-item" v-for="item in list" :key="item">
         <view style="margin-bottom: 14upx">
-          <button-rank2 />
+          <button-rank1 />
         </view>
       </view>
     </view>
@@ -43,6 +43,7 @@ export default class Template extends Vue {
 
 <style lang="stylus" scoped>
 .user-history
+  position: relative
   .tabs
     display flex
     justify-content center

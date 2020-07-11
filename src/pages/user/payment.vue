@@ -1,6 +1,9 @@
 <template>
-  <view class="content">
-    <text class="title">{{ title }}</text>
+  <view class="user-payment page">
+    <with-bg />
+    <view style="padding:140upx 0 113upx 58upx">
+      <button-title1 text="消费明细" />
+    </view>
   </view>
 </template>
 
@@ -14,6 +17,6 @@ export default class Template extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.title
-  font-size 20upx
+.user-payment
+  position: relative
 </style>

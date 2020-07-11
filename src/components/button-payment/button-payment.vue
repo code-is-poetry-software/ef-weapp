@@ -1,11 +1,8 @@
 <template>
-  <view class="button-rank1" @click="$emit('click')">
-    <img class="img" src="/static/image/button-rank2.png" mode="widthFix" />
-    <view class="info">
-      <view>项目: {{ item.name }} </view>
-      <view>场次: {{ item.date }} 10:16 6人场</view>
-    </view>
-    <view class="status">已完成</view>
+  <view class="button-payment" @click="$emit('click')">
+    <img class="img" src="/static/image/button-payment.png" mode="widthFix" />
+    <view class="text"> 项目: {{ item.name }} </view>
+    <view class="text"> 场次:{{ item.date }} </view>
   </view>
 </template>
 <script lang="ts">
@@ -27,27 +24,19 @@ export default class Template extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.button-rank1
+.button-payment
   position relative
   display flex
   align-items center
   justify-content center
-  text-align left
   .img
     width 607upx
-  .info
+  .text
     position absolute
-    left 110upx
-    top 42upx
-    font-size 28upx
+    font-size 21px
     font-family Alibaba PuHuiTi
     font-weight bold
     letter-spacing 2px
-    color var(--text-primary)
-  .status
-    position absolute
-    font-size 20upx
     color white
-    right 89upx
-    top 5upx
+    z-index 1
 </style>
