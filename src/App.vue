@@ -23,6 +23,7 @@ export default Vue.extend({
 <style lang="stylus">
 body
   --primary #3d8ad7
+  --text-primary #0090D9
 .flex
   display flex
 .page

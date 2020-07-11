@@ -1,12 +1,18 @@
 <template>
   <view class="user-history">
-    <view>潮玩项目</view>
-    <view class="tabs">
-      <view :class="['tab', item.value == tab.curTab ? 'active' : '']" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)">{{ item.label }}</view>
+    <with-bg />
+    <view style="margin:140upx 0 113upx 58upx">
+      <button-title1 text="潮玩项目" />
+    </view>
+    <view class="tabs" style="margin: 0 0 18upx 0">
+      <button-tab1 :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
+      <img style="width: 63upx;margin-left: 20upx" src="/static/image/img-dot1.png" mode="widthFix" />
     </view>
     <view class="list">
-      <view class="list-item" v-for="item in curList" :key="item">
-        <view>{{ item }}</view>
+      <view class="list-item" v-for="item in list" :key="item">
+        <view style="margin-bottom: 14upx">
+          <button-rank2 />
+        </view>
       </view>
     </view>
   </view>
@@ -21,20 +27,13 @@ export default class Template extends Vue {
     curTab: "all",
     tabs: [
       { label: "全部", value: "all" },
-      { label: "竞速无人机", value: "uav1" },
-      { label: "对战无人机", value: "uav2" }
+      { label: "已预约", value: "booked" },
+      { label: "已完成", value: "finished" },
+      { label: "已取消", value: "canceled" }
     ]
   };
 
-  list = {
-    all: [1, 2, 3, 4, 5],
-    uav1: [5, 4, 3, 2, 1],
-    uav2: [2, 3, 4, 5, 6]
-  };
-
-  get curList() {
-    return this.list[this.tab.curTab];
-  }
+  list = [1, 2, 3, 4, 5];
 
   selectTab(item) {
     this.tab.curTab = item.value;
@@ -47,6 +46,7 @@ export default class Template extends Vue {
   .tabs
     display flex
     justify-content center
+    align-items flex-end
     .tab
       display flex
       align-items center
