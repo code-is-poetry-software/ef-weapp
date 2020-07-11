@@ -88,7 +88,32 @@
       "style": {
         "navigationBarTitleText": "uni-app"
       }
-    }
+    },
+		{
+			"path" : "pages/racing/playerDetails_Start",
+			"style": {
+			  "navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path" : "pages/fashionPay/fashionPayProject",
+			"style": {
+			  "navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path" : "pages/fashionPay/consumptionDetails",
+			"style": {
+			  "navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path" : "pages/fashionPay/recordFashion",
+			"style": {
+			  "navigationBarTitleText": "uni-app"
+			}
+		}
+		
     ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
@@ -127,6 +152,31 @@
       {
         "name": "我的",
         "path": "pages/user/index",
+        "query": ""
+      },
+      {
+        "name": "个人信息",
+        "path": "pages/racing/match",
+        "query": ""
+      },
+      {
+        "name": "对战模式",
+        "path": "pages/racing/playerDetails",
+        "query": ""
+      },
+      {
+        "name": "潮玩项目",
+        "path": "pages/fashionPay/fashionPayProject",
+        "query": ""
+      },
+      {
+        "name": "消费明细",
+        "path": "pages/fashionPay/consumptionDetails",
+        "query": ""
+      },
+      {
+        "name": "潮玩记录",
+        "path": "pages/fashionPay/recordFashion",
         "query": ""
       }
     ]

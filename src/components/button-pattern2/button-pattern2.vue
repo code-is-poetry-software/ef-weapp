@@ -10,10 +10,6 @@
 		<view>
 			<view class="JSMS">竞速模式</view>
 		</view>
-		<!-- 计时 -->
-		<view>
-			<view class="JSQ">01’02</view>
-		</view>
   </view>
 </template>
 
@@ -65,13 +61,4 @@ export default class Template extends Vue {}
 		height 41upx
 		top -55upx
 		left 569upx
-	.JSQ
-		position absolute
-		width 27upx
-		height 41upx
-		top 410upx
-		left 109upx
-		font-size 115upx
-		color #0090D9
-	
 </style>
