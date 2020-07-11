@@ -1,31 +1,13 @@
 import http from "./interface";
 import { config } from "../../config";
 import { authStore } from "@/store/auth";
+import { _ } from "../../src/utils/lodash";
 
 /**
  * 将业务所有接口统一起来便于维护
  * 如果项目很大可以将 url 独立成文件，接口分成不同的模块
  *
  */
-
-// 单独导出(测试接口) import {test} from '@/common/vmeitime-http/'
-export const test = data => {
-  /* http.config.baseUrl = "http://localhost:8080/api/"
-	//设置请求前拦截器
-	http.interceptor.request = (config) => {
-		config.header = {
-			"token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-		}
-	} */
-  //设置请求结束后拦截器
-
-  return http.request({
-    baseUrl: "https://ls-coupon.codeispoetry.tech/wp-json/v1",
-    url: "ajax/echo/text?name=uni-app",
-    dataType: "text",
-    data
-  });
-};
 
 http.interceptor.request = config => {
   console.log("Req ==>:", config.url);
@@ -131,5 +113,25 @@ export const updateMobile = ({ session_key, encryptedData, iv, openid }) => {
       iv,
       openid
     }
+  });
+};
+
+export const createBooking = ({ store, date, type = "play", paymentGateway = "wechat", projects, checkInAt }) => {
+  const data = _.omitBy({ store, date, type, projects, checkInAt }, _.isNil);
+  return http.request({
+    url: `/booking?paymentGateway=${paymentGateway}`,
+    method: "POST",
+    dataType: "json",
+    data
+  });
+};
+
+export const getBookingPrice = ({ store, date, type = "play", projects, checkInAt }) => {
+  const data = _.omitBy({ store, date, type, projects, checkInAt }, _.isNil);
+  return http.request({
+    url: `/booking-price`,
+    method: "POST",
+    dataType: "json",
+    data
   });
 };

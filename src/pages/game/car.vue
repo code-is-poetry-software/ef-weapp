@@ -10,7 +10,8 @@
       </view>
 
       <view class="mode-list">
-        <view v-for="item in mode.modes" :key="item.label" class="list-item">
+        <view v-for="item in mode.modes" :key="item.label" class="list-item flex items-center">
+          <img :style="[{ width: item.size ? '160rpx' : '120rpx', marginRight: item.size ? '10rpx' : '40rpx' }]" :src="item.image" mode="widthFix" />
           <button-mode :text="item.label" :amount.sync="item.amount" />
         </view>
       </view>
@@ -29,17 +30,17 @@
         </view>
         <u-calendar v-model="date.show" mode="date" @change="e => (date.selected = e)"></u-calendar>
       </view>
-      <view class="u-flex u-flex-row form-item" @click="slot.show = true">
+      <view class="u-flex u-flex-row form-item" @click="checkIn.show = true">
         <button-title text="选择场次" />
-        <view>{{ form.slot }}</view>
-        <u-select mode="single-column" v-model="slot.show" :list="slot.list" @confirm="e => (form.slot = e[0].value)"></u-select>
+        <view>{{ form.checkIn }}</view>
+        <u-select mode="single-column" v-model="checkIn.show" :list="checkIn.list" @confirm="e => (form.checkIn = e[0].value)"></u-select>
       </view>
       <view class="price-bar">
         <button-price :text="price" />
       </view>
 
       <view class="column-center">
-        <button-pay @click="createBooking" text="立即支付" />
+        <button-pay @click="createBooking" text="立即支付" :disabled="!payable" />
         <view style="margin-top:20upx">
           <u-radio-group :value="submit.useBalance">
             <u-radio name="useBalance" @change="radioChange">使用余额支付</u-radio>
@@ -54,23 +55,24 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import _moment from "moment";
 import { bookingStore } from "../../store/booking";
+import { storeStore } from "../../store/store";
+import { authStore } from "../../store/auth";
 
 @Component
 export default class Car extends Vue {
   form = {
-    quantity: 6,
-    slot: "10:00-11:00"
+    checkIn: "10:00-11:00"
   };
   date = {
     show: false,
     selected: {
-      day: _moment().day(),
-      month: _moment().month(),
+      day: _moment().dates(),
+      month: _moment().month() + 1,
       result: _moment().format("YYYY-MM-DD"),
       year: _moment().year()
     }
   };
-  slot = {
+  checkIn = {
     show: false,
     list: [10, 11, 12, 13, 14, 15, 16, 17].map(i => ({ value: `${i}:00-${i + 1}:00`, label: `${i}:00-${i + 1}:00` }))
   };
@@ -80,14 +82,33 @@ export default class Car extends Vue {
 
   mode = {
     modes: [
-      { label: "动力方程小赛道", amount: "0" },
-      { label: "动力方程大赛道", amount: "6" },
-      { label: "动力方程超级赛道", amount: "1" }
+      { label: "动力方程小赛道", amount: "1", image: "/static/image/icon-car1.png" },
+      { label: "动力方程大赛道", amount: "0", image: "/static/image/icon-car2.png" },
+      { label: "动力方程超级赛道", amount: "0", image: "/static/image/icon-car3.png", size: "large" }
     ]
   };
 
+  get projects() {
+    return this.mode.modes.filter(i => Number(i.amount) > 0).map(i => ({ name: i.label, count: Number(i.amount) }));
+  }
+
   get price() {
     return 200;
+  }
+
+  get curStore() {
+    return storeStore.curStore;
+  }
+
+  get payable() {
+    return this.projects.some(i => i.count > 0);
+  }
+
+  async mounted() {
+    if (process.env.NODE_ENV == "development") {
+      await authStore.wechatLogin();
+      await storeStore.loadStore();
+    }
   }
 
   radioChange() {
@@ -95,7 +116,11 @@ export default class Car extends Vue {
   }
 
   async createBooking() {
-    bookingStore.createBooking();
+    const date = this.date.selected.result;
+    const { checkIn: checkInAt } = this.form;
+    const { id: store } = this.curStore;
+    const projects = this.projects;
+    const res = await bookingStore.createBooking({ store, date, checkInAt, projects });
   }
 }
 </script>

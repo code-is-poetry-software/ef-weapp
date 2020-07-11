@@ -14,6 +14,7 @@ import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 export default class Template extends Vue {
   @Prop({ default: "" }) text: string;
   @Prop({ default: 0 }) amount: string;
+  @Prop({ default: 100 }) max: number;
 
   show = false;
 
@@ -24,12 +25,13 @@ export default class Template extends Vue {
 
   onChange(e) {
     const amount = this.amount == "0" ? e : String(this.amount) + e;
+    if (Number(amount) > this.max) return;
     this.$emit("update:amount", amount);
   }
 
   backspace() {
     const amount = this.amount.length ? this.amount.substr(0, this.amount.length - 1) : this.amount;
-    this.$emit("update:amount", amount);
+    this.$emit("update:amount", amount || 0);
   }
   get image() {
     return Number(this.amount) > 0 ? "/static/image/button-mode-active.png" : "/static/image/button-mode.png";
