@@ -76,7 +76,7 @@
         "navigationBarTitleText": "uni-app"
       }
     },
-	
+
     {
       "path": "pages/racing/playerDetails",
       "style": {

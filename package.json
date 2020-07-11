@@ -52,7 +52,7 @@
     "@types/moment": "^2.13.0",
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.27.0",
     "regenerator-runtime": "^0.12.1",
     "sass": "^1.26.8",

@@ -5,7 +5,7 @@
     </view>
     <view class="content">
       <view class="user-info">
-        <button-avatar1 @click="e => navigateTo({ url: '/pages/racing/match' })"/>
+        <button-avatar1 @click="e => navigateTo({ url: '/pages/racing/match' })" />
         <!-- <button size="mini" class="get-phonenubmer" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">获取手机号</button> -->
       </view>
 
@@ -49,10 +49,6 @@ export default class UserIndex extends Vue {
       await authStore.getPhoneNumber(res);
       event.emit("mobile");
     } catch (error) {}
-  }
-
-  navigateTo({ url }: { url: string }) {
-    uni.navigateTo({ url });
   }
 }
 </script>

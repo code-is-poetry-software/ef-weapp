@@ -24,11 +24,7 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class RankIndex extends Vue {
-  navigateTo({ url }: { url: string }) {
-    uni.navigateTo({ url });
-  }
-}
+export default class RankIndex extends Vue {}
 </script>
 
 <style lang="stylus" scoped>

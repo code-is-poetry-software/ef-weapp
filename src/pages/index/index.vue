@@ -29,10 +29,12 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { authStore } from "../../store/auth";
 import { utils } from "../../utils";
+import { storeStore } from "../../store/store";
 
 @Component
 export default class Index extends Vue {
   onLoad() {
+    storeStore.loadStore();
     this.wechatLogin();
   }
 
