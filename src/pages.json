@@ -130,8 +130,8 @@
         "query": ""
       },
       {
-        "name": "支付成功",
-        "path": "pages/payment/success",
+        "name": "订单详情",
+        "path": "pages/booking/detail",
         "query": ""
       },
       {

@@ -7,5 +7,6 @@ declare module "*.vue" {
 declare module "vue/types/vue" {
   export interface Vue {
     navigateTo: function;
+    _: any;
   }
 }

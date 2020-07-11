@@ -2,23 +2,26 @@
   <view class="booking-item" @click="goDetail">
     <img class="img" src="/static/image/booking-item.png" mode="widthFix" />
     <view class="info">
-      <view>场次: 2020-06-08 12:00-14:00</view>
+      <view>场次: {{ item.date }} {{ item.checkInAt }}</view>
       <view class="flex">
-        <view>项目: 竞速无人机</view>
-        <view style="margin-left: 5px">数量: 6</view>
+        <view>项目: {{ project.name }}</view>
+        <view style="margin-left: 5px">数量: {{ project.count }}</view>
       </view>
     </view>
   </view>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch, Prop } from "vue-property-decorator";
+import { Booking } from "../../store/booking";
 
 @Component
 export default class Template extends Vue {
+  @Prop({ default: {} }) item: Booking;
+  @Prop({ default: {} }) project: Booking["projects"][0];
+
   async goDetail() {
-    // uni.navigateTo({ url: "/pages/booking/share" });
-    uni.navigateTo({ url: "/pages/booking/detail" });
+    uni.navigateTo({ url: `/pages/booking/detail?id=${this.item.id}` });
   }
 }
 </script>

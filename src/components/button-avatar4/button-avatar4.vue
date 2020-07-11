@@ -1,12 +1,11 @@
 <template>
-  <view class="button-avatar1" @click="$emit('click')">
-    <img class="img" src="/static/image/button-avatar1.png" mode="widthFix" />
+  <view class="button-avatar4" @click="$emit('click')">
+    <img class="img" src="/static/image/button-avatar4.png" mode="widthFix" />
     <view class="avatar-box">
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
     </view>
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
-      <view class="text1">手机号: {{ user.mobile || "" }}</view>
     </view>
   </view>
 </template>
@@ -23,29 +22,29 @@ export default class Template extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.button-avatar1
+.button-avatar4
   position relative
   display flex
   align-items center
   justify-content center
   .img
-    width 556upx
+    width 629upx
   .avatar-box
     position absolute
-    width 210upx
-    height 132upx
-    top 0
-    left 15upx
+    width 132upx
+    height 83upx
+    top 5upx
+    left 248upx
     background var(--primary)
     display flex
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
-      width 150upx
+      width 132upx
   .info
     position absolute
-    left 190upx
-    top 45upx
+    left 345upx
+    top 40upx
     color white
     z-index 1
     font-style italic

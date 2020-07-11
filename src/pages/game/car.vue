@@ -20,19 +20,19 @@
     <u-form :model="form" ref="uForm" class="form">
       <view class="u-flex u-flex-row form-item" @click="date.show = true">
         <button-title text="选择日期" />
-        <view>
-          <span>{{ date.selected.year }}</span>
-          <span>年</span>
-          <span>{{ date.selected.month }}</span>
-          <span>月</span>
-          <span>{{ date.selected.day }}</span>
-          <span>日</span>
+        <view style="margin: 20upx 0 0 20upx">
+          <span class="with-border">{{ date.selected.year }}</span>
+          <span class="color-blue" style="margin: 0 12upx">年</span>
+          <span class="with-border">{{ date.selected.month }}</span>
+          <span class="color-blue" style="margin: 0 12upx">月</span>
+          <span class="with-border">{{ date.selected.day }}</span>
+          <span class="color-blue" style="margin: 0 12upx">日</span>
         </view>
         <u-calendar v-model="date.show" mode="date" @change="e => (date.selected = e)"></u-calendar>
       </view>
       <view class="u-flex u-flex-row form-item" @click="checkIn.show = true">
         <button-title text="选择场次" />
-        <view>{{ form.checkIn }}</view>
+        <view class="with-border" style="margin: 20upx 0 0 20upx">{{ form.checkIn }}</view>
         <u-select mode="single-column" v-model="checkIn.show" :list="checkIn.list" @confirm="e => (form.checkIn = e[0].value)"></u-select>
       </view>
       <view class="price-bar">
@@ -57,6 +57,7 @@ import _moment from "moment";
 import { bookingStore } from "../../store/booking";
 import { storeStore } from "../../store/store";
 import { authStore } from "../../store/auth";
+import * as api from "../../../common/vmeitime-http";
 
 @Component
 export default class Car extends Vue {
@@ -92,10 +93,6 @@ export default class Car extends Vue {
     return this.mode.modes.filter(i => Number(i.amount) > 0).map(i => ({ name: i.label, count: Number(i.amount) }));
   }
 
-  get price() {
-    return 200;
-  }
-
   get curStore() {
     return storeStore.curStore;
   }
@@ -104,11 +101,19 @@ export default class Car extends Vue {
     return this.projects.some(i => i.count > 0);
   }
 
+  @Watch("projects")
+  @Watch("date.selected.result")
+  @Watch("form", { deep: true })
+  onLoadPrice() {
+    this.getPrice({ force: true });
+  }
+
   async mounted() {
     if (process.env.NODE_ENV == "development") {
       await authStore.wechatLogin();
       await storeStore.loadStore();
     }
+    this.getPrice();
   }
 
   radioChange() {
@@ -120,7 +125,29 @@ export default class Car extends Vue {
     const { checkIn: checkInAt } = this.form;
     const { id: store } = this.curStore;
     const projects = this.projects;
-    const res = await bookingStore.createBooking({ store, date, checkInAt, projects });
+    await bookingStore.createBooking({ store, date, checkInAt, projects, paymentGateway: "cash" });
+  }
+
+  price = 0;
+  loadingPrice = false;
+  async getPrice({ force = false } = {}) {
+    if (!force) {
+      if (this.loadingPrice) return;
+    }
+    this.loadingPrice = true;
+    const date = this.date.selected.result;
+    const { checkIn: checkInAt } = this.form;
+    const { id: store } = this.curStore;
+    const projects = this.projects;
+    try {
+      const res = await api.getBookingPrice({ store, date, checkInAt, projects });
+      if (res.data) {
+        this.price = res.data.price;
+      }
+      this.loadingPrice = false;
+    } catch (error) {
+      this.loadingPrice = false;
+    }
   }
 }
 </script>
@@ -128,6 +155,7 @@ export default class Car extends Vue {
 <style lang="stylus" scoped>
 .car
   padding 120upx 0
+  position relative
   .icon-user
     width 41px
     height 36px

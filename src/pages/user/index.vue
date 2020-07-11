@@ -5,16 +5,16 @@
     </view>
     <view class="content">
       <view class="user-info">
-        <button-avatar1 @click="e => navigateTo({ url: '/pages/racing/match' })" />
+        <button-avatar1 :user="user" @click="e => navigateTo({ url: '/pages/racing/match' })" />
         <!-- <button size="mini" class="get-phonenubmer" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">获取手机号</button> -->
       </view>
 
       <view class="cards">
         <view class="card">
-          <button-userinfo label="余 额" value="XXXX" />
+          <button-userinfo label="余 额" :value="user.balacne || 0" />
         </view>
         <view class="card">
-          <button-userinfo label="积 分" value="XXXX" />
+          <button-userinfo label="积 分" :value="user.points || 0" />
         </view>
         <view class="card">
           <button-userinfo label="玩家等级" value="萌新玩家" />
@@ -43,6 +43,16 @@ import { authStore } from "../../store/auth";
 
 @Component
 export default class UserIndex extends Vue {
+  get user() {
+    return authStore.user;
+  }
+
+  onLoad() {
+    if (process.env.NODE_ENV == "development") {
+      authStore.wechatLogin();
+    }
+  }
+
   async getPhoneNumber(res) {
     if (!res.detail.encryptedData) return;
     try {

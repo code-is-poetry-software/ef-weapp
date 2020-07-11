@@ -1,18 +1,27 @@
 import store from "./";
 import { VuexModule, Module, Action } from "vuex-class-modules";
 import * as api from "../../common/vmeitime-http";
+import { User } from "../type";
 @Module({ generateMutationSetters: true })
 class AuthStore extends VuexModule {
   showLogin = false;
   showGetMobile = false;
   token = uni.getStorageSync("token") || "";
   session_key = "";
-  user = {
+  user: User = {
     name: "",
     avatarUrl: "",
     openid: "",
-    mobile: ""
+    mobile: "",
+    balacne: 0,
+    points: 0
   };
+
+  devLogin() {
+    if (process.env.NODE_ENV === "development") {
+      this.wechatLogin();
+    }
+  }
 
   @Action
   async getPhoneNumber(data) {

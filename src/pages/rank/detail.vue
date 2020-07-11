@@ -1,12 +1,23 @@
 <template>
-  <view class="rank-detail">
-    <view>竞速无人机排行榜</view>
+  <view class="rank-detail page">
+    <with-bg />
+    <view style="margin-left: 60upx;margin-top:60upx">
+      <button-rank text="竞速无人机排行榜" />
+    </view>
+    <view style="position: absolute; right:61upx;top:65upx">
+      <button-user />
+    </view>
+
+    <view style="margin: 47upx 0 78upx ">
+      <button-avatar4 :user="user" />
+    </view>
+
     <view class="tabs">
-      <view :class="['tab', item.value == tab.curTab ? 'active' : '']" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)">{{ item.label }}</view>
+      <button-tab :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label"></button-tab>
     </view>
     <view class="list">
       <view class="list-item" v-for="item in curList" :key="item">
-        <button-rank1 :item="item" />
+        <button-avatar4 />
       </view>
     </view>
   </view>
@@ -14,6 +25,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
+import { authStore } from "../../store/auth";
 
 @Component
 export default class Template extends Vue {
@@ -88,9 +100,17 @@ export default class Template extends Vue {
       }
     ]
   };
-	
+
+  get user() {
+    return authStore.user;
+  }
+
   get curList() {
     return this.list[this.tab.curTab];
+  }
+
+  onLoad() {
+    authStore.devLogin();
   }
 
   selectTab(item) {
@@ -101,6 +121,8 @@ export default class Template extends Vue {
 
 <style lang="stylus" scoped>
 .rank-detail
+  padding 120upx 0
+  position: relative
   .tabs
     display flex
     justify-content center
@@ -116,4 +138,5 @@ export default class Template extends Vue {
         background #4d8ad6
   .list
     text-align center
+    margin-top 70upx
 </style>

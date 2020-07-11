@@ -7,8 +7,10 @@
       <img style="width: 128upx" src="/static/image/img3.png" mode="widthFix" />
     </view>
     <view class="text-success">您已成功缴费锁定</view>
-    <view style="margin-bottom: 72upx">
-      <booking-item />
+    <view style="margin-bottom: 72upx" v-if="item">
+      <view v-for="project in item.projects" :key="project._id">
+        <booking-item :item="item" :project="project" />
+      </view>
     </view>
     <text class="text-remind">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
 
@@ -20,9 +22,26 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
+import { Booking } from "../../store/booking";
+import * as api from "../../../common/vmeitime-http";
 
 @Component
 export default class PaymentSuccess extends Vue {
+  item: Booking | null = null;
+
+  onLoad(data) {
+    if (data.id) {
+      this.loadBooking(data.id);
+    }
+  }
+
+  async loadBooking(id) {
+    const res = await api.getItem({ type: "booking", id });
+    if (res.data) {
+      this.item = res.data;
+    }
+  }
+
   inviteFriend() {
     uni.navigateTo({ url: "/pages/booking/share" });
   }

@@ -36,4 +36,19 @@ body
   position relative
 .absolute
   position absolute
+.color-blue
+  color #0090D9
+.with-border
+  border 1px solid #0090D9
+  padding 4upx 36upx 4upx 12upx
+  position relative
+  &:after
+    display block
+    content ''
+    border-width 6px 4px 4px 4px
+    border-style solid
+    border-color var(--primary) transparent transparent transparent
+    position absolute
+    right 10upx
+    bottom 4upx
 </style>

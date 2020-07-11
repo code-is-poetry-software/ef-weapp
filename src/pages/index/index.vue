@@ -1,5 +1,5 @@
 <template>
-  <view class="index page">
+  <view class="index">
     <get-phonenumber />
     <login />
     <with-bg :showTop="false" />
@@ -16,7 +16,11 @@
       <img style="width: 600upx" src="/static/image/button-uav.png" mode="widthFix" />
     </view>
     <view style="margin-bottom: 20upx">
-      <booking-item />
+      <view v-for="booking in userBookings" :key="booking.id">
+        <view v-for="project in booking.projects" :key="project._id">
+          <booking-item :item="booking" :project="project" />
+        </view>
+      </view>
     </view>
     <view style="margin-bottom: 8upx">
       <home-menuitem @click="e => navigateTo({ url: '/pages/rank/index', checkAuth: true })" text="EF PARK 排行榜" />
@@ -30,12 +34,27 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import { authStore } from "../../store/auth";
 import { utils } from "../../utils";
 import { storeStore } from "../../store/store";
+import { bookingStore } from "../../store/booking";
 
 @Component
 export default class Index extends Vue {
+  get token() {
+    return authStore.token;
+  }
+  get userBookings() {
+    return bookingStore.userBookings;
+  }
+
   onLoad() {
     storeStore.loadStore();
-    this.wechatLogin();
+    this.wechatLogin().then(async () => {
+      await bookingStore.loadUserBooking();
+    });
+  }
+
+  onShow() {
+    if (!this.token) return;
+    bookingStore.loadUserBooking();
   }
 
   onShareAppMessage(res) {
@@ -59,7 +78,8 @@ export default class Index extends Vue {
 .index
   background #368ad4
   text-align center
-  padding 200upx 0 0
+  padding 200upx 0
+  position relative
 .e-button-primary
   width 300upx
   height 200upx
