@@ -26,6 +26,10 @@ body
   --text-primary #0090D9
 .flex
   display flex
+.justify-between
+  justify-content space-between
+.items-center
+  align-items center
 .page
   min-width 100vw
   min-height 100vh

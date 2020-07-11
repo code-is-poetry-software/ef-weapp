@@ -1,6 +1,6 @@
 <template>
   <view class="button-rank1" @click="$emit('click')">
-    <img class="img" src="/static/image/button-rank2.png" mode="widthFix" />
+    <img class="img" src="/static/image/button-rank1.png" mode="widthFix" />
     <view class="info">
       <view>项目: {{ item.name }} </view>
       <view>场次: {{ item.date }} 10:16 6人场</view>
