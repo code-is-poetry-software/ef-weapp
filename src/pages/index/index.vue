@@ -1,5 +1,5 @@
 <template>
-  <view class="index">
+  <view class="index page">
     <get-phonenumber />
     <login />
     <with-bg :showTop="false" />
