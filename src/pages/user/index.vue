@@ -1,38 +1,38 @@
 <template>
   <view class="user-index">
     <with-bg />
-    <view style="padding:140upx 0 113upx 58upx">
+    <view style="padding:140upx 0 183upx 58upx">
       <button-title1 text="导航" />
     </view>
     <view class="content">
       <view class="user-info">
         <button-avatar1 :user="user" @click="e => navigateTo({ url: '/pages/racing/match' })" />
-        <!-- <button size="mini" class="get-phonenubmer" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">获取手机号</button> -->
       </view>
+      <border1>
+        <view class="cards">
+          <view class="card">
+            <button-userinfo label="余 额" :value="user.balacne || 0" />
+          </view>
+          <view class="card">
+            <button-userinfo label="积 分" :value="user.points || 0" />
+          </view>
+          <view class="card">
+            <button-userinfo label="玩家等级" value="萌新玩家" />
+          </view>
+        </view>
 
-      <view class="cards">
-        <view class="card">
-          <button-userinfo label="余 额" :value="user.balacne || 0" />
+        <view class="menus">
+          <view class="menu" @click="navigateTo({ url: '/pages/user/history' })">
+            <img style="width: 451upx" src="/static/image/img-user-history.png" mode="widthFix" />
+          </view>
+          <view class="menu" @click="navigateTo({ url: '/pages/user/game' })">
+            <img style="width: 451upx" src="/static/image/img-user-game.png" mode="widthFix" />
+          </view>
+          <view class="menu" @click="navigateTo({ url: '/pages/user/payment' })">
+            <img style="width: 451upx" src="/static/image/img-user-payment.png" mode="widthFix" />
+          </view>
         </view>
-        <view class="card">
-          <button-userinfo label="积 分" :value="user.points || 0" />
-        </view>
-        <view class="card">
-          <button-userinfo label="玩家等级" value="萌新玩家" />
-        </view>
-      </view>
-
-      <view class="menus">
-        <view class="menu" @click="navigateTo({ url: '/pages/user/history' })">
-          <img style="width: 451upx" src="/static/image/img-user-history.png" mode="widthFix" />
-        </view>
-        <view class="menu" @click="navigateTo({ url: '/pages/user/game' })">
-          <img style="width: 451upx" src="/static/image/img-user-game.png" mode="widthFix" />
-        </view>
-        <view class="menu" @click="navigateTo({ url: '/pages/user/payment' })">
-          <img style="width: 451upx" src="/static/image/img-user-payment.png" mode="widthFix" />
-        </view>
-      </view>
+      </border1>
     </view>
   </view>
 </template>
@@ -68,10 +68,17 @@ export default class UserIndex extends Vue {
 .user-index
   .content
     margin 0 auto
-    width 80%
+    width 629upx
+    position relative
     .user-info
       display flex
-      position relative
+      position absolute
+      left 0
+      text-align center
+      z-index 10
+      top -100upx
+      justify-content center
+      width 100%
       .get-phonenubmer
         position absolute
         right 50upx
@@ -79,7 +86,7 @@ export default class UserIndex extends Vue {
     .cards
       display flex
       justify-content center
-      margin-top 40upx
+      padding-top 100upx
       .card
         display flex
         flex-direction column
@@ -91,7 +98,7 @@ export default class UserIndex extends Vue {
       display flex
       flex-direction column
       align-items center
-      margin-top 80upx
+      padding 80upx 0
       .menu
         margin 15upx 0
 </style>
