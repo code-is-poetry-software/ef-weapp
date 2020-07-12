@@ -59,6 +59,12 @@
       }
     },
     {
+      "path": "pages/user/historyDetails",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
       "path": "pages/user/game",
       "style": {
         "navigationBarTitleText": "uni-app"
@@ -112,7 +118,14 @@
       "style": {
         "navigationBarTitleText": "uni-app"
       }
+    },
+    {
+      "path": "pages/user/historyPersonal",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
     }
+		
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
@@ -172,12 +185,22 @@
         "name": "消费明细",
         "path": "pages/user/payment",
         "query": ""
-      },
+      }, 
       {
         "name": "潮玩记录",
         "path": "pages/user/history",
         "query": ""
-      }
+      },
+			{
+			  "name": "潮玩记录_对战信息",
+			  "path": "pages/user/historyDetails",
+			  "query": ""
+			},
+			{
+			  "name": "潮玩记录_个人信息",
+			  "path": "pages/user/historyPersonal",
+			  "query": ""
+			}
     ]
   }
 }

@@ -25,7 +25,7 @@ export default class Template extends Vue {}
 		color #0090D9
 	.text
 		position absolute
-		color #ECF5FF
+		color White
 		top 981upx
 		font-size 100upx
 		

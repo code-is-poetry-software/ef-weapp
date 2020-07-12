@@ -1,7 +1,5 @@
 <template>
 	<view class="content">
-			<button-Arrow3 :user="user"/>
-			
 			<!-- 潮玩记录列表 -->
 		<view class="user-info">
 			<button-details />
