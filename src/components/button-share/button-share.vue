@@ -14,7 +14,6 @@ export default class Template extends Vue {
   @Prop({ default: false }) active: boolean;
 
   onClick() {
-    console.log('123')
     this.$emit("update:active", !this.active);
     this.$emit("click");
   }

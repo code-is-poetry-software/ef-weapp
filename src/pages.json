@@ -177,6 +177,11 @@
         "name": "潮玩记录",
         "path": "pages/user/history",
         "query": ""
+      },
+      {
+        "name": "分享测试",
+        "path": "pages/index/index",
+        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYwYWM1YTQ1ZDNiMzEwZGFkNjdmMDcyIDVmMGIzN2E1NWQzYjMxMGRhZDY3ZjVkYw.BOGWP5Jk77QQ98ITfIun8cKkGyNYF30v1MZBMVpvI1M"
       }
     ]
   }

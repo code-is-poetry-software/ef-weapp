@@ -1,5 +1,5 @@
 <template>
-  <view class="button-pay" @click="$emit('click')">
+  <view class="button-pay" @click="onClick">
     <img class="img" src="/static/image/button-pay.png" mode="widthFix" />
     <view class="text"> {{ text }} </view>
   </view>
@@ -11,6 +11,11 @@ import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 @Component
 export default class Template extends Vue {
   @Prop({ default: "" }) text: string;
+  @Prop({ default: "" }) openType: string;
+
+  onClick() {
+    this.$emit("click");
+  }
 }
 </script>
 
@@ -20,6 +25,9 @@ export default class Template extends Vue {
   display flex
   align-items center
   justify-content center
+  background transparent
+  &:after
+    border none
   .img
     width 400upx
   .text
