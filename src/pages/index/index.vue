@@ -9,10 +9,10 @@
     <view style="margin-top: 60upx">
       <img style="width: 380upx" src="/static/image/img2.png" mode="widthFix" />
     </view>
-    <view style="margin-top: 50upx" @click="navigateTo({ url: '/pages/game/car', checkMobile: false })">
+    <view style="margin-top: 50upx" @click="e => goCreateBooking({ url: '/pages/game/car', name: 'EF安亭潮玩公园' })">
       <img style="width: 600upx" src="/static/image/button-car.png" mode="widthFix" />
     </view>
-    <view style="margin-bottom: 40upx;margin-top: 20upx" @click="navigateTo({ url: '/pages/game/uav', checkMobile: false })">
+    <view style="margin-bottom: 40upx;margin-top: 20upx" @click="e => goCreateBooking({ url: '/pages/game/uav', name: 'EF安亭卡丁车公园' })">
       <img style="width: 600upx" src="/static/image/button-uav.png" mode="widthFix" />
     </view>
     <view style="margin-bottom: 20upx">
@@ -70,6 +70,11 @@ export default class Index extends Vue {
     } catch (err) {
       utils.helper.errorHandler(err);
     }
+  }
+
+  goCreateBooking({ url, name }: { url: string; name: string }) {
+    storeStore.selectStore({ name });
+    this.navigateTo({ url, checkMobile: false });
   }
 }
 </script>

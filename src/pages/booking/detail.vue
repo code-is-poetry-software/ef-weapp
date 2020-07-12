@@ -14,20 +14,29 @@
     </view>
     <text class="text-remind">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
 
-    <view @click="inviteFriend">
+    <view>
       <img style="width: 500upx" src="/static/image/img-share.png" mode="widthFix" />
+    </view>
+    <view v-if="item">
+      <view v-for="project in item.projects" :key="project._id" style="margin-top: 16upx">
+        <button-share :text="project.name" :active.sync="project.active" />
+      </view>
+    </view>
+    <view style="margin-top: 46upx">
+      <button-pay @click="inviteFriend" text="邀请好友" />
     </view>
   </view>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import { Booking } from "../../store/booking";
 import * as api from "../../../common/vmeitime-http";
+import { Booking } from "../../type";
 
 @Component
 export default class PaymentSuccess extends Vue {
   item: Booking | null = null;
+  code: string = "";
 
   onLoad(data) {
     if (data.id) {
@@ -35,15 +44,39 @@ export default class PaymentSuccess extends Vue {
     }
   }
 
+  get invitationProjects() {
+    if (!this.item) return [];
+    return this.item.projects.filter(i => i.active).map(i => ({ name: i.name, count: 1 }));
+  }
+
   async loadBooking(id) {
     const res = await api.getItem({ type: "booking", id });
     if (res.data) {
       this.item = res.data;
+      if (this.item) {
+        this.item.projects = this.item.projects.map(i => ({ ...i, active: false }));
+      }
     }
   }
 
-  inviteFriend() {
-    uni.navigateTo({ url: "/pages/booking/share" });
+  onShareAppMessage(res) {
+    return {
+      title: "邀请你参加游戏",
+      path: `/pages/index/index?code=${this.code}`
+    };
+  }
+
+  async inviteFriend() {
+    if (!this.item) return;
+    if (this.invitationProjects.length == 0) {
+      return uni.showToast({
+        title: "请先选择分享的项目",
+        icon: "none"
+      });
+    }
+    const res = await api.updateItem({ type: "booking", id: this.item.id, data: { invitation: { projects: this.invitationProjects } } });
+
+    // uni.showShareMenu();
   }
 }
 </script>

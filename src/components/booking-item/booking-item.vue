@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
-import { Booking } from "../../store/booking";
+import { Booking } from "../../type";
 
 @Component
 export default class Template extends Vue {

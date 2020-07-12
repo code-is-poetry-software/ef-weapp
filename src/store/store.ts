@@ -1,15 +1,7 @@
 import store from "./";
 import { VuexModule, Module, Action } from "vuex-class-modules";
 import * as api from "../../common/vmeitime-http";
-
-export interface Store {
-  id: string;
-  name: string;
-  projects: Array<{
-    name: string;
-    price: number;
-  }>;
-}
+import { Store } from "../type";
 
 @Module({ generateMutationSetters: true })
 class StoreStore extends VuexModule {
@@ -18,6 +10,12 @@ class StoreStore extends VuexModule {
 
   get curStore() {
     return this.stores[this.curStoreId];
+  }
+
+  @Action
+  selectStore({ name }: { name: string }) {
+    const curStoreId = this.stores.findIndex(i => i.name == name);
+    this.curStoreId = curStoreId;
   }
 
   @Action

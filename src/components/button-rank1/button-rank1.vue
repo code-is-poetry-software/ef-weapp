@@ -2,27 +2,19 @@
   <view class="button-rank1" @click="$emit('click')">
     <img class="img" src="/static/image/button-rank1.png" mode="widthFix" />
     <view class="info">
-      <view>项目: {{ item.name }} </view>
-      <view>场次: {{ item.date }} 10:16 6人场</view>
+      <view>项目: {{ _.get(item, "payments.0.title").substr(0, 7) }} </view>
+      <view>场次: {{ item.date }} {{ item.checkInAt.substr(0, 5) }} 6人场</view>
     </view>
-    <view class="status">已完成</view>
+    <view class="status">{{ config.statusLabel[item.status] }}</view>
   </view>
 </template>
 <script lang="ts">
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
+import { Booking } from "../../type";
 
 @Component
 export default class Template extends Vue {
-  @Prop({
-    default: {
-      id: 0,
-      name: "竞速无人机",
-      date: "2020年6月8日",
-      score: "5:0",
-      sessions: "6人场"
-    }
-  })
-  item;
+  @Prop({ default: {} }) item: Booking;
 }
 </script>
 

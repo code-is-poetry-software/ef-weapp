@@ -17,9 +17,9 @@ class AuthStore extends VuexModule {
     points: 0
   };
 
-  devLogin() {
+  async devLogin() {
     if (process.env.NODE_ENV === "development") {
-      this.wechatLogin();
+      await this.wechatLogin();
     }
   }
 

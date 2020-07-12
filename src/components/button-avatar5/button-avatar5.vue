@@ -1,16 +1,12 @@
 <template>
-  <view class="button-avatar4" @click="$emit('click')">
-    <img class="img" src="/static/image/button-avatar4.png" mode="widthFix" />
+  <view class="button-avatar5" @click="$emit('click')">
+    <img class="img" src="/static/image/button-avatar5.png" mode="widthFix" />
     <view class="avatar-box">
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
     </view>
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
     </view>
-    <view class="score">
-      5个 10‘6 s/lap
-    </view>
-    <view v-if="title"> </view>
   </view>
 </template>
 
@@ -22,50 +18,41 @@ import { User } from "../../type";
 @Component
 export default class Template extends Vue {
   @Prop({ default: {} }) user: User;
-  @Prop({ default: "" }) title: "";
 }
 </script>
 
 <style lang="stylus" scoped>
-.button-avatar4
+.button-avatar5
   position relative
   display flex
   align-items center
   justify-content center
   .img
-    width 629upx
+    width 577upx
   .avatar-box
     position absolute
-    width 132upx
-    height 83upx
-    top 5upx
-    left 248upx
+    width 297upx
+    height 188upx
+    top 0
+    left 115upx
     background var(--primary)
     display flex
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
-      width 132upx
+      width 297upx
   .info
     position absolute
     left 345upx
-    top 40upx
+    top 125upx
     color white
     z-index 1
     font-style italic
     font-family Alibaba PuHuiTi
     font-weight bold
     .text
-      font-size 28upx
+      font-size 33upx
       margin-left 15upx
     .text1
       font-size 22upx
-  .score
-    position absolute
-    left 320upx
-    top 110upx
-    color white
-    z-index 1
-    font-style italic
-    font-family Alibaba PuHuiTi
 </style>

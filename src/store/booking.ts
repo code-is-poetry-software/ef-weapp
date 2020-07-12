@@ -1,20 +1,7 @@
 import store from "./";
 import { VuexModule, Module, Action } from "vuex-class-modules";
 import * as api from "../../common/vmeitime-http";
-
-export interface Booking {
-  id: string;
-  checkInAt: string;
-  date: string;
-  price: number;
-  type: string;
-  status: string;
-  projects: Array<{
-    count: number;
-    name: "string";
-    _id: string;
-  }>;
-}
+import { Booking } from "../type";
 
 @Module({ generateMutationSetters: true })
 class BookingStore extends VuexModule {

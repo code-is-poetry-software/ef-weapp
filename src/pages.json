@@ -175,7 +175,7 @@
       },
       {
         "name": "潮玩记录",
-        "path": "pages/fashionPay/recordFashion",
+        "path": "pages/user/history",
         "query": ""
       }
     ]

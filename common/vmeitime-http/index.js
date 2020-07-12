@@ -116,6 +116,15 @@ export const updateMobile = ({ session_key, encryptedData, iv, openid }) => {
   });
 };
 
+export const updateItem = ({ type, id, data }) => {
+  return http.request({
+    url: `/${type}/${id}`,
+    method: "POST",
+    dataType: "json",
+    data
+  });
+};
+
 export const createBooking = ({ store, date, type = "play", paymentGateway = "wechat", projects, checkInAt }) => {
   const data = _.omitBy({ store, date, type, projects, checkInAt }, _.isNil);
   return http.request({

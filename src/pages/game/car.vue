@@ -33,7 +33,7 @@
       <view class="u-flex u-flex-row form-item" @click="checkIn.show = true">
         <button-title text="选择场次" />
         <view class="with-border" style="margin: 20upx 0 0 20upx">{{ form.checkIn }}</view>
-        <u-select mode="single-column" v-model="checkIn.show" :list="checkIn.list" @confirm="e => (form.checkIn = e[0].value)"></u-select>
+        <u-select mode="single-column" v-model="checkIn.show" :list="checkInTimeOptions" @confirm="e => (form.checkIn = e[0].value)"></u-select>
       </view>
       <view class="price-bar">
         <button-price :text="price" />
@@ -58,24 +58,24 @@ import { bookingStore } from "../../store/booking";
 import { storeStore } from "../../store/store";
 import { authStore } from "../../store/auth";
 import * as api from "../../../common/vmeitime-http";
+const tomorrow = _moment().add(1, "day");
 
 @Component
 export default class Car extends Vue {
   form = {
-    checkIn: "10:00-11:00"
+    checkIn: ""
   };
   date = {
     show: false,
     selected: {
-      day: _moment().dates(),
-      month: _moment().month() + 1,
-      result: _moment().format("YYYY-MM-DD"),
-      year: _moment().year()
+      day: tomorrow.dates(),
+      month: tomorrow.month() + 1,
+      result: tomorrow.format("YYYY-MM-DD"),
+      year: tomorrow.year()
     }
   };
   checkIn = {
-    show: false,
-    list: [10, 11, 12, 13, 14, 15, 16, 17].map(i => ({ value: `${i}:00-${i + 1}:00`, label: `${i}:00-${i + 1}:00` }))
+    show: false
   };
   submit = {
     useBalance: "useBalance"
@@ -98,7 +98,11 @@ export default class Car extends Vue {
   }
 
   get payable() {
-    return this.projects.some(i => i.count > 0);
+    return this.projects.some(i => i.count > 0) && this.form.checkIn;
+  }
+
+  get checkInTimeOptions() {
+    return this.curStore.checkInTimeOptions.map(i => ({ value: i[0], label: i[0] }));
   }
 
   @Watch("projects")
@@ -114,6 +118,13 @@ export default class Car extends Vue {
       await storeStore.loadStore();
     }
     this.getPrice();
+    this.initData();
+  }
+
+  initData() {
+    if (!this.form.checkIn && this.checkInTimeOptions.length > 0) {
+      this.form.checkIn = this.checkInTimeOptions[0].value;
+    }
   }
 
   radioChange() {

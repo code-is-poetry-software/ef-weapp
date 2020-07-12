@@ -6,6 +6,7 @@ import uView from "uview-ui";
 import _moment from "moment";
 import { utils } from "./utils/index";
 import { _ } from "./utils/lodash";
+import { config } from "../config";
 Vue.use(uView);
 
 Vue.config.productionTip = false;
@@ -17,13 +18,17 @@ Vue.prototype.moment = _moment;
 Vue.prototype.log = console.log;
 Vue.prototype.uni = uni;
 Vue.prototype._ = _;
+Vue.prototype.config = config;
 
-Vue.prototype.navigateTo = async ({ url, checkAuth, checkMobile }: { url: string; checkAuth?: boolean; checkMobile?: boolean }) => {
+Vue.prototype.navigateTo = async ({ url, checkAuth, checkMobile, redirect }: { url: string; checkAuth?: boolean; checkMobile?: boolean; redirect?: boolean }) => {
   if (checkAuth) {
     await utils.hooks.checkLogin();
   }
   if (checkMobile) {
     await utils.hooks.checkMobile();
+  }
+  if (redirect) {
+    return uni.redirectTo({ url });
   }
   uni.navigateTo({ url });
 };
