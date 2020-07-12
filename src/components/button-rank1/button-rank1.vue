@@ -11,10 +11,12 @@
 <script lang="ts">
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 import { Booking } from "../../type";
+import { config } from "../../../config";
 
 @Component
 export default class Template extends Vue {
   @Prop({ default: {} }) item: Booking;
+  config = config;
 }
 </script>
 
@@ -36,6 +38,7 @@ export default class Template extends Vue {
     font-weight bold
     letter-spacing 2px
     color var(--text-primary)
+    z-index 1
   .status
     position absolute
     font-size 20upx
