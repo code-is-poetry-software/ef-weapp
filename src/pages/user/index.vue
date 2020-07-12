@@ -1,5 +1,5 @@
 <template>
-  <view class="user-index">
+  <view class="user-index page">
     <with-bg />
     <view style="padding:140upx 0 183upx 58upx">
       <button-title1 text="导航" />
@@ -66,6 +66,8 @@ export default class UserIndex extends Vue {
 
 <style lang="stylus" scoped>
 .user-index
+  position relative
+  padding 0 0 200rpx
   .content
     margin 0 auto
     width 629upx

@@ -143,7 +143,7 @@ export default class Template extends Vue {
 
 <style lang="stylus" scoped>
 .rank-detail
-  padding 120upx 0
+  padding 120upx 0 300upx
   position relative
   .tabs
     display flex
@@ -166,7 +166,7 @@ export default class Template extends Vue {
         background #4d8ad6
   .list
     text-align center
-    padding-top 40upx
+    padding 40upx 0
     .list-item
       position relative
       transform scale(0.8)

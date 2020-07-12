@@ -10,10 +10,30 @@
         <button-avatar5 :user="user" />
       </view>
       <border1>
-        <view class="list">
-          <view class="list-item" v-for="(item, index) in curList" :key="item">
-            <button-avatar4 :rank="index + 1" />
-          </view>
+        <view style="padding: 100upx 38upx 60upx">
+          <block1>
+            <view class="list">
+              <view class="list-item" v-for="(item, index) in curList" :key="item">
+                <button-avatar4 :rank="index + 1" />
+              </view>
+            </view>
+          </block1>
+        </view>
+      </border1>
+    </view>
+
+    <view class="content1">
+      <border1 title="个人奖杯记录">
+        <view style="padding: 51upx 38upx 23upx ">
+          <block1> </block1>
+        </view>
+      </border1>
+    </view>
+
+    <view class="content2">
+      <border1 title="个人最佳成绩">
+        <view style="padding: 51upx 38upx 23upx ">
+          <block1> </block1>
         </view>
       </border1>
     </view>
@@ -77,6 +97,7 @@ export default class Template extends Vue {
 .user-history
   position relative
   text-align center
+  padding 0 0 200rpx
   .content
     margin 0 auto
     width 629upx
@@ -92,8 +113,15 @@ export default class Template extends Vue {
       width 100%
     .list
       text-align center
-      padding-top 140upx
-    .list-item
-      position relative
-      transform scale(0.8)
+      .list-item
+        position relative
+        transform scale(0.8)
+  .content1
+    margin 52upx auto
+    width 629upx
+    position relative
+  .content2
+    margin 52upx auto
+    width 629upx
+    position relative
 </style>
