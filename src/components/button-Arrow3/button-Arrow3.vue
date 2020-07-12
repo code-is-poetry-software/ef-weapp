@@ -1,7 +1,7 @@
 <template>
 	<view class="button-Arrow" @click="$emit('click')">
 		<img class="arrow3" src="/static/image/arrow-3.png" mode="widthFix"/>
-		<!-- <view class="text">{{ item.name }}</view> -->
+		<view class="text">{{ user }}</view>
 	</view>
 </template>
  
@@ -9,14 +9,7 @@
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 @Component
 export default class Template extends Vue {
-	@Prop({
-	  default: {
-	    id: 0,
-	    name: "潮玩项目",
-	  }
-	})
-	item;
-	Title;
+	@Prop({ default: {} }) user: User;
 }
 </script>
  

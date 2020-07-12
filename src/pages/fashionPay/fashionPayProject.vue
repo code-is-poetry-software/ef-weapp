@@ -1,7 +1,6 @@
 <template>
   <view class="rank-detail">
-    <button-Arrow3 />
-    <view>潮玩项目</view>
+    <button-Arrow3 :user="user"/> 
     <view class="tabs">
       <view :class="['tab', item.value == tab.curTab ? 'active' : '']" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)">{{ item.label }}</view>
     </view>
@@ -129,7 +128,9 @@ export default class Template extends Vue {
   get curList() {
     return this.list[this.tab.curTab];
   }
-
+	get user() {
+		return "潮玩项目";
+	}
   selectTab(item) {
     this.tab.curTab = item.value;
   }
