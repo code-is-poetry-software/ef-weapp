@@ -22,7 +22,7 @@ import { authStore } from "../../store/auth";
 
 @Component
 export default class Template extends Vue {
-  list = [];
+  list: any[] = [];
   loading = false;
 
   onReachBottom() {
@@ -40,7 +40,7 @@ export default class Template extends Vue {
     this.loading = true;
     const res = await api.getList({ type: "payment", data: { limit: 10, skip: this.list.length } });
     if (res.data) {
-      this.list = res.data;
+      this.list = [...this.list, ...res.data];
     }
     this.loading = false;
   }
@@ -50,4 +50,5 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .user-payment
   position relative
+  padding 0 0 200upx 0
 </style>

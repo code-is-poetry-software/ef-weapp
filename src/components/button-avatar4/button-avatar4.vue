@@ -10,7 +10,11 @@
     <view class="score">
       5个 10‘6 s/lap
     </view>
-    <view v-if="title"> </view>
+    <view v-if="title" class="title">{{ title }}</view>
+    <view v-if="rank" class="rank-info">
+      <span class="rank">{{ rank }}</span>
+      <span class="text">{{ rankText }}</span>
+    </view>
   </view>
 </template>
 
@@ -22,7 +26,14 @@ import { User } from "../../type";
 @Component
 export default class Template extends Vue {
   @Prop({ default: {} }) user: User;
-  @Prop({ default: "" }) title: "";
+  @Prop({ default: "" }) title: string;
+  @Prop({ default: "9" }) rank: string;
+
+  get rankText() {
+    if (this.rank == "1") return "st";
+    if (this.rank == "2") return "nd";
+    return "th";
+  }
 }
 </script>
 
@@ -68,4 +79,28 @@ export default class Template extends Vue {
     z-index 1
     font-style italic
     font-family Alibaba PuHuiTi
+  .title
+    position absolute
+    left 108upx
+    top 0
+    color var(--text-primary)
+    z-index 1
+    font-style italic
+    font-weight bold
+    font-family Alibaba PuHuiTi
+  .rank-info
+    position absolute
+    left 120upx
+    top 20upx
+    color var(--text-primary)
+    z-index 1
+    font-style italic
+    font-weight bold
+    .rank
+      font-family NightMachine
+      font-size 89upx
+    .text
+      font-family Gotham-Bold
+      font-size 23upx
+      margin-left 4upx
 </style>

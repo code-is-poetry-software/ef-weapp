@@ -9,15 +9,15 @@
     </view>
 
     <view style="margin: 47upx 0 78upx ">
-      <button-avatar4 :user="user" />
+      <button-avatar4 :user="user" title="您目前排名:" />
     </view>
 
     <view class="tabs">
       <button-tab :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label"></button-tab>
     </view>
     <view class="list">
-      <view class="list-item" v-for="item in curList" :key="item">
-        <button-avatar4 />
+      <view class="list-item" v-for="(item, index) in curList" :key="item">
+        <button-avatar4 :rank="index + 1" />
       </view>
     </view>
   </view>
@@ -122,7 +122,7 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .rank-detail
   padding 120upx 0
-  position: relative
+  position relative
   .tabs
     display flex
     justify-content center
@@ -139,4 +139,6 @@ export default class Template extends Vue {
   .list
     text-align center
     margin-top 70upx
+    .list-item
+      transform scale(0.8)
 </style>

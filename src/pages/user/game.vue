@@ -36,7 +36,7 @@ export default class Template extends Vue {
     ]
   };
 
-  list = [];
+  list: any[] = [];
   loading = false;
 
   onLoad() {
@@ -45,13 +45,17 @@ export default class Template extends Vue {
     });
   }
 
+  onReachBottom() {
+    this.loadBooking();
+  }
+
   async loadBooking() {
     if (this.loading) return;
     this.loading = true;
     const status = this.tab.curTab;
     const res = await api.getList({ type: "booking", data: { status: status == "all" ? null : status, limit: 10, skip: this.list.length } });
     if (res.data) {
-      this.list = res.data;
+      this.list = [...this.list, ...res.data];
     }
     this.loading = false;
   }
@@ -67,6 +71,7 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .user-history
   position relative
+  padding 0 0 200upx 0
   .tabs
     display flex
     justify-content center
