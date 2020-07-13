@@ -1,11 +1,11 @@
 <template>
-  <view>
-    <!-- <img class="avatar" src="https://via.placeholder.com/132x83" /> -->
-    <view class="content">
-      <view class="user-info">
-        <button-avatar2 />
-        <button-Arrow @click="e => navigateTo({ url: '/pages/racing/playerDetails' })" />
-      </view>
+  <view class="match page">
+    <with-bg />
+    <view style="text-align: center">
+      <button-avatar2 />
+    </view>
+    <view style="margin-top: 300upx">
+      <button-Arrow text="一号无人机" />
     </view>
   </view>
 </template>
@@ -28,11 +28,7 @@ export default class UserIndex extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.user-index
-  .content
-    margin 200upx auto 0
-    width 80%
-    .user-info
-      display flex
-      position relative
+.match
+  position relative
+  padding 350upx 0
 </style>

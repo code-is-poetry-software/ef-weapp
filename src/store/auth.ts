@@ -8,7 +8,8 @@ class AuthStore extends VuexModule {
   showGetMobile = false;
   token = uni.getStorageSync("token") || "";
   session_key = "";
-  user: User = {
+  user: Partial<User> = {
+    id: 0,
     name: "",
     avatarUrl: "",
     openid: "",

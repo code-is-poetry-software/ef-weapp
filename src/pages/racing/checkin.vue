@@ -1,9 +1,8 @@
 <template>
-  <view class="playerDetails page">
+  <view class="checkin page">
     <with-bg />
-    <view>
-      <button-pattern-switcher :activeItem.sync="activeItem" />
-    </view>
+    <button-pattern-switcher :activeItem.sync="activeItem" />
+
     <view style="margin: 80upx ">
       <u-grid :col="3" :border="false">
         <u-grid-item v-for="item in 6" :key="item">
@@ -12,7 +11,10 @@
       </u-grid>
     </view>
     <view>
-      <button-time />
+      <button-diamond />
+    </view>
+    <view>
+      <button-Arrow2 />
     </view>
   </view>
 </template>
@@ -30,7 +32,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.playerDetails
+.checkin
   position relative
   padding 200upx 0
 </style>
