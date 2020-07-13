@@ -1,5 +1,5 @@
 <template>
-  <view class="index">
+  <view class="index page">
     <get-phonenumber />
     <login />
     <with-bg :showTop="false" />
@@ -18,7 +18,7 @@
     <view style="margin-bottom: 20upx">
       <view v-for="booking in userBookings" :key="booking.id">
         <view v-for="project in booking.projects" :key="project._id">
-          <booking-item :item="booking" :project="project" />
+          <booking-item :item="booking" :project="project" @click="goBookingDetail(booking)" />
         </view>
       </view>
     </view>
@@ -75,6 +75,11 @@ export default class Index extends Vue {
   goCreateBooking({ url, name }: { url: string; name: string }) {
     storeStore.selectStore({ name });
     this.navigateTo({ url, checkMobile: false });
+  }
+
+  goBookingDetail(item) {
+    console.log(item);
+    uni.navigateTo({ url: `/pages/booking/detail?id=${item.id}` });
   }
 }
 </script>

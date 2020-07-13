@@ -1,5 +1,5 @@
 <template>
-  <view class="booking-item" @click="goDetail">
+  <view class="booking-item" @click="$emit('click')">
     <img class="img" src="/static/image/booking-item.png" mode="widthFix" />
     <view class="info">
       <view>场次: {{ item.date }} {{ item.checkInAt }}</view>

@@ -14,8 +14,11 @@
     </view>
     <text class="text-remind">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
 
-    <view>
-      <img style="width: 500upx" src="/static/image/img-share.png" mode="widthFix" />
+    <view style="position: relative">
+      <img style="width: 572upx" src="/static/image/img-share.png" mode="widthFix" />
+      <view class="qrcode">
+        <canvas canvas-id="qrcode" style="width: 150px;height: 150px;" />
+      </view>
     </view>
     <view v-if="item">
       <view v-for="project in item.projects" :key="project._id" style="margin-top: 16upx">
@@ -32,6 +35,7 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import * as api from "../../../common/vmeitime-http";
 import { Booking } from "../../type";
+import uQRCode from "../../../common/uqrcode";
 
 @Component
 export default class PaymentSuccess extends Vue {
@@ -42,6 +46,24 @@ export default class PaymentSuccess extends Vue {
     if (data.id) {
       this.loadBooking(data.id);
     }
+    this.makeQrcode();
+  }
+
+  makeQrcode() {
+    uQRCode.make({
+      canvasId: "qrcode",
+      componentInstance: this,
+      text: "uQRCode",
+      size: 150,
+      margin: 10,
+      backgroundColor: "#ffffff",
+      foregroundColor: "#000000",
+      fileType: "jpg",
+      correctLevel: uQRCode.defaults.correctLevel,
+      success: res => {
+        console.log(res);
+      }
+    });
   }
 
   get invitationProjects() {
@@ -106,4 +128,12 @@ export default class PaymentSuccess extends Vue {
     line-height 18px
     color #666
     margin-bottom 72upx
+  .qrcode
+    position absolute
+    width 100%
+    top 40upx
+    left 0
+    text-align center
+    canvas
+      display inline-block
 </style>

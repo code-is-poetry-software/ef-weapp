@@ -43,6 +43,7 @@ export default class Template extends Vue {
   display flex
   align-items center
   justify-content center
+  display inline-block
   .img
     width 629upx
   .avatar-box
@@ -50,7 +51,7 @@ export default class Template extends Vue {
     width 132upx
     height 83upx
     top 5upx
-    left 248upx
+    left 188upx
     background var(--primary)
     display flex
     justify-content center
@@ -59,7 +60,7 @@ export default class Template extends Vue {
       width 132upx
   .info
     position absolute
-    left 345upx
+    left 285upx
     top 40upx
     color white
     z-index 1
@@ -73,7 +74,7 @@ export default class Template extends Vue {
       font-size 22upx
   .score
     position absolute
-    left 320upx
+    left 260upx
     top 110upx
     color white
     z-index 1
@@ -81,7 +82,7 @@ export default class Template extends Vue {
     font-family Alibaba PuHuiTi
   .title
     position absolute
-    left 108upx
+    left 48upx
     top 0
     color var(--text-primary)
     z-index 1
@@ -90,7 +91,7 @@ export default class Template extends Vue {
     font-family Alibaba PuHuiTi
   .rank-info
     position absolute
-    left 120upx
+    left 60upx
     top 20upx
     color var(--text-primary)
     z-index 1

@@ -24,7 +24,7 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .button-avatar5
   position relative
-  display flex
+  display inline-block
   align-items center
   justify-content center
   .img
@@ -34,7 +34,7 @@ export default class Template extends Vue {
     width 297upx
     height 188upx
     top 0
-    left 115upx
+    left 30upx
     background var(--primary)
     display flex
     justify-content center
@@ -43,7 +43,7 @@ export default class Template extends Vue {
       width 297upx
   .info
     position absolute
-    left 345upx
+    left 255upx
     top 125upx
     color white
     z-index 1

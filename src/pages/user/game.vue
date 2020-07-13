@@ -1,5 +1,5 @@
 <template>
-  <view class="user-history page">
+  <view class="user-game page">
     <with-bg />
     <view style="padding:140upx 62upx 113upx 58upx" class="flex justify-between align-center">
       <button-title1 text="潮玩项目" />
@@ -69,7 +69,7 @@ export default class Template extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.user-history
+.user-game
   position relative
   padding 0 0 200upx 0
   .tabs

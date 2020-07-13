@@ -8,17 +8,21 @@
       <button-user />
     </view>
 
-    <view style="margin: 47upx 0 78upx ">
+    <view style="margin: 47upx 0 78upx;text-align:center">
       <button-avatar4 :user="user" title="您目前排名:" />
     </view>
 
-    <view class="tabs">
-      <button-tab :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label"></button-tab>
-    </view>
-    <view class="list">
-      <view class="list-item" v-for="(item, index) in curList" :key="item">
-        <button-avatar4 :rank="index + 1" />
+    <view style="padding: 0 40upx;position: relative">
+      <view class="tabs">
+        <button-tab :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label"></button-tab>
       </view>
+      <border1>
+        <view class="list">
+          <view class="list-item" v-for="(item, index) in curList" :key="item">
+            <button-avatar4 :rank="index + 1" />
+          </view>
+        </view>
+      </border1>
     </view>
   </view>
 </template>
@@ -40,6 +44,24 @@ export default class Template extends Vue {
 
   list = {
     all: [
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      },
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      },
+      {
+        id: 0,
+        name: "竞速无人机",
+        date: "2020年6月8日",
+        score: "5:0"
+      },
       {
         id: 0,
         name: "竞速无人机",
@@ -121,11 +143,17 @@ export default class Template extends Vue {
 
 <style lang="stylus" scoped>
 .rank-detail
-  padding 120upx 0
+  padding 120upx 0 300upx
   position relative
   .tabs
     display flex
     justify-content center
+    position absolute
+    width 100%
+    z-index 10
+    margin-top -20upx
+    text-align center
+    left 0
     .tab
       display flex
       align-items center
@@ -138,7 +166,8 @@ export default class Template extends Vue {
         background #4d8ad6
   .list
     text-align center
-    margin-top 70upx
+    padding 40upx 0
     .list-item
+      position relative
       transform scale(0.8)
 </style>
