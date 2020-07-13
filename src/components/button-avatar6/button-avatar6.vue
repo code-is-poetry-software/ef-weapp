@@ -1,6 +1,7 @@
 <template>
   <view class="button-avatar6" @click="$emit('click')">
     <img class="img" src="/static/image/button-avatar6.png" mode="widthFix" />
+			<img class="Line_1_1"  src="/static/image/Line_1_1" />
     <!-- <view class="avatar-box"> -->
       <!-- <img class="avatar" :src="user.avatarUrl" mode="widthFix" /> -->
     <!-- </view> -->
@@ -87,9 +88,9 @@ export default class Template extends Vue {
 	.placeholder
     position absolute
     width 144upx 
-    height 82upx 
+    height 86upx 
     top 0upx
-    left 254upx
+    left 256upx
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
   .title
     position absolute
@@ -127,4 +128,8 @@ export default class Template extends Vue {
 		top 94upx
 		font-size 19upx
 		color #FFFFFF
+	.Line_1_1
+		position absolute
+		width 350upx
+		height 350upx
 </style>
