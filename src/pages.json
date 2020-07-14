@@ -102,30 +102,11 @@
       }
     },
     {
-      "path": "pages/fashionPay/fashionPayProject",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
-    },
-    {
-      "path": "pages/fashionPay/consumptionDetails",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
-    },
-    {
-      "path": "pages/fashionPay/recordFashion",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
-    },
-    {
       "path": "pages/user/historyPersonal",
       "style": {
         "navigationBarTitleText": "uni-app"
       }
     }
-		
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
@@ -175,22 +156,22 @@
         "name": "消费明细",
         "path": "pages/user/payment",
         "query": ""
-      }, 
+      },
       {
         "name": "潮玩记录",
         "path": "pages/user/history",
         "query": ""
       },
-			{
-			  "name": "historyDetails",
-			  "path": "pages/user/historyDetails",
-			  "query": ""
-			},
-			{
-			  "name": "潮玩记录_historyPersonal",
-			  "path": "pages/user/historyPersonal",
-			  "query": ""
-			},
+      {
+        "name": "historyDetails",
+        "path": "pages/user/historyDetails",
+        "query": ""
+      },
+      {
+        "name": "潮玩记录_historyPersonal",
+        "path": "pages/user/historyPersonal",
+        "query": ""
+      },
       {
         "name": "分享测试",
         "path": "pages/index/index",
