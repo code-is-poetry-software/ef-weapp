@@ -57,4 +57,6 @@ body
     position absolute
     right 10upx
     bottom 4upx
+.u-grid-item-box
+  padding 10upx 0 !important
 </style>

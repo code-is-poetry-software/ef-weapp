@@ -1,19 +1,7 @@
 <template>
-  <view class="button-avatar" @click="$emit('click')">
-    <img class="pattern_true" src="/static/image/pattern_true.png"  mode="widthFix" />
-    <img class="pattern_false.png" src="/static/image/pattern_false.png"  mode="widthFix" />
-		<image class="arrow_1" src="/static/image/arrow_1.png"  />
-		<image class="arrow_2" src="/static/image/arrow_2.png"  />
-		<view>
-			<view class="DZMS">对战模式</view>
-		</view>
-		<view>
-			<view class="JSMS">竞速模式</view>
-		</view>
-		<!-- 计时 -->
-		<view>
-			<view class="JSQ">01’02</view>
-		</view>
+  <view class="button-pattern" @click="$emit('click')">
+    <img class="img" :src="active ? '/static/image/button-pattern-active.png' : '/static/image/button-pattern.png'" mode="widthFix" />
+    <view class="text">{{ item }}</view>
   </view>
 </template>
 
@@ -21,57 +9,29 @@
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 
 @Component
-export default class Template extends Vue {}
+export default class Template extends Vue {
+  @Prop({ default: null }) activeItem: string;
+  @Prop({ default: null }) item: string;
+
+  get active() {
+    return this.activeItem == this.item;
+  }
+}
 </script>
 
 <style lang="stylus" scoped>
-.button-avatar
-  // position relative
-  display flex
-  align-items center
-  justify-content center
-	// height 100%
-	.pattern_true
-		position absolute
-		width 320upx
-		height 46upx
-		top -70upx
-		left -33upx
-	.pattern_false
-		position absolute
-		width 320upx
-		height 46upx
-		top: -70upx
-		left: 315upx
-	.DZMS
-		position absolute
-		top -55upx
-		left 64upx
-		color #ECF5FF
-	.JSMS
-		position absolute
-		top -55upx
-		left 406upx
-		color #ECF5FF
-	.arrow_1
-		position absolute
-		width 27upx
-		height 41upx
-		top -55upx
-		left 224upx
-	.arrow_2
-		position absolute
-		width 27upx
-		height 41upx
-		top -55upx
-		left 569upx
-	.JSQ
-		position absolute
-		width 27upx
-		height 41upx
-		top 410upx
-		left 109upx
-		font-size 115upx
-		color #0090D9
-	
+.button-pattern
+  position relative
+  display inline-block
+  .img
+    width 300upx
+.text
+  position absolute
+  left 50upx
+  top 12upx
+  color white
+  z-index 1
+  font-style italic
+  font-weight bold
+  font-size 30upx
 </style>

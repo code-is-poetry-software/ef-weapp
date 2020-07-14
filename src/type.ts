@@ -5,6 +5,10 @@ export interface Booking {
   price: number;
   type: string;
   status: string;
+  customer: {
+    id: string;
+    name: string;
+  };
   payments: Array<Payment>;
   projects: Array<{
     count: number;
@@ -14,6 +18,7 @@ export interface Booking {
   }>;
 }
 export interface User {
+  id: string;
   name: string;
   avatarUrl: string;
   openid: string;

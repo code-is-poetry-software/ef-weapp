@@ -1,24 +1,30 @@
 <template>
-	<view class="button-Arrow" @click="$emit('click')">
-		<img class="arrow" src="/static/image/button-Arrow.png" mode="widthFix"/>
-	</view>
+  <view class="button-Arrow" @click="$emit('click')">
+    <img class="arrow" src="/static/image/button-Arrow.png" mode="widthFix" />
+    <view class="text"> {{ text }}</view>
+  </view>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 @Component
-export default class Template extends Vue {}
+export default class Template extends Vue {
+  @Prop({ default: "" }) text: string;
+}
 </script>
  
 <style lang="stylus" scoped>
 .button-Arrow
-  // position relative 
-  display flex 
+  display flex
   align-items center
   justify-content center
-	.arrow
-		height 150upx
-		top 955upx
-		position absolute
-		width 600upx
+  .arrow
+    width 500upx
+  .text
+    position absolute
+    font-size 58upx
+    font-family Alibaba PuHuiTi
+    font-weight bold
+    color var(--text-primary)
+    z-index 1
 </style>

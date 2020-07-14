@@ -96,7 +96,7 @@
       }
     },
     {
-      "path": "pages/racing/playerDetails_Start",
+      "path": "pages/racing/checkin",
       "style": {
         "navigationBarTitleText": "uni-app"
       }
@@ -167,16 +167,6 @@
         "query": ""
       },
       {
-        "name": "个人信息",
-        "path": "pages/racing/match",
-        "query": ""
-      },
-      {
-        "name": "对战模式",
-        "path": "pages/racing/playerDetails",
-        "query": ""
-      },
-      {
         "name": "潮玩项目",
         "path": "pages/user/game",
         "query": ""
@@ -205,6 +195,21 @@
         "name": "分享测试",
         "path": "pages/index/index",
         "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYwYWM1YTQ1ZDNiMzEwZGFkNjdmMDcyIDVmMGIzN2E1NWQzYjMxMGRhZDY3ZjVkYw.BOGWP5Jk77QQ98ITfIun8cKkGyNYF30v1MZBMVpvI1M"
+      },
+      {
+        "name": "racing/checkin",
+        "path": "pages/racing/checkin",
+        "query": ""
+      },
+      {
+        "name": "racing/match",
+        "path": "pages/racing/match",
+        "query": ""
+      },
+      {
+        "name": "racing/playerDetails",
+        "path": "pages/racing/playerDetails",
+        "query": ""
       }
     ]
   }

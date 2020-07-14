@@ -20,12 +20,12 @@
         <canvas canvas-id="qrcode" style="width: 150px;height: 150px;" />
       </view>
     </view>
-    <view v-if="item">
+    <view v-if="isOwner && item">
       <view v-for="project in item.projects" :key="project._id" style="margin-top: 16upx">
         <button-share :text="project.name" :active.sync="project.active" />
       </view>
     </view>
-    <view style="margin-top: 46upx">
+    <view v-if="isOwner" style="margin-top: 46upx">
       <button-pay @click="inviteFriend" text="邀请好友" />
     </view>
     <u-popup v-model="showShare" mode="bottom">
@@ -39,6 +39,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import * as api from "../../../common/vmeitime-http";
 import { Booking } from "../../type";
 import uQRCode from "../../../common/uqrcode";
+import { authStore } from "../../store/auth";
 
 @Component
 export default class PaymentSuccess extends Vue {
@@ -67,6 +68,15 @@ export default class PaymentSuccess extends Vue {
         console.log(res);
       }
     });
+  }
+
+  get user() {
+    return authStore.user;
+  }
+
+  get isOwner() {
+    if (!this.item) return false;
+    return this.item.customer.id == this.user.id;
   }
 
   get invitationProjects() {
