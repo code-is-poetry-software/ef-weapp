@@ -77,8 +77,8 @@ export default class Template extends Vue {
       font-size 22upx
   .score
     position absolute
-    left 260upx
-    top 98upx
+    left 265upx
+    top 96upx
     color white
     z-index 1
     font-style italic
@@ -110,7 +110,7 @@ export default class Template extends Vue {
 		.text2
 			position absolute
 			left 522upx
-			top 102upx
+			top 104upx
 			font-size 19upx
 			color #FFFFFF
 </style>
