@@ -1,6 +1,9 @@
 <template>
   <view class="button-avatar4" @click="$emit('click')">
-    <img class="img" src="/static/image/button-avatar4.png" mode="widthFix" />
+    <img class="img" src="/static/image/button-avatar6.png" mode="widthFix" />
+		<view>
+			<view class="text2">查看战绩</view>
+		</view>
     <view class="avatar-box">
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
     </view>
@@ -51,7 +54,7 @@ export default class Template extends Vue {
     width 132upx
     height 83upx
     top 5upx
-    left 188upx
+    left 194upx
     background var(--primary)
     display flex
     justify-content center
@@ -75,7 +78,7 @@ export default class Template extends Vue {
   .score
     position absolute
     left 260upx
-    top 110upx
+    top 98upx
     color white
     z-index 1
     font-style italic
@@ -104,4 +107,10 @@ export default class Template extends Vue {
       font-family Gotham-Bold
       font-size 23upx
       margin-left 4upx
+		.text2
+			position absolute
+			left 522upx
+			top 102upx
+			font-size 19upx
+			color #FFFFFF
 </style>

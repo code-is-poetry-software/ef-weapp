@@ -14,7 +14,6 @@
       <span class="text">{{ rankText }}</span>
     </view>
 		<view>
-			<img class="details" src="/static/image/button-details.png" mode="widthFix"/>
 			<view class="text2">查看战绩</view>
 		</view>
 			<img class="placeholder" src="https://via.placeholder.com/132x83" />
@@ -71,23 +70,25 @@ export default class Template extends Vue {
     font-weight bold
     .text
       font-size 28upx
-      margin-left 15upx
+      margin-left -43upx
+      margin-top -9upx
     .text1
       font-size 22upx
   .score
     position absolute
-    left 320upx
-    top 97upx
+    left 243upx
+    top 87upx
     color white
     z-index 1
     font-style italic
     font-family Alibaba PuHuiTi
+		font-size 22upx
 	.placeholder
     position absolute
     width 144upx 
     height 86upx 
     top 0upx
-    left 256upx
+    left 168upx
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
   .title
     position absolute
@@ -100,7 +101,7 @@ export default class Template extends Vue {
     font-family Alibaba PuHuiTi
   .rank-info
     position absolute
-    left 159upx
+    left 80upx
     top -3upx
     color var(--text-primary)
     z-index 1
@@ -112,17 +113,10 @@ export default class Template extends Vue {
     .text
       font-family Gotham-Bold
       font-size 23upx
-      margin-left 4upx
-	.details
-		position absolute
-		left 578upx
-		width 119upx
-		height 38upx
-		top 94upx
 	.text2
 		position absolute
-		left 593upx
-		top 94upx
+		left 457upx
+		top 89upx
 		font-size 19upx
 		color #FFFFFF
 	.Line_1_1

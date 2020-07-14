@@ -2,11 +2,8 @@
   <view class="button-rank3" @click="$emit('click')">
 		<view>
 			<img class="img" src="/static/image/button-rank3.png" mode="widthFix" />
-			<img class="details" src="/static/image/button-details.png"/>
-			<view class="info2">
 				<view class="text">查看详情</view>
 			</view>
-		</view>
     <view class="info">
       <view>项目: {{ _.get(item, "payments.0.title").substr(0, 7) }} </view>
       <view>时间: {{ item.date }}  </view>
@@ -14,13 +11,12 @@
 				&nbsp{{ item.checkInAt.substr(0, 5) }}&nbsp6人场
 			</view>
 			<view class="status2"> 
-			  <view class="text2">成绩：</view>
-			  <view >5:0</view>
-			<view>
-    </view>
-		
+				<view style="margin-left: -95upx;">成绩：</view>
+				<view >5:0</view>
 			</view>
 		</view>
+    </view>
+		
   </view>
 </template>
 <script lang="ts">
@@ -38,15 +34,16 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .button-rank3
   position relative
-  display flex
+  display inline-block
   align-items center
   justify-content center
   text-align left
   .img
     width 607upx
+		margin-left 55upx
   .info
     position absolute
-    left 110upx
+    left 33upx
     top 13upx
     font-size 28upx
     font-family Alibaba PuHuiTi
@@ -79,8 +76,9 @@ export default class Template extends Vue {
 	.text
 	  position absolute
 	  top 19upx
-	  left 515upx
+	  left 471upx
 	  font-size 11px
-	.text2
-	  margin-left -95upx
+	.Line_3
+	  position absolute
+		
 </style>

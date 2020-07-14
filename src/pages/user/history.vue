@@ -37,7 +37,7 @@
     <view class="content2">
       <border1 title="个人最佳成绩">
         <view style="padding: 20upx 0upx 13upx ">
-					<view style="color: #FFFFFF">
+					<view style="color: #FFFFFF;margin-top: 30upx;margin-left: -53upx;">
 						<button-rank3 />
 					</view>
         </view>
