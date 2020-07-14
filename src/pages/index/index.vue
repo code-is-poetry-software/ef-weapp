@@ -35,6 +35,7 @@ import { authStore } from "../../store/auth";
 import { utils } from "../../utils";
 import { storeStore } from "../../store/store";
 import { bookingStore } from "../../store/booking";
+import * as api from "../../../common/vmeitime-http";
 
 @Component
 export default class Index extends Vue {
@@ -45,9 +46,12 @@ export default class Index extends Vue {
     return bookingStore.userBookings;
   }
 
-  onLoad() {
+  onLoad(data) {
     storeStore.loadStore();
     this.wechatLogin().then(async () => {
+      if (data.code) {
+        await api.joinBooking({ code: data.code });
+      }
       await bookingStore.loadUserBooking();
     });
   }

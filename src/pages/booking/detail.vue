@@ -28,6 +28,9 @@
     <view style="margin-top: 46upx">
       <button-pay @click="inviteFriend" text="邀请好友" />
     </view>
+    <u-popup v-model="showShare" mode="bottom">
+      <u-button open-type="share" @click="share">确认分享</u-button>
+    </u-popup>
   </view>
 </template>
 
@@ -41,7 +44,7 @@ import uQRCode from "../../../common/uqrcode";
 export default class PaymentSuccess extends Vue {
   item: Booking | null = null;
   code: string = "";
-
+  showShare = false;
   onLoad(data) {
     if (data.id) {
       this.loadBooking(data.id);
@@ -82,10 +85,18 @@ export default class PaymentSuccess extends Vue {
   }
 
   onShareAppMessage(res) {
+    const that = this;
+    const path = `/pages/index/index?code=${this.code}`;
+    console.log(path);
+
     return {
       title: "邀请你参加游戏",
-      path: `/pages/index/index?code=${this.code}`
+      path
     };
+  }
+
+  share() {
+    this.showShare = false;
   }
 
   async inviteFriend() {
@@ -96,9 +107,12 @@ export default class PaymentSuccess extends Vue {
         icon: "none"
       });
     }
-    const res = await api.updateItem({ type: "booking", id: this.item.id, data: { invitation: { projects: this.invitationProjects } } });
-
-    // uni.showShareMenu();
+    const res = await api.updateItem({ type: "booking", id: this.item.id, method: "PUT", data: { invitation: { projects: this.invitationProjects } } });
+    if (!res.data.tickets) return;
+    const { code } = this._.last(res.data.tickets) as any;
+    // this.code = "eyJhbGciOiJIUzI1NiJ9.NWYwYWM1YTQ1ZDNiMzEwZGFkNjdmMDcyIDVmMGIyZDBiNWQzYjMxMGRhZDY3ZjViZQ.gVdu1d_q48NkUtIaX3Ho_ibGFmgG62Z2JNYwPGDDy4Y";
+    this.code = code;
+    this.showShare = true;
   }
 }
 </script>

@@ -116,10 +116,10 @@ export const updateMobile = ({ session_key, encryptedData, iv, openid }) => {
   });
 };
 
-export const updateItem = ({ type, id, data }) => {
+export const updateItem = ({ type, id, data, method = "POST" }) => {
   return http.request({
     url: `/${type}/${id}`,
-    method: "POST",
+    method,
     dataType: "json",
     data
   });
@@ -139,6 +139,16 @@ export const getBookingPrice = ({ store, date, type = "play", projects, checkInA
   const data = _.omitBy({ store, date, type, projects, checkInAt }, _.isNil);
   return http.request({
     url: `/booking-price`,
+    method: "POST",
+    dataType: "json",
+    data
+  });
+};
+
+export const joinBooking = ({ code }) => {
+  const data = _.omitBy({ code }, _.isNil);
+  return http.request({
+    url: `/booking-join`,
     method: "POST",
     dataType: "json",
     data
