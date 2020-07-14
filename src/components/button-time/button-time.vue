@@ -18,7 +18,5 @@ export default class Template extends Vue {}
   justify-content center
 	.timeClass
 		height 150upx
-		top 855upx
-		position absolute
 		width 300upx
 </style>

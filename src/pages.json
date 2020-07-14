@@ -182,12 +182,12 @@
         "query": ""
       },
 			{
-			  "name": "潮玩记录_对战信息",
+			  "name": "historyDetails",
 			  "path": "pages/user/historyDetails",
 			  "query": ""
 			},
 			{
-			  "name": "潮玩记录_个人信息",
+			  "name": "潮玩记录_historyPersonal",
 			  "path": "pages/user/historyPersonal",
 			  "query": ""
 			},

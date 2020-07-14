@@ -2,9 +2,6 @@
   <view class="button-avatar6" @click="$emit('click')">
     <img class="img" src="/static/image/button-avatar6.png" mode="widthFix" />
 			<img class="Line_1_1"  src="/static/image/Line_1_1" />
-    <!-- <view class="avatar-box"> -->
-      <!-- <img class="avatar" :src="user.avatarUrl" mode="widthFix" /> -->
-    <!-- </view> -->
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
     </view>

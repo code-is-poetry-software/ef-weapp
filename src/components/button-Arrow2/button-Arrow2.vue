@@ -18,15 +18,12 @@ export default class Template extends Vue {}
   align-items center
   justify-content center
 	.arrow2
-		position absolute
 		width 600upx
 		height 150upx
-		top 955upx
 		color #0090D9
 	.text
 		position absolute
 		color White
-		top 981upx
 		font-size 100upx
 		
 </style>

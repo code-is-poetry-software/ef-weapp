@@ -7,14 +7,12 @@
 			<view>
 				&nbsp{{ item.checkInAt.substr(0, 5) }}&nbsp6人场
 			</view>
-    </view>
-		
 		<view class="status2"> 
-		  <view>成绩：</view>
-		  <!-- <view>{{ item.amount }}</view> -->
+		  <view style="margin-left: -95upx;">成绩：</view>
 		  <view >5:0</view>
 		</view>
-    <!-- <view class="status">{{ config.statusLabel[item.status] }}</view> -->
+    </view>
+		
   </view>
 </template>
 <script lang="ts">
@@ -55,10 +53,10 @@ export default class Template extends Vue {
     right 89upx
     top 5upx
 	.status2
-		position absolute
 		font-size 20upx
 		right 173upx
-		top 50upx
+		margin-top -71upx
+		margin-left 420upx
 		font-size 28upx
 		font-family Alibaba PuHuiTi
 		font-weight bold

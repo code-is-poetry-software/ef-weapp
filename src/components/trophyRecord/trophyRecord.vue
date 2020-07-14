@@ -1,10 +1,9 @@
 <template>
   <view class="trophyRecord" @click="$emit('click')">
-		<view class="trophyRecord2">
-			<img  src="/static/image/trophyRecord.png" />
+		<view>
+			<img class="img" src="/static/image/trophyRecord.png" />
 		</view>
 		<view class="info">
-			<view class="text">个人奖杯记录</view>
 			<view class="text2">竞速无人机</view>
 			<view class="text3">对战无人机</view>
 		</view>
@@ -28,13 +27,14 @@ export default class Template extends Vue {}
 
 <style lang="stylus" scoped>
 .trophyRecord
-  display flex
+  // display flex
   align-items center
   justify-content center
-	.trophyRecord2
-		position absolute
-		top 1605upx
-		left 85upx
+	.img
+		width 450upx
+		height 250upx
+		margin-top: 26rpx;
+
 	.info
 		left 190upx
 		top 45upx
@@ -49,49 +49,44 @@ export default class Template extends Vue {}
 		font-style italic
 		font-family Alibaba PuHuiTi
 		font-weight bold
-	.text
-		position absolute
-		color #ECF5FF
-		top 1609upx
-		left 167upx
 	.text2
 		position absolute
 		color #0090D9
-		top 1717upx
-		left 158upx
+		top 17upx
+		left 46upx
 	.text3
 		position absolute
 		color #0090D9
-		top 1877upx
-		left 158upx
+		top 170upx
+		left 46upx
 	.text4
 		position absolute
-		top 1776upx
-		left 236upx
+		top 75upx      
+		left 144upx    
 		color #ECF5FF
 	.text5
 		position absolute
-		top 1776upx
-		left 413upx
+		top 75upx
+		left 294upx
 		color #ECF5FF
 	.text6
 		position absolute
-		top 1776upx
-		left 589upx
+		top 75upx
+		left 451upx
 		color #ECF5FF
 	.text7
 		position absolute
-		top 1936upx
-		left 236upx
+		top 235upx
+		left 144upx
 		color #ECF5FF
 	.text8
 		position absolute
-		top 1936upx
-		left 413upx
+		top 235upx
+		left 294upx
 		color #ECF5FF
 	.text9
 		position absolute
-		top 1936upx
-		left 589upx
+		top 235upx
+		left 451upx
 		color #ECF5FF
 </style>

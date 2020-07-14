@@ -14,7 +14,7 @@
           <block1>
             <view class="list">
               <view class="list-item" v-for="(item, index) in curList" :key="item">
-                <button-avatar4 :rank="index + 1" />
+                <button-avatar6 :rank="index + 1" />
               </view>
             </view>
           </block1>
@@ -25,21 +25,24 @@
     <view class="content1">
       <border1 title="个人奖杯记录">
         <view style="padding: 51upx 38upx 23upx ">
-          <block1> </block1>
+          <block1>
+						<view>
+							<trophyRecord  style="margin-top: 10upx;" />
+						</view>
+					</block1>
         </view>
       </border1>
     </view>
 
     <view class="content2">
       <border1 title="个人最佳成绩">
-        <view style="padding: 51upx 38upx 23upx ">
-          <block1> </block1>
+        <view style="padding: 20upx 0upx 13upx ">
+					<view style="color: #FFFFFF">
+						<button-rank3 />
+					</view>
         </view>
       </border1>
     </view>
-		<view>
-			<button-avatar6 />
-		</view>
   </view>
 </template>
 

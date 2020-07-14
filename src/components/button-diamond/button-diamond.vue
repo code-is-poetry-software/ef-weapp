@@ -19,13 +19,10 @@ export default class Template extends Vue {}
 		align-items center
 		justify-content center
 		.Diamond
-			position absolute
 			width 301upx
 			height 130upx
-			top 500upx
 		.text
 			position absolute
-			top 524rpx
 			font-size 50rpx
 			color #0090D9
 

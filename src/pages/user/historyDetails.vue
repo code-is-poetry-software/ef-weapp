@@ -5,8 +5,8 @@
       <button-title1 text="潮玩记录" />
       <icon-details />
     </view>
-    <view class="tabs" style="margin: 0 0 18upx 0">
-      <button-tab :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
+    <view class="tabs" style="margin: 0 0 18upx 0;">
+      <button-tab  :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
       <img style="width: 63upx;margin-left: 20upx" src="/static/image/img-dot1.png" mode="widthFix" />
     </view>
     <view class="list">

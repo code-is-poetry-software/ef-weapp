@@ -10,10 +10,10 @@
         </u-grid-item>
       </u-grid>
     </view>
-    <view>
+    <view style="margin-left: 8upx;">
       <button-diamond />
-    </view>
-    <view>
+    </view> 
+    <view style="margin-top: 105upx;">
       <button-Arrow2 />
     </view>
   </view>

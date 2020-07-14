@@ -9,8 +9,8 @@
 				<button-avatar1 :user="user" />
 			</view>
 		</view>
-		<view class="rank3Class">
-			<button-rank3 />
+		<view style="color: #FFFFFF;margin-top: 25upx;">
+			<button-rank3  :user="user"/>
 		</view>
   </view>
 </template>
@@ -43,8 +43,7 @@ export default class Template extends Vue {
 		position relative
   .list
     text-align center
-	.rank3Class
-	  color #FFFFFF
+	  
 	.info
 	  position absolute
 	  left 110upx
@@ -55,6 +54,4 @@ export default class Template extends Vue {
 	  letter-spacing 2px
 	  // color #FFFFFF
 	  z-index 1
-	.text2 
-	  position  absolute
 </style>
