@@ -9,12 +9,6 @@
   </view>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Watch, Prop } from "vue-property-decorator";
-
-@Component
-export default class Template extends Vue {}
-</script>
 
 <style lang="stylus" scoped>
 .button-avatar
@@ -30,7 +24,7 @@ export default class Template extends Vue {}
     height 150upx
     top 0
     left 25upx
-    clip-path: polygon(35% 0, 100% 0%, 65% 100%, 0 100%);
+    clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
   .info
     position absolute
     left 205upx
@@ -38,11 +32,11 @@ export default class Template extends Vue {}
     color white
     z-index 1
     font-style italic
-    font-family:Alibaba PuHuiTi;
-    font-weight:bold;
+    font-family Alibaba PuHuiTi
+    font-weight bold
     .text
-      font-size:11px;
+      font-size 11px
       margin-left 25upx
     .text1
-      font-size:23px;
+      font-size 23px
 </style>
