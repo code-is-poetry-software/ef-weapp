@@ -110,7 +110,7 @@ export default class Template extends Vue {
 		.text2
 			position absolute
 			left 522upx
-			top 104upx
+			top 107upx
 			font-size 19upx
 			color #FFFFFF
 </style>

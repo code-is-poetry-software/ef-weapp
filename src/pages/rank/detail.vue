@@ -14,7 +14,7 @@
 
     <view style="padding: 0 40upx;position: relative">
       <view class="tabs">
-        <button-tab :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label"></button-tab>
+        <button-tab styleClass="margin-top:-50rpx;letter-spacing: 17px;" :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label"></button-tab>
       </view>
       <border1>
         <view class="list">

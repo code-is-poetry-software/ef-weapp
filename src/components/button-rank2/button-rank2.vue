@@ -4,15 +4,15 @@
     <view class="info">
       <view style="font-size:16upx;">项目:</view>
 			<view style="font-size: 28upx;margin-left: 44upx;margin-top: -26upx;">{{ _.get(item, "payments.0.title").substr(0, 7) }} </view>
-      <view style="font-size: 16upx;margin-top: 11upx;">时间:</view>
+      <view style="font-size: 16upx;margin-top: 20upx;">时间:</view>
 			<view style="font-size: 28upx;margin-left: 46upx;margin-top: -30upx;"> {{ item.date }} </view>
 			<view style="margin-left: 42upx;">
 				&nbsp{{ item.checkInAt.substr(0, 5) }}&nbsp6人场
 			</view>
-		<view class="status2"> 
-		  <view style="margin-left: -95upx;font-size: 16upx;">成绩：</view>
-		  <view style="margin-left: -57upx;">5:0</view>
-		</view>
+			<view class="status2"> 
+				<view style="margin-left: -95upx;font-size: 16upx;">成绩：</view>
+				<view style="margin-left: -57upx;">5:0</view>
+			</view>
     </view>
 		
   </view>

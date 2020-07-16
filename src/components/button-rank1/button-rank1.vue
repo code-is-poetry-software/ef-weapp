@@ -1,11 +1,15 @@
 <template>
   <view class="button-rank1" @click="$emit('click')">
     <img class="img" src="/static/image/button-rank1.png" mode="widthFix" />
+		<view class="status">{{ config.statusLabel[item.status] }}</view>
     <view class="info">
-      <view>项目: {{ _.get(item, "payments.0.title").substr(0, 7) }} </view>
-      <view>场次: {{ item.date }} {{ item.checkInAt.substr(0, 5) }} 6人场</view>
+      <view style="font-size: 16upx;">项目:</view>
+			<view style="font-size: 28upx;margin-left: 51upx;margin-top: -32upx;">{{ _.get(item, "payments.0.title").substr(0, 7) }} </view>
+      <view style="font-size: 16upx;margin-top: 20upx;">场次:</view> 
+			<view style="font-size: 28upx;margin-left: 51upx;margin-top: -32upx;">{{ item.date }}</view>
+			<view style="font-size: 43upx;margin-left: 268upx;margin-top: -54upx;">{{ item.checkInAt.substr(0, 5) }}</view> 
+			<view style="font-size: 28upx;margin-left: 442upx;margin-top: -40upx;">6人场</view>
     </view>
-    <view class="status">{{ config.statusLabel[item.status] }}</view>
   </view>
 </template>
 <script lang="ts">
@@ -23,7 +27,7 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .button-rank1
   position relative
-  display flex
+  display inline-block
   align-items center
   justify-content center
   text-align left
@@ -31,10 +35,10 @@ export default class Template extends Vue {
     width 607upx
   .info
     position absolute
-    left 110upx
+    left 20upx
     top 42upx
     font-size 28upx
-    font-family Alibaba PuHuiTi
+    font-family AlibabaPuHuiTiB-GBpc-EUC-H
     font-weight bold
     letter-spacing 2px
     color var(--text-primary)
@@ -43,6 +47,6 @@ export default class Template extends Vue {
     position absolute
     font-size 20upx
     color white
-    right 89upx
+    right 19upx
     top 5upx
 </style>

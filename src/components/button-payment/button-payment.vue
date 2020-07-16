@@ -2,12 +2,14 @@
   <view class="button-payment" @click="$emit('click')">
     <img class="img" src="/static/image/button-payment.png" mode="widthFix" />
     <view class="info">
-      <view>项目: {{ item.title.substr(0, 7) }} </view>
-      <view>时间: </view>
+      <view style="font-size: 16upx;">项目:</view>
+			<view style="font-size: 28upx;margin-left: 52upx;margin-top: -32upx;">{{ item.title.substr(0, 7) }} </view>
+      <view style="font-size: 16upx;margin-top: 20upx;">时间: </view>
+			<view style="font-size: 28upx;margin-left: 52upx;margin-top: -32upx;">2020年6月8日10:16</view>
     </view>
     <view class="status">
-      <view>费用：</view>
-      <view>{{ item.amount }}</view>
+      <view style="font-size: 16upx;">费用：</view>
+      <view style="font-size: 53upx;">{{ item.amount }}</view>
     </view>
   </view>
 </template>
@@ -42,7 +44,7 @@ export default class Template extends Vue {
   .status
     position absolute
     font-size 20upx
-    right 173upx
+    right 158upx
     top 24upx
     font-size 28upx
     font-family Alibaba PuHuiTi

@@ -116,7 +116,7 @@ export default class Template extends Vue {
 	.text2
 		position absolute
 		left 457upx
-		top 89upx
+		top 91upx
 		font-size 19upx
 		color #FFFFFF
 	.Line_1_1

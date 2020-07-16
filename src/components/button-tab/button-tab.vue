@@ -1,7 +1,7 @@
 <template>
   <view class="button-tab"   @click="$emit('click')"> 
     <img class="img" :src="active ? '/static/image/button-tab-active.png' : '/static/image/button-tab.png'" mode="widthFix" />
-    <view class="text" :style="type"> {{ text }} </view>
+    <view class="text" :style="styleClass"> {{ text }} </view>
   </view>
 </template>
 
@@ -12,7 +12,7 @@ import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 export default class Template extends Vue {
   @Prop({ default: "" }) text: string;
   @Prop({ default: false }) active: boolean;
-  @Prop({ default: "" }) type: string;
+  @Prop({ default: "" }) styleClass: string;
 }
 </script>
 

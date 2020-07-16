@@ -77,7 +77,7 @@ export default class Template extends Vue {
     justify-content center
     align-items flex-end
     .tab
-      display flex
+      display inline-block 
       align-items center
       padding 40upx
       width 200upx

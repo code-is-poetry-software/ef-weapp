@@ -6,7 +6,7 @@
       <icon-details />
     </view>
     <view class="tabs" style="margin: 0 0 18upx 0;">
-      <button-tab type="font-size: 24rpx;left:22rpx;top: 11rpx;text-align: center;"  :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
+      <button-tab styleClass="font-size: 24rpx;left:22rpx;top: 11rpx;"  :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
       <img style="width: 63upx;margin-left: 20upx" src="/static/image/img-dot1.png" mode="widthFix" />
     </view>
     <view class="list">
@@ -70,11 +70,11 @@ export default class Template extends Vue {
   position relative
   padding 0 0 200upx 0
   .tabs
-    display flex
+    display inline-block
     justify-content center
     align-items flex-end
     .tab
-      display flex
+      display inline-block
       align-items center
       padding 40upx
       width 200upx
