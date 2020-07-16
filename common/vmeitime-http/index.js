@@ -116,7 +116,7 @@ export const updateMobile = ({ session_key, encryptedData, iv, openid }) => {
   });
 };
 
-export const updateItem = ({ type, id, data, method = "POST" }) => {
+export const handleItem = ({ type, id, data, method = "POST" }) => {
   return http.request({
     url: `/${type}/${id}`,
     method,
@@ -150,6 +150,15 @@ export const joinBooking = ({ code }) => {
   return http.request({
     url: `/booking-join`,
     method: "POST",
+    dataType: "json",
+    data
+  });
+};
+
+export const handleType = ({ type, data, method = "POST" }) => {
+  return http.request({
+    url: `/${type}`,
+    method,
     dataType: "json",
     data
   });

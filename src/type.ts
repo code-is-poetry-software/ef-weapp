@@ -16,6 +16,15 @@ export interface Booking {
     _id: string;
     active?: boolean;
   }>;
+  tickets: Array<{
+    code: string;
+    player: string;
+    projects: Array<{
+      count: number;
+      name: "string";
+      _id: string;
+    }>;
+  }>;
 }
 export interface User {
   id: string;
@@ -25,6 +34,7 @@ export interface User {
   mobile: string;
   balacne: number;
   points: number;
+  store?: Store;
 }
 
 export interface Payment {

@@ -41,12 +41,6 @@
       }
     },
     {
-      "path": "pages/payment/success",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
-    },
-    {
       "path": "pages/booking/share",
       "style": {
         "navigationBarTitleText": "uni-app"
@@ -103,6 +97,12 @@
     },
     {
       "path": "pages/user/historyPersonal",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
+      "path": "pages/racing/list",
       "style": {
         "navigationBarTitleText": "uni-app"
       }
@@ -190,6 +190,11 @@
       {
         "name": "racing/playerDetails",
         "path": "pages/racing/playerDetails",
+        "query": ""
+      },
+      {
+        "name": "racing/list",
+        "path": "pages/racing/list",
         "query": ""
       }
     ]

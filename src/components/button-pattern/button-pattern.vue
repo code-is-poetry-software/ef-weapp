@@ -1,7 +1,7 @@
 <template>
   <view class="button-pattern" @click="$emit('click')">
     <img class="img" :src="active ? '/static/image/button-pattern-active.png' : '/static/image/button-pattern.png'" mode="widthFix" />
-    <view class="text">{{ item }}</view>
+    <view class="text">{{ item.label }}</view>
   </view>
 </template>
 
@@ -11,10 +11,13 @@ import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 @Component
 export default class Template extends Vue {
   @Prop({ default: null }) activeItem: string;
-  @Prop({ default: null }) item: string;
+  @Prop({ default: null }) item: {
+    label: string;
+    value: string;
+  };
 
   get active() {
-    return this.activeItem == this.item;
+    return this.activeItem == this.item.value;
   }
 }
 </script>
@@ -27,11 +30,11 @@ export default class Template extends Vue {
     width 300upx
 .text
   position absolute
-  left 50upx
+  left 20upx
   top 12upx
   color white
   z-index 1
   font-style italic
   font-weight bold
-  font-size 30upx
+  font-size 24upx
 </style>

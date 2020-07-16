@@ -1,11 +1,10 @@
 <template>
   <view class="button-avatar" @click="$emit('click')">
-    <view>
-      <button-pattern :activeItem.sync="activeItem" item="对战模式" @click="$emit('update:activeItem', '对战模式')" />
-    </view>
-    <view style="margin-left:15upx ">
-      <button-pattern :activeItem.sync="activeItem" item="竞速模式" @click="$emit('update:activeItem', '竞速模式')" />
-    </view>
+    <u-grid :col="2" :border="false">
+      <u-grid-item v-for="item in items" :key="item.value">
+        <button-pattern :activeItem.sync="activeItem" :item="item" @click="setActiveItem(item)" />
+      </u-grid-item>
+    </u-grid>
   </view>
 </template>
 
@@ -14,7 +13,14 @@ import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 
 @Component
 export default class Template extends Vue {
-  @Prop({ default: "对战模式" }) activeItem: string;
+  @Prop({ default: "" }) activeItem: string;
+  @Prop({ default: [] }) items: Array<{ label: string; value: string }>;
+  @Prop({ default: false }) disabled: boolean;
+
+  setActiveItem(item) {
+    if (this.disabled) return;
+    this.$emit("update:activeItem", item.value);
+  }
 }
 </script>
 

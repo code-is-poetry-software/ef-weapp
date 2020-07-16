@@ -48,16 +48,21 @@ export default class PaymentSuccess extends Vue {
   showShare = false;
   onLoad(data) {
     if (data.id) {
-      this.loadBooking(data.id);
+      this.loadBooking(data.id).then(data => {
+        if (!data) return;
+        const ticket = data.tickets.find(i => i.player === this.user.id);
+        if (ticket) {
+          this.makeQrcode({ text: ticket.code });
+        }
+      });
     }
-    this.makeQrcode();
   }
 
-  makeQrcode() {
+  makeQrcode({ text }) {
     uQRCode.make({
       canvasId: "qrcode",
       componentInstance: this,
-      text: "uQRCode",
+      text,
       size: 150,
       margin: 10,
       backgroundColor: "#ffffff",
@@ -91,6 +96,7 @@ export default class PaymentSuccess extends Vue {
       if (this.item) {
         this.item.projects = this.item.projects.map(i => ({ ...i, active: false }));
       }
+      return this.item;
     }
   }
 
@@ -117,7 +123,7 @@ export default class PaymentSuccess extends Vue {
         icon: "none"
       });
     }
-    const res = await api.updateItem({ type: "booking", id: this.item.id, method: "PUT", data: { invitation: { projects: this.invitationProjects } } });
+    const res = await api.handleItem({ type: "booking", id: this.item.id, method: "PUT", data: { invitation: { projects: this.invitationProjects } } });
     if (!res.data.tickets) return;
     const { code } = this._.last(res.data.tickets) as any;
     // this.code = "eyJhbGciOiJIUzI1NiJ9.NWYwYWM1YTQ1ZDNiMzEwZGFkNjdmMDcyIDVmMGIyZDBiNWQzYjMxMGRhZDY3ZjViZQ.gVdu1d_q48NkUtIaX3Ho_ibGFmgG62Z2JNYwPGDDy4Y";

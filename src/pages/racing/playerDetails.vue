@@ -11,7 +11,7 @@
         </u-grid-item>
       </u-grid>
     </view>
-		<view style="margin-left: 205upx;font-size: 100upx;color: #0090D9;">01’12</view>
+    <view style="margin-left: 205upx;font-size: 100upx;color: #0090D9;">01’12</view>
     <view style="margin-top: 155upx;">
       <button-time />
     </view>

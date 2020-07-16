@@ -9,7 +9,7 @@ class AuthStore extends VuexModule {
   token = uni.getStorageSync("token") || "";
   session_key = "";
   user: Partial<User> = {
-    id: 0,
+    id: "0",
     name: "",
     avatarUrl: "",
     openid: "",
