@@ -2,14 +2,16 @@
   <view class="button-rank2" @click="$emit('click')">
     <img class="img" src="/static/image/button-rank2.png" mode="widthFix" />
     <view class="info">
-      <view>项目: {{ _.get(item, "payments.0.title").substr(0, 7) }} </view>
-      <view>时间: {{ item.date }}  </view>
-			<view>
+      <view style="font-size:16upx;">项目:</view>
+			<view style="font-size: 28upx;margin-left: 44upx;margin-top: -26upx;">{{ _.get(item, "payments.0.title").substr(0, 7) }} </view>
+      <view style="font-size: 16upx;margin-top: 11upx;">时间:</view>
+			<view style="font-size: 28upx;margin-left: 46upx;margin-top: -30upx;"> {{ item.date }} </view>
+			<view style="margin-left: 42upx;">
 				&nbsp{{ item.checkInAt.substr(0, 5) }}&nbsp6人场
 			</view>
 		<view class="status2"> 
-		  <view style="margin-left: -95upx;">成绩：</view>
-		  <view >5:0</view>
+		  <view style="margin-left: -95upx;font-size: 16upx;">成绩：</view>
+		  <view style="margin-left: -57upx;">5:0</view>
 		</view>
     </view>
 		
@@ -30,7 +32,7 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .button-rank2
   position relative
-  display flex
+  display inline-block
   align-items center
   justify-content center
   text-align left
@@ -38,8 +40,8 @@ export default class Template extends Vue {
     width 607upx
   .info
     position absolute
-    left 110upx
-    top 13upx
+    left 37upx
+    top 23upx
     font-size 28upx
     font-family Alibaba PuHuiTi
     font-weight bold
@@ -55,7 +57,7 @@ export default class Template extends Vue {
 	.status2
 		font-size 20upx
 		right 173upx
-		margin-top -71upx
+		margin-top -63upx
 		margin-left 420upx
 		font-size 28upx
 		font-family Alibaba PuHuiTi

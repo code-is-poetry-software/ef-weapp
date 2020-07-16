@@ -6,13 +6,13 @@
       <icon-details />
     </view>
     <view class="tabs" style="margin: 0 0 18upx 0;">
-      <button-tab  :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
+      <button-tab type="font-size: 24rpx;left:22rpx;top: 11rpx;text-align: center;"  :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
       <img style="width: 63upx;margin-left: 20upx" src="/static/image/img-dot1.png" mode="widthFix" />
     </view>
     <view class="list">
       <view class="list-item" v-for="item in list" :key="item">
-        <view style="margin-bottom: 14upx">
-          <button-rank2 :item="item" />
+        <view style="margin-bottom: 14upx;" >
+          <button-rank2  :item="item" />
         </view>
       </view>
     </view>
@@ -34,10 +34,8 @@ export default class Template extends Vue {
       { label: "对战无人机", value: "finished" },
     ]
   }; 
-
   list: any[] = [];
   loading = false;
-
   onLoad() {
     authStore.devLogin().then(() => {
       this.loadBooking();
