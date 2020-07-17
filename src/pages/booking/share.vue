@@ -6,7 +6,7 @@
     <view class="user-share column-center">
       <button-avatar />
       <view class="share-text">
-        邀请您一起加入潮玩队伍
+        邀请您一起加入潮玩队伍1213
       </view>
     </view>
     <view class="share-info">
@@ -15,13 +15,13 @@
         <text class="field-text">
           场次
         </text>
-        <text style="font-size: 21px">
+        <text style="font-size: 21px;margin-top: -10upx;">
           2020-06-08\n12:00-14:00
         </text>
       </view>
-      <view class="text">
-        <span class="field-text">项目</span>
-        <span style="font-size: 28px">竞速无人机</span>
+      <view class="text" style="margin-top:21upx;">
+        <span class="field-text" >项目</span>
+        <span class="field-text2">竞速无人机</span>
       </view>
     </view>
     <view @click="join">
@@ -46,8 +46,8 @@ export default class BookingDetail extends Vue {
 .share
   padding 220upx 0
   .icon-user
-    width 41px
-    height 36px
+    width 41upx
+    height 36upx
     position absolute
     right 61upx
     top 65upx
@@ -55,9 +55,9 @@ export default class BookingDetail extends Vue {
     margin-bottom 80upx
     .share-text
       color var(--primary)
-      font-size:21px;
-      font-family:Alibaba PuHuiTi;
-      font-weight:bold;
+      font-size 35upx;
+      font-family AlibabaPuHuiTiB-GBpc-EUC-H
+      font-weight bold
   .share-info
     position relative
     width  540upx
@@ -68,20 +68,23 @@ export default class BookingDetail extends Vue {
     justify-content center
     align-items center
     .text
-      margin 10upx 0
       width 340upx
       z-index 1
       font-weight bold
       color var(--primary)
-      font-size 21px
+      font-size 21upx
       font-family Gotham-BoldItalic
       .field-text
-        font-size 11px
+        font-size 20upx
         margin-right 18upx
+			.field-text2
+			 position absolute
+			 font-size 51upx
+			 top 173upx
   .remind
     margin-top 210upx
     text-align center
-    font-size 13px
+    font-size 23upx
     font-family AlibabaPuHuiTiR-GBpc-EUC-H
-    color #666
+    color #666666
 </style>

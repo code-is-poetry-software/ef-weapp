@@ -32,10 +32,10 @@ export default class Template extends Vue {
     width 400upx
   .text
     position absolute
-    font-size 21px
-    font-family Alibaba PuHuiTi
+    font-size 50upx
+    font-family AlibabaPuHuiTiB-GBpc-EUC-H
     font-weight bold
-    letter-spacing 2px
+    letter-spacing 2upx
     color white
     z-index 1
 </style>

@@ -39,7 +39,7 @@ export default class Template extends Vue {
     font-size 28upx
     font-family Alibaba PuHuiTi
     font-weight bold
-    letter-spacing 2px
+    letter-spacing 2upx
     color var(--text-primary)
   .status
     position absolute
@@ -49,6 +49,6 @@ export default class Template extends Vue {
     font-size 28upx
     font-family Alibaba PuHuiTi
     font-weight bold
-    letter-spacing 2px
+    letter-spacing 2upx
     color var(--text-primary)
 </style>

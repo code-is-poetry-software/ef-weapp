@@ -2,12 +2,15 @@
   <view class="booking-item" @click="$emit('click')">
     <img class="img" src="/static/image/booking-item.png" mode="widthFix" />
     <view class="info">
-      <view>场次: {{ item.date }} {{ item.checkInAt }}</view>
+      <view class="text">场次:</view>
+			<view style="font-size: 23upx;margin-top: -6upx;">{{ item.date }} {{ item.checkInAt }}</view>
       <view class="flex">
-        <view>项目: {{ project.name }}</view>
-        <view style="margin-left: 5px">数量: {{ project.count }}</view>
+        <view style="font-size: 15upx;">项目:</view>
+				<view style="font-size: 38upx;margin-top: -10upx;">{{ project.name }}</view>
+        <view style="font-size: 15upx;margin-left: 5upx;">数量:</view> 
+				<view style="font-size: 38upx;">{{ project.count }}</view>
       </view>
-    </view>
+    </view> 
   </view>
 </template>
 
@@ -33,6 +36,10 @@ export default class Template extends Vue {
   display flex
   align-items center
   justify-content center
+		.text
+			position absolute
+			font-size 15upx
+		
   .img
     width 563upx
     position absolute
@@ -40,6 +47,8 @@ export default class Template extends Vue {
     z-index 1
     font-family Alibaba PuHuiTi
     font-weight bold
-    letter-spacing 2px
+    letter-spacing 2upx
     color rgba(0, 144, 217, 1)
+	.flex
+	  margin-top 12upx
 </style>

@@ -2,7 +2,7 @@
   <view class="button-price" @click="$emit('click')">
     <img class="img" src="/static/image/button-price.png" mode="widthFix" />
     <view class="text">
-      <span>共计: </span>
+      <span >共计: </span>
       <span class="price">{{ text }}</span>
     </view>
   </view>
@@ -27,14 +27,14 @@ export default class Template extends Vue {
     width 270upx
   .text
     position absolute
-    font-size 17px
+    font-size 29upx
     font-family Alibaba PuHuiTi
     font-weight bold
-    letter-spacing 2px
+    letter-spacing 2upx
     color #0090D9
     z-index 1
     font-style italic
     .price
       font-family Gotham-Bold
-      color #666
+      color #666666
 </style>

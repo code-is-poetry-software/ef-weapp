@@ -35,8 +35,8 @@
     font-family Alibaba PuHuiTi
     font-weight bold
     .text
-      font-size 11px
+      font-size 20upx
       margin-left 25upx
     .text1
-      font-size 23px
+      font-size 43upx
 </style>

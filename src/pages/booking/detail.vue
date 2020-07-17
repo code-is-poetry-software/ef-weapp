@@ -12,12 +12,12 @@
         <booking-item :item="item" :project="project" />
       </view>
     </view>
-    <text class="text-remind">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
+    <text class="text-remind" style="font-size: 23upx;">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
 
     <view style="position: relative">
       <img style="width: 572upx" src="/static/image/img-share.png" mode="widthFix" />
       <view class="qrcode">
-        <canvas canvas-id="qrcode" style="width: 150px;height: 150px;" />
+        <canvas canvas-id="qrcode" style="width: 150upx;height: 150upx;" />
       </view>
     </view>
     <view v-if="isOwner && item">
@@ -138,8 +138,8 @@ export default class PaymentSuccess extends Vue {
   text-align center
   padding 150upx 0
   .icon-user
-    width 41px
-    height 36px
+    width 41upx
+    height 36upx
     position absolute
     right 61upx
     top 65upx
@@ -147,16 +147,16 @@ export default class PaymentSuccess extends Vue {
     text-align center
   .text-success
     color var(--primary)
-    font-size 21px
+    font-size 38upx
     font-family Alibaba PuHuiTi
     font-weight bold
-    line-height 25px
+    line-height 25upx
     margin-bottom 62upx
   .text-remind
-    font-size 13px
+    font-size 23upx
     font-family AlibabaPuHuiTiR-GBpc-EUC-H
-    line-height 18px
-    color #666
+    line-height 33upx
+    color #666666
     margin-bottom 72upx
   .qrcode
     position absolute

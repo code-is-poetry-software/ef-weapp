@@ -77,10 +77,8 @@ export default class Template extends Vue {
 	  top 19upx
 	.text
 	  position absolute
-	  top 20upx
+	  top 26upx
 	  left 471upx
-	  font-size 11px
-	.Line_3
-	  position absolute
+	  font-size 17upx
 		
 </style>

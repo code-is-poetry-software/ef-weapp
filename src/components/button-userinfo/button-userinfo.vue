@@ -31,7 +31,7 @@ export default class Template extends Vue {
   .text
     margin -10upx 0 0 -4upx
     position absolute
-    font-size 17px
+    font-size 34upx
     font-family Alibaba PuHuiTi
     font-weight bold
     letter-spacing 1px
@@ -39,7 +39,9 @@ export default class Template extends Vue {
     z-index 1
     font-style italic
     .label
-      font-size 13px
+      font-size 24upx
+		.value
+		  font-size 30upx
   .line
     width 130upx
     border 1px solid rgb(0, 144, 217)
