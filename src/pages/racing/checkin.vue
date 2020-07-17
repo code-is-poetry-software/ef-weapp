@@ -6,7 +6,7 @@
     <view style="margin: 80upx ">
       <u-grid :col="3" :border="false">
         <u-grid-item v-for="item in item.players" :key="item">
-          <button-avatar2 type="small" :user="item" />
+          <button-avatar2 type="small" :user="item" @click="goUserDetail(item)" />
         </u-grid-item>
       </u-grid>
     </view>
@@ -57,6 +57,10 @@ export default class Template extends Vue {
     }
   }
 
+  goUserDetail(item) {
+    uni.navigateTo({ url: `/pages/racing/user?id=${item.id}` });
+  }
+
   async startGame() {
     const res = await api.handleItem({
       type: "course",
@@ -97,6 +101,9 @@ export default class Template extends Vue {
         newPlayers: [code]
       }
     });
+    if (res.data) {
+      this.item = res.data;
+    }
   }
 
   scanCode() {

@@ -24,10 +24,20 @@ export default class Template extends Vue {
     this.loadPayment();
   }
 
+  get token() {
+    return authStore.token;
+  }
+
   onLoad() {
     authStore.devLogin().then(() => {
       this.loadPayment();
     });
+  }
+
+  onShow() {
+    if (!this.token) return;
+    this.list = [];
+    this.loadPayment();
   }
 
   async loadPayment() {

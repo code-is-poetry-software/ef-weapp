@@ -84,7 +84,7 @@
       }
     },
     {
-      "path": "pages/racing/match",
+      "path": "pages/racing/user",
       "style": {
         "navigationBarTitleText": "uni-app"
       }
@@ -175,7 +175,7 @@
       {
         "name": "分享测试",
         "path": "pages/index/index",
-        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYwYWM1YTQ1ZDNiMzEwZGFkNjdmMDcyIDVmMGIzN2E1NWQzYjMxMGRhZDY3ZjVkYw.BOGWP5Jk77QQ98ITfIun8cKkGyNYF30v1MZBMVpvI1M"
+        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYxMDU2NjVmNGIwMWEzMWUzOWVlM2U1IDVmMTA1NmUxZjRiMDFhMzFlMzllZTNmOA.aOv3ffuK42ab2IAYQbYliE52KUX_4neoTkhz7BbVsyw"
       },
       {
         "name": "racing/checkin",
@@ -183,8 +183,8 @@
         "query": ""
       },
       {
-        "name": "racing/match",
-        "path": "pages/racing/match",
+        "name": "racing/user",
+        "path": "pages/racing/user",
         "query": ""
       },
       {
