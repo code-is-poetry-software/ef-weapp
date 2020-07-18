@@ -3,9 +3,9 @@
     <img class="img" src="/static/image/button-payment.png" mode="widthFix" />
     <view class="info">
       <view style="font-size: 16upx;">项目:</view>
-			<view style="font-size: 28upx;margin-left: 52upx;margin-top: -32upx;">{{ item.title.substr(0, 7) }} </view>
+      <view style="font-size: 28upx;margin-left: 52upx;margin-top: -32upx;">{{ item.title.substr(0, 7) }} </view>
       <view style="font-size: 16upx;margin-top: 20upx;">时间: </view>
-			<view style="font-size: 28upx;margin-left: 52upx;margin-top: -32upx;">2020年6月8日10:16</view>
+      <view style="font-size: 28upx;margin-left: 52upx;margin-top: -32upx;">2020年6月8日10:16</view>
     </view>
     <view class="status">
       <view style="font-size: 16upx;">费用：</view>
@@ -44,7 +44,7 @@ export default class Template extends Vue {
   .status
     position absolute
     font-size 20upx
-    right 158upx
+    left 500upx
     top 24upx
     font-size 28upx
     font-family Alibaba PuHuiTi

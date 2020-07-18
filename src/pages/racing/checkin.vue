@@ -3,23 +3,31 @@
     <with-bg />
     <button-pattern-switcher v-if="projects" :activeItem.sync="item.project" :items="projects" :disabled="type === 'detail'" />
 
-    <view style="margin: 80upx ">
+    <view style="margin: 80upx " v-if="item.players">
       <u-grid :col="3" :border="false">
         <u-grid-item v-for="item in item.players" :key="item">
           <button-avatar2 type="small" :user="item" @click="goUserDetail(item)" />
         </u-grid-item>
       </u-grid>
     </view>
-    <view>
-      <view class="button-diamond" @click="scanCode">
-        <img class="Diamond" src="/static/image/Button_Diamond.png" mode="widthFix" />
-        <view class="text"> 验&nbsp&nbsp票 </view>
+    <view v-if="item.start">
+      <view style="text-align:center; font-size: 100upx;color: #0090D9;">{{ timeBetween }}</view>
+      <view style="margin-top: 155upx;">
+        <button-time @click="reset" />
       </view>
     </view>
-    <view style="margin-top: 105upx;" v-if="type == 'detail'">
-      <view class="button-Arrow" @click="startGame">
-        <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
-        <view class="text"> 开&nbsp&nbsp&nbsp始 </view>
+    <view v-else>
+      <view>
+        <view class="button-diamond" @click="scanCode">
+          <img class="Diamond" src="/static/image/Button_Diamond.png" mode="widthFix" />
+          <view class="text"> 验&nbsp&nbsp票 </view>
+        </view>
+      </view>
+      <view style="margin-top: 105upx;" v-if="type == 'detail'">
+        <view class="button-Arrow" @click="startGame">
+          <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
+          <view class="text"> 开&nbsp&nbsp&nbsp始 </view>
+        </view>
       </view>
     </view>
   </view>
@@ -29,14 +37,23 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import * as api from "../../../common/vmeitime-http";
 import { authStore } from "../../store/auth";
+import { Course } from "../../type";
+import { Moment } from "moment";
 
 @Component
 export default class Template extends Vue {
-  item = {
-    id: null,
+  item: Partial<Course> = {
+    id: "",
     project: "",
     players: []
   };
+
+  now: Moment = this.moment();
+
+  get timeBetween() {
+    if (!this.item.start) return "";
+    return this.moment(this.now.diff(this.item.start)).format("mm’ss");
+  }
 
   get type() {
     return this.item.id ? "detail" : "create";
@@ -70,14 +87,38 @@ export default class Template extends Vue {
         startNow: true
       }
     });
+    if (res.data) {
+      this.item = res.data;
+    }
+    this.checkTime();
+  }
+
+  checkTimeInterval: any;
+  checkTime() {
+    if (this.checkTimeInterval) clearInterval(this.checkTimeInterval);
+
+    this.checkTimeInterval = setInterval(() => {
+      this.now = this.moment();
+    }, 1000);
   }
 
   async loadItem(id) {
     const res = await api.getItem({ type: "course", id });
     if (res.data) {
       this.item = res.data;
+      this.checkTime();
+
       return this.item;
     }
+  }
+
+  reset() {
+    this.item = {
+      id: "",
+      project: "",
+      players: []
+    };
+    if (this.checkTimeInterval) clearInterval(this.checkTimeInterval);
   }
 
   async createCourse(code) {

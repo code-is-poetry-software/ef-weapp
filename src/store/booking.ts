@@ -10,7 +10,7 @@ class BookingStore extends VuexModule {
 
   @Action
   async loadUserBooking() {
-    const res = await api.getList({ type: "booking", data: { limit: 10, skip: 0, customer: authStore.user.id } });
+    const res = await api.getList({ type: "booking", data: { limit: 10, skip: 0, status: "booked", "booking.tickets.player": authStore.user.id } });
     if (res.data) {
       this.userBookings = res.data;
     }

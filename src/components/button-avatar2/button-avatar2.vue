@@ -34,12 +34,14 @@ export default class Template extends Vue {
     height 216upx
     top 1upx
     left 48upx
-    background var(--primary)
     display flex
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
   .avatar
-    width 332upx
+    width 240upx
+  .avatar-bg
+    position absolute
+    filter blur(10rpx)
   .text
     position absolute
     left 60upx
@@ -58,14 +60,13 @@ export default class Template extends Vue {
     height 98upx
     top 0
     left 20upx
-    background var(--primary)
     display flex
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
   .avatar
-    width 155upx
-	.avatar-bg
-		position  absolute
+    width 120upx
+  .avatar-bg
+    position absolute
     filter blur(10rpx)
   .text
     position absolute

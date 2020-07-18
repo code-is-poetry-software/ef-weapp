@@ -30,6 +30,7 @@ http.interceptor.response = response => {
   if (!response.statusCode || response.statusCode !== 200) {
     uni.showToast({
       icon: "none",
+      duration: 3000,
       title: _.get(response, "data.message") || response.errMsg
     });
   }

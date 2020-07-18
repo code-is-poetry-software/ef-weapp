@@ -49,8 +49,8 @@ export default class Index extends Vue {
   onLoad(data) {
     storeStore.loadStore();
     this.wechatLogin().then(async () => {
-      if (data.code) {
-        await api.joinBooking({ code: data.code });
+      if (data.bookingId) {
+        uni.navigateTo({url: `/pages/booking/detail?id=${data.bookingId}`, })
       }
       await bookingStore.loadUserBooking();
     });

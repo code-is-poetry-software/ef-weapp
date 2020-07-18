@@ -9,22 +9,23 @@
         邀请您一起加入潮玩队伍！
       </view>
     </view>
-    <view class="share-info">
-      <img class="absolute" style="100%;z-index:-1" src="/static/image/view1.png" mode="widthFix" />
-      <view class="text" style="display: flex">
-        <text class="field-text">
-          场次:
-        </text>
-        <text style="font-size: 21px;margin-top: -10upx;">
-          2020-06-08\n12:00-14:00
-        </text>
-      </view>
-      <view class="text" style="margin-top:21upx;">
-        <span class="field-text">项目:</span>
-        <span class="field-text2">竞速无人机</span>
+    <view v-if="booking">
+      <view class="share-info" v-for="item in projects" :key="item._id">
+        <img class="absolute" style="100%;z-index:-1" src="/static/image/view1.png" mode="widthFix" />
+        <view class="text" style="display: flex">
+          <text class="field-text">
+            场次:
+          </text>
+          <text v-if="booking" style="font-size: 21px;margin-top: -10upx;"> {{ booking.date }}\n{{ booking.checkInAt }} </text>
+        </view>
+        <view class="text" style="margin-top:21upx;">
+          <span class="field-text">项目:</span>
+          <span class="field-text2">{{ item.name }}</span>
+        </view>
       </view>
     </view>
-    <view @click="join">
+
+    <view @click="handleBooking" style="margin-top: 100upx">
       <button-pay text="立即加入" />
     </view>
     <text class="remind">为避免入园后长期等待\n 请10:00入场，时段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
@@ -35,18 +36,58 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { wechatLogin } from "../../../common/vmeitime-http";
 import { authStore } from "../../store/auth";
+import * as api from "../../../common/vmeitime-http";
+import { Booking } from "../../type";
+import { utils } from "../../utils";
 
 @Component
 export default class BookingDetail extends Vue {
+  booking: Booking | null = null;
+
+  code = "";
+
   get user() {
-    return authStore.user;
-  }
-  onLoad() {
-    authStore.wechatLogin();
+    if (!this.booking) return {};
+    return this.booking.customer;
   }
 
-  async join() {
-    uni.navigateTo({ url: "/pages/booking/detail" });
+  get projects() {
+    return this.booking?.tickets[this.booking?.tickets.length - 1]?.projects || [];
+  }
+
+  onLoad(data) {
+    authStore.wechatLogin().then(() => {
+      if (data.code) {
+        this.code = data.code;
+        this.loading(data.code);
+      }
+    });
+  }
+
+  async loading(code) {
+    try {
+      const res = await api.joinBooking({ code, preview: true });
+      if (res.data) {
+        this.booking = res.data;
+      }
+    } catch (error) {
+      if (error.statusCode == 403) {
+        setTimeout(() => {
+          uni.redirectTo({ url: "/pages/index/index" });
+        }, 3000);
+      }
+    }
+  }
+
+  async handleBooking() {
+    uni.showLoading();
+    const code = this.code;
+    const res = await api.joinBooking({ code, preview: false });
+
+    uni.hideLoading();
+    if (this.booking?.id) {
+      uni.redirectTo({ url: `/pages/index/index?bookingId=${this.booking.id}` });
+    }
   }
 }
 </script>
@@ -71,13 +112,13 @@ export default class BookingDetail extends Vue {
     position relative
     width 540upx
     height 270upx
-    margin-bottom 160upx
+    margin-bottom 30upx
     display flex
     flex-direction column
     justify-content center
     align-items center
     .text
-      width 340upx
+      width 440upx
       z-index 1
       font-weight bold
       color var(--text-primary)

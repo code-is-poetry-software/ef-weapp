@@ -128,11 +128,6 @@
         "query": ""
       },
       {
-        "name": "分享",
-        "path": "pages/booking/share",
-        "query": ""
-      },
-      {
         "name": "排行榜",
         "path": "pages/rank/index",
         "query": ""
@@ -175,7 +170,7 @@
       {
         "name": "分享测试",
         "path": "pages/booking/share",
-        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYxMDU2NjVmNGIwMWEzMWUzOWVlM2U1IDVmMTJiMzdjYjYxYTc0M2M0NTllODZjMw.OYvgZlLnFhRvibi2v9u79Q61tG6VTEWMuYTN3gKETvs"
+        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYxMmMwMmVlZGU4NDEzZWVjNGZlNDM2IDVmMTJjMDMzZWRlODQxM2VlYzRmZTQ0MA.F7NVOypvHS0cil_XxC7kR8nTal1_w2d96QBmIeyf1rk"
       },
       {
         "name": "racing/checkin",

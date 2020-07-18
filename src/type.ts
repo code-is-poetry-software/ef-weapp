@@ -59,3 +59,17 @@ export interface Store {
     price: number;
   }>;
 }
+
+export interface Course {
+  id: string;
+  players: Array<{
+    avatarUrl: string;
+    id: string;
+    name: string;
+  }>;
+  project: string;
+  start: string;
+  store: Store;
+  updatedAt: string;
+  createdAt: string;
+}

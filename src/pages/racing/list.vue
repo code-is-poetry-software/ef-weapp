@@ -1,7 +1,7 @@
 <template>
   <view class="racing-list">
     <u-cell-group>
-      <u-cell-item v-for="item in list" :key="item.id" :title="item.project" @click="goDetail(item)"></u-cell-item>
+      <u-cell-item v-for="item in list" :key="item.id" :title="getTitle(item)" @click="goDetail(item)"></u-cell-item>
     </u-cell-group>
 
     <view style="position: absolute; bottom:0; left:0; z-index; 10;width: 100%">
@@ -20,12 +20,20 @@ export default class Template extends Vue {
   list: any[] = [];
   loading = false;
 
+  getTitle(item) {
+    return item.project + this.moment(item.createdAt).format("YYYY-MM-DD hh:mm:ss");
+  }
+
   onReachBottom() {
     this.loadPayment();
   }
 
   get token() {
     return authStore.token;
+  }
+
+  get user() {
+    return authStore.user;
   }
 
   onLoad() {
@@ -43,7 +51,7 @@ export default class Template extends Vue {
   async loadPayment() {
     if (this.loading) return;
     this.loading = true;
-    const res = await api.getList({ type: "course", data: { limit: 10, skip: this.list.length } });
+    const res = await api.getList({ type: "course", data: { limit: 10, skip: this.list.length, store: this.user.store } });
     if (res.data) {
       this.list = [...this.list, ...res.data];
     }
