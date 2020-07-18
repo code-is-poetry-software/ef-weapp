@@ -92,7 +92,7 @@ export default class Index extends Vue {
 .index
   background #368ad4
   text-align center
-  padding 200upx 0
+  padding 125upx 0
   position relative
 .e-button-primary
   width 300upx

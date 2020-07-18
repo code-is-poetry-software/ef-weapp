@@ -1,12 +1,14 @@
 <template>
   <view class="user-index page">
     <with-bg />
+    <get-phonenumber />
     <view style="padding:140upx 0 183upx 58upx">
       <button-title1 text="导航" />
     </view>
+
     <view class="content">
       <view class="user-info">
-        <button-avatar1 :user="user" @click="e => navigateTo({ url: '/pages/racing/match' })" />
+        <button-avatar1 :user="user" />
       </view>
       <border1>
         <view class="cards">

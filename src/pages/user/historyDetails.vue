@@ -5,14 +5,16 @@
       <button-title1 text="潮玩记录" />
       <icon-details />
     </view>
-    <view class="tabs" style="margin: 0 0 18upx 0;">
-      <button-tab styleClass="font-size: 24rpx;left:22rpx;top: 11rpx;"  :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
-      <img style="width: 63upx;margin-left: 20upx" src="/static/image/img-dot1.png" mode="widthFix" />
+    <view style="margin: 0 auto 18upx;text-align:center">
+      <view class="tabs">
+        <button-tab styleClass="font-size: 24rpx;left:22rpx;top: 11rpx;" :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
+        <img style="width: 63upx;margin-left: 20upx" src="/static/image/img-dot1.png" mode="widthFix" />
+      </view>
     </view>
     <view class="list">
       <view class="list-item" v-for="item in list" :key="item">
-        <view style="margin-bottom: 14upx;" >
-          <button-rank2  :item="item" />
+        <view style="margin-bottom: 14upx;">
+          <button-rank2 :item="item" />
         </view>
       </view>
     </view>
@@ -31,9 +33,9 @@ export default class Template extends Vue {
     tabs: [
       { label: "全部", value: "all" },
       { label: "竞速无人机", value: "booked" },
-      { label: "对战无人机", value: "finished" },
+      { label: "对战无人机", value: "finished" }
     ]
-  }; 
+  };
   list: any[] = [];
   loading = false;
   onLoad() {

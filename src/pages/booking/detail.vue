@@ -1,5 +1,6 @@
 <template>
-  <view class="payment-success column-center">
+  <view class="booking-detail column-center page">
+    <with-bg />
     <view>
       <img class="icon-user" src="/static/image/icon-user.png" mode="widthFix" />
     </view>
@@ -17,7 +18,7 @@
     <view style="position: relative">
       <img style="width: 572upx" src="/static/image/img-share.png" mode="widthFix" />
       <view class="qrcode">
-        <canvas canvas-id="qrcode" style="width: 150upx;height: 150upx;" />
+        <canvas canvas-id="qrcode" style="width: 150px;height: 150px;" />
       </view>
     </view>
     <view v-if="isOwner && item">
@@ -134,12 +135,13 @@ export default class PaymentSuccess extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.payment-success
+.booking-detail
+  position relative
   text-align center
   padding 150upx 0
   .icon-user
-    width 41upx
-    height 36upx
+    width 76upx
+    height 66upx
     position absolute
     right 61upx
     top 65upx

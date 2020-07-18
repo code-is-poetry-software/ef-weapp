@@ -16,6 +16,6 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .button-user
   .icon-user
-    width 41px
-    height 36px
+    width 76upx
+    height 66upx
 </style>
