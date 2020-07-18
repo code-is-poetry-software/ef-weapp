@@ -1,13 +1,25 @@
 <template>
   <view class="button-avatar" @click="$emit('click')">
     <img class="img" src="/static/image/button-avatar.png" mode="widthFix" />
-    <img class="avatar" src="https://via.placeholder.com/132x83" />
+    <img class="avatar" :src="user.avatarUrl" />
     <view class="info">
       <view class="text">您的好友</view>
       <view class="text1">XXXXXX</view>
     </view>
   </view>
 </template>
+
+<script lang="ts">
+import { Component, Vue, Watch, Prop } from "vue-property-decorator";
+import { authStore } from "../../store/auth";
+import { User } from "../../type";
+
+@Component
+export default class Template extends Vue {
+  @Prop({ default: {} }) user: User;
+}
+</script>
+
 
 
 <style lang="stylus" scoped>

@@ -2,6 +2,7 @@ import store from "./";
 import { VuexModule, Module, Action } from "vuex-class-modules";
 import * as api from "../../common/vmeitime-http";
 import { Booking } from "../type";
+import { authStore } from "./auth";
 
 @Module({ generateMutationSetters: true })
 class BookingStore extends VuexModule {
@@ -9,7 +10,7 @@ class BookingStore extends VuexModule {
 
   @Action
   async loadUserBooking() {
-    const res = await api.getList({ type: "booking", data: { limit: 10, skip: 0 } });
+    const res = await api.getList({ type: "booking", data: { limit: 10, skip: 0, customer: authStore.user.id } });
     if (res.data) {
       this.userBookings = res.data;
     }

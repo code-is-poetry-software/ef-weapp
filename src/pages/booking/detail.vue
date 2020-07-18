@@ -17,7 +17,7 @@
     <view style="position: relative">
       <img style="width: 572upx" src="/static/image/img-share.png" mode="widthFix" />
       <view class="qrcode">
-        <canvas canvas-id="qrcode" style="width: 150upx;height: 150upx;" />
+        <canvas canvas-id="qrcode" style="width: 150px;height: 150px;" />
       </view>
     </view>
     <view v-if="isOwner && item">

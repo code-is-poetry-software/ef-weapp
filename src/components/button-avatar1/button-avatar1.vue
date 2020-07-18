@@ -4,7 +4,7 @@
     <view class="avatar-box">
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
     </view>
-      <view class="text2">获取手机号</view>
+    <view class="text2">获取手机号</view>
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
       <view class="text1">手机号: {{ user.mobile || "" }}</view>
@@ -57,10 +57,10 @@ export default class Template extends Vue {
       margin-left 15upx
     .text1
       font-size 22upx
-	.text2
-		position absolute
-		top 113upx
-		left 410upx
-		font-size 23upx
-		color #FFFFFF
+.text2
+  position absolute
+  top 113upx
+  left 410upx
+  font-size 23upx
+  color #FFFFFF
 </style>

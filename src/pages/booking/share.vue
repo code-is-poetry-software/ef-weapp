@@ -4,7 +4,7 @@
       <img class="icon-user" src="/static/image/icon-user.png" mode="widthFix" />
     </view>
     <view class="user-share column-center">
-      <button-avatar />
+      <button-avatar :user="user" />
       <view class="share-text">
         邀请您一起加入潮玩队伍1213
       </view>
@@ -20,7 +20,7 @@
         </text>
       </view>
       <view class="text" style="margin-top:21upx;">
-        <span class="field-text" >项目</span>
+        <span class="field-text">项目</span>
         <span class="field-text2">竞速无人机</span>
       </view>
     </view>
@@ -33,9 +33,18 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
+import { wechatLogin } from "../../../common/vmeitime-http";
+import { authStore } from "../../store/auth";
 
 @Component
 export default class BookingDetail extends Vue {
+  get user() {
+    return authStore.user;
+  }
+  onLoad() {
+    authStore.wechatLogin();
+  }
+
   async join() {
     uni.navigateTo({ url: "/pages/booking/detail" });
   }
@@ -55,14 +64,14 @@ export default class BookingDetail extends Vue {
     margin-bottom 80upx
     .share-text
       color var(--primary)
-      font-size 35upx;
+      font-size 35upx
       font-family AlibabaPuHuiTiB-GBpc-EUC-H
       font-weight bold
   .share-info
     position relative
-    width  540upx
+    width 540upx
     height 270upx
-    margin-bottom  160upx
+    margin-bottom 160upx
     display flex
     flex-direction column
     justify-content center
@@ -77,10 +86,10 @@ export default class BookingDetail extends Vue {
       .field-text
         font-size 20upx
         margin-right 18upx
-			.field-text2
-			 position absolute
-			 font-size 51upx
-			 top 173upx
+  .field-text2
+    position absolute
+    font-size 51upx
+    top 173upx
   .remind
     margin-top 210upx
     text-align center
