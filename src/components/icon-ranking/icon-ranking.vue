@@ -1,22 +1,15 @@
 <template>
   <view class="icon-ranking" @click="$emit('click')">
-    <img class="rankingr" src="/static/image/icon-ranking.png" />
 		<view class="info">
-		  <view class="text">35</view>
+			<img class="rankingr" src="/static/image/icon-ranking.png" />
+		  <view class="text">{{grade}}</view>
 		</view>
-		<img class="button-avatar2" src="/static/image/button-avatar2.png" />
-		<img class="progres" src="/static/image/icon-progres.png" mode="widthFix"/>
 		<view class="info2">
 		  <view class="text2">CONFIRME</view>
+			<img class="button-tab-active" src="/static/image/button-tab-active.png" />
+			<img class="progres" src="/static/image/icon-progres.png" mode="widthFix"/>
 		</view>
-		<!-- 背景色 -->
 		<view>
-			<img class="backgroundClass" src="/static/image/background.png" />
-		</view>
-		<!-- 边框线 -->
-		<view>
-			<img class="rlineBorde" src="/static/image/rlineBorde.png" mode="widthFix"/>
-		</view>
   </view>
 </template>
 
@@ -24,7 +17,9 @@
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 
 @Component
-export default class Template extends Vue {}
+export default class Template extends Vue {
+  @Prop({ default: "" }) grade: Grade;
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -32,13 +27,12 @@ export default class Template extends Vue {}
   display flex
   align-items center
   justify-content center
-	.button-avatar2
+	.button-tab-active
 		position absolute
 		width 282upx
 		height 68upx
 		top 263upx
 		left 249upx
-
 	.rankingr 
 		position absolute
 		width 133upx
@@ -77,15 +71,5 @@ export default class Template extends Vue {}
 	  height 55upx
 	  top 285upx
 	  left 266upx
-	.backgroundClass
-	  position absolute
-	  width 595upx
-	  height 960upx
-  	top 400upx
-	  left 34upx
-	.rlineBorde
-	  position absolute
-	  top 135rpx
-	  left 11rpx
 
 </style>

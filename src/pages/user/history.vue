@@ -5,13 +5,17 @@
       <button-title1 text="潮玩记录" />
       <icon-details />
     </view>
+		<view class="rankingClass">
+			<icon-ranking :grade="35"/>
+		</view>
     <view class="content">
       <view class="user-info">
         <button-avatar5 :user="user" />
       </view>
+					
       <border1>
-        <view style="padding: 100upx 38upx 60upx">
-          <block1>
+        <view style="padding: 220upx 38upx 60upx">
+          <block1 >
             <view class="list">
               <view class="list-item" v-for="(item, index) in curList" :key="item">
                 <button-avatar6 :rank="index + 1" />
@@ -108,6 +112,7 @@ export default class Template extends Vue {
     margin 0 auto
     width 629upx
     position relative
+		
     .user-info
       display flex
       position absolute
@@ -130,4 +135,8 @@ export default class Template extends Vue {
     margin 52upx auto
     width 629upx
     position relative
+	.rankingClass
+		position absolute
+		left 57upx
+		top 278upx
 </style>
