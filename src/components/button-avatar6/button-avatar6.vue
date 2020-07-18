@@ -16,7 +16,10 @@
 		<view>
 			<view class="text2">查看战绩</view>
 		</view>
-			<img class="placeholder" src="https://via.placeholder.com/132x83" />
+		<view class="avatar-box">
+      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
+      <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
+		</view>
   </view>
 </template>
 
@@ -52,13 +55,17 @@ export default class Template extends Vue {
     width 132upx
     height 83upx
     top 5upx
-    left 248upx
+    left 172upx
     background var(--primary)
     display flex
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
       width 132upx
+		.avatar-bg
+			position absolute
+			width 132upx
+			filter blur(10upx)
   .info
     position absolute
     left 345upx

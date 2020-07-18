@@ -18,7 +18,7 @@
           <block1 >
             <view class="list">
               <view class="list-item" v-for="(item, index) in curList" :key="item">
-                <button-avatar6 :rank="index + 1" />
+                <button-avatar6 :user="user" :rank="index + 1" />
               </view>
             </view>
           </block1>

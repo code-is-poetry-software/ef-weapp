@@ -5,6 +5,7 @@
 			<view class="text2">查看战绩</view>
 		</view>
     <view class="avatar-box">
+      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
     </view>
     <view class="info">
@@ -61,6 +62,10 @@ export default class Template extends Vue {
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
       width 132upx
+		.avatar-bg
+		 position absolute
+		 width 132upx
+		 filter blur(10upx)
   .info
     position absolute
     left 285upx

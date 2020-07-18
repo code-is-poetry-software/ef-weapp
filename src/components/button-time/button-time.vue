@@ -1,6 +1,7 @@
 <template>
 	<view class="button-Arrow" @click="$emit('click')">
 		<img class="timeClass" src="/static/image/button_time.png" mode="widthFix"/>
+		
 	</view>
 </template>
 

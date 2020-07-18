@@ -2,6 +2,7 @@
   <view class="button-avatar5" @click="$emit('click')">
     <img class="img" src="/static/image/button-avatar5.png" mode="widthFix" />
     <view class="avatar-box">
+      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
     </view>
     <view class="info">
@@ -41,6 +42,11 @@ export default class Template extends Vue {
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
       width 297upx
+		.avatar-bg
+      position absolute
+      width 357upx
+      filter blur(10rpx)
+		
   .info
     position absolute
     left 255upx

@@ -3,6 +3,7 @@
     <img class="button-avatar" src="/static/image/button-avatar2.png" mode="widthFix" />
 
     <view class="avatar-box">
+      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
     </view>
     <view class="text">ID: {{ user.name }}</view>
@@ -30,8 +31,8 @@ export default class Template extends Vue {
   .avatar-box
     position absolute
     width 332upx
-    height 210upx
-    top 5upx
+    height 216upx
+    top 1upx
     left 48upx
     background var(--primary)
     display flex
@@ -63,6 +64,9 @@ export default class Template extends Vue {
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
   .avatar
     width 155upx
+	.avatar-bg
+		position  absolute
+    filter blur(10rpx)
   .text
     position absolute
     left 25upx
