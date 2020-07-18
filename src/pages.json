@@ -174,8 +174,8 @@
       },
       {
         "name": "分享测试",
-        "path": "pages/index/index",
-        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYxMDU2NjVmNGIwMWEzMWUzOWVlM2U1IDVmMTA1NmUxZjRiMDFhMzFlMzllZTNmOA.aOv3ffuK42ab2IAYQbYliE52KUX_4neoTkhz7BbVsyw"
+        "path": "pages/booking/share",
+        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYxMDU2NjVmNGIwMWEzMWUzOWVlM2U1IDVmMTJiMzdjYjYxYTc0M2M0NTllODZjMw.OYvgZlLnFhRvibi2v9u79Q61tG6VTEWMuYTN3gKETvs"
       },
       {
         "name": "racing/checkin",

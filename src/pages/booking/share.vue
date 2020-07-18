@@ -6,21 +6,21 @@
     <view class="user-share column-center">
       <button-avatar :user="user" />
       <view class="share-text">
-        邀请您一起加入潮玩队伍1213
+        邀请您一起加入潮玩队伍！
       </view>
     </view>
     <view class="share-info">
       <img class="absolute" style="100%;z-index:-1" src="/static/image/view1.png" mode="widthFix" />
       <view class="text" style="display: flex">
         <text class="field-text">
-          场次
+          场次:
         </text>
         <text style="font-size: 21px;margin-top: -10upx;">
           2020-06-08\n12:00-14:00
         </text>
       </view>
       <view class="text" style="margin-top:21upx;">
-        <span class="field-text">项目</span>
+        <span class="field-text">项目:</span>
         <span class="field-text2">竞速无人机</span>
       </view>
     </view>
@@ -63,7 +63,7 @@ export default class BookingDetail extends Vue {
   .user-share
     margin-bottom 80upx
     .share-text
-      color var(--primary)
+      color var(--text-primary)
       font-size 35upx
       font-family AlibabaPuHuiTiB-GBpc-EUC-H
       font-weight bold
@@ -80,7 +80,7 @@ export default class BookingDetail extends Vue {
       width 340upx
       z-index 1
       font-weight bold
-      color var(--primary)
+      color var(--text-primary)
       font-size 21upx
       font-family Gotham-BoldItalic
       .field-text

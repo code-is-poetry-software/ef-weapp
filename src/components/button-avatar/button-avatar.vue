@@ -4,7 +4,7 @@
     <img class="avatar" :src="user.avatarUrl" />
     <view class="info">
       <view class="text">您的好友</view>
-      <view class="text1">XXXXXX</view>
+      <view class="text1">{{ user.name }}</view>
     </view>
   </view>
 </template>

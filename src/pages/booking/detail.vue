@@ -51,7 +51,7 @@ export default class PaymentSuccess extends Vue {
     if (data.id) {
       this.loadBooking(data.id).then(data => {
         if (!data) return;
-        const ticket = data.tickets.find(i => i.player === this.user.id);
+        const ticket = data.tickets.find(i => i.player.id === this.user.id);
         if (ticket) {
           this.makeQrcode({ text: ticket.code });
         }

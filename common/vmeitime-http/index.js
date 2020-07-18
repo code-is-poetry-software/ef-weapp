@@ -145,8 +145,8 @@ export const getBookingPrice = ({ store, date, type = "play", projects, checkInA
   });
 };
 
-export const joinBooking = ({ code }) => {
-  const data = _.omitBy({ code }, _.isNil);
+export const joinBooking = ({ code, preview }) => {
+  const data = _.omitBy({ code, preview }, _.isNil);
   return http.request({
     url: `/booking-join`,
     method: "POST",

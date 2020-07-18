@@ -18,7 +18,7 @@ export interface Booking {
   }>;
   tickets: Array<{
     code: string;
-    player: string;
+    player: User;
     projects: Array<{
       count: number;
       name: "string";
