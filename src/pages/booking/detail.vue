@@ -1,5 +1,6 @@
 <template>
-  <view class="payment-success column-center">
+  <view class="booking-detail column-center page">
+    <with-bg />
     <view>
       <img class="icon-user" src="/static/image/icon-user.png" mode="widthFix" />
     </view>
@@ -134,12 +135,13 @@ export default class PaymentSuccess extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.payment-success
+.booking-detail
+  position relative
   text-align center
   padding 150upx 0
   .icon-user
-    width 41upx
-    height 36upx
+    width 76upx
+    height 66upx
     position absolute
     right 61upx
     top 65upx

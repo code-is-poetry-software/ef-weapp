@@ -55,8 +55,8 @@ export default class BookingDetail extends Vue {
 .share
   padding 220upx 0
   .icon-user
-    width 41upx
-    height 36upx
+    width 76upx
+    height 66upx
     position absolute
     right 61upx
     top 65upx

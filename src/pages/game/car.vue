@@ -168,8 +168,8 @@ export default class Car extends Vue {
   padding 120upx 0
   position relative
   .icon-user
-    width 41px
-    height 36px
+    width 76upx
+    height 66upx
     position absolute
     right 61upx
     top 65upx

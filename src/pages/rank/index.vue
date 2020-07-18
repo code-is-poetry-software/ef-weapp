@@ -1,5 +1,6 @@
 <template>
-  <view class="rank">
+  <view class="rank page">
+    <with-bg />
     <view style="margin-left: 60upx;margin-top:60upx">
       <button-rank text="EF PARK排行榜" />
     </view>
@@ -29,10 +30,11 @@ export default class RankIndex extends Vue {}
 
 <style lang="stylus" scoped>
 .rank
+  position relative
   padding 120upx 0
   .icon-user
-    width 41px
-    height 36px
+    width 76upx
+    height 66upx
     position absolute
     right 61upx
     top 65upx

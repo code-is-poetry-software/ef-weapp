@@ -2,9 +2,10 @@
   <view class="button-avatar1" @click="$emit('click')">
     <img class="img" src="/static/image/button-avatar1.png" mode="widthFix" />
     <view class="avatar-box">
+      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
     </view>
-    <view class="text2">获取手机号</view>
+    <view class="text2" @click="checkMobile">获取手机号</view>
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
       <view class="text1">手机号: {{ user.mobile || "" }}</view>
@@ -16,10 +17,15 @@
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 import { authStore } from "../../store/auth";
 import { User } from "../../type";
+import { utils } from "../../utils";
 
 @Component
 export default class Template extends Vue {
   @Prop({ default: {} }) user: User;
+
+  async checkMobile() {
+    await utils.hooks.checkMobile();
+  }
 }
 </script>
 
@@ -37,12 +43,15 @@ export default class Template extends Vue {
     height 132upx
     top 0
     left 15upx
-    background var(--primary)
     display flex
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
       width 150upx
+    .avatar-bg
+      position absolute
+      width 210upx
+      filter blur(10rpx)
   .info
     position absolute
     left 190upx
