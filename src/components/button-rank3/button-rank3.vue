@@ -1,8 +1,8 @@
 <template>
   <view class="button-rank3" @click="$emit('click')">
 		<view>
-			<img class="img" src="/static/image/button-rank3.png" mode="widthFix" />
-				<view class="text">查看详情</view>
+			<img class="img" :src="type == '1' ? '/static/image/button-rank3.png':'/static/image/button-rank2.png' " mode="widthFix" />
+				<view class="text" v-if="type =='1'">查看详情</view>
 			</view>
     <view class="info">
       <view style="font-size:16upx;">项目:</view>
@@ -29,6 +29,8 @@ import { config } from "../../../config";
 @Component
 export default class Template extends Vue {
   @Prop({ default: {} }) item: any;
+  @Prop({ default: "1" }) type: string;
+
   config = config;
 }
 </script>

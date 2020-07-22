@@ -14,7 +14,7 @@
     <view class="list">
       <view class="list-item" v-for="item in list" :key="item">
         <view style="margin-bottom: 14upx;">
-          <button-rank2 :item="item" />
+          <button-rank3 :item="item" type="2" />
         </view>
       </view>
     </view>
@@ -52,7 +52,7 @@ export default class Template extends Vue {
     if (this.loading) return;
     this.loading = true;
     const status = this.tab.curTab;
-    const res = await api.getList({ type: "booking", data: { status: status == "all" ? null : status, limit: 10, skip: this.list.length } });
+    const res = await api.getList({ type: "score", data: { limit: 10, skip: this.list.length } });
     if (res.data) {
       this.list = [...this.list, ...res.data];
     }
