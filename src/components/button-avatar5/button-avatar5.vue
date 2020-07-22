@@ -42,11 +42,10 @@ export default class Template extends Vue {
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
       width 297upx
-		.avatar-bg
-      position absolute
-      width 357upx
-      filter blur(10rpx)
-		
+  .avatar-bg
+    position absolute
+    width 357upx
+    filter blur(10rpx)
   .info
     position absolute
     left 255upx

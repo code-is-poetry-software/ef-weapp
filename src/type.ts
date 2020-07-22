@@ -67,9 +67,29 @@ export interface Course {
     id: string;
     name: string;
   }>;
+  scores: Score[];
   project: string;
   start: string;
   store: Store;
   updatedAt: string;
   createdAt: string;
+}
+
+export interface Score {
+  id: string;
+  result: string;
+  bastLap: {
+    _id: string;
+    duration: number;
+  };
+  baseLapIn: 3;
+  laps: Array<{
+    _id: string;
+    duration: number;
+  }>;
+  player: {
+    avatarUrl: string;
+    id: string;
+    name: string;
+  };
 }
