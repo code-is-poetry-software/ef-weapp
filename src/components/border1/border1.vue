@@ -4,7 +4,7 @@
       <slot></slot>
     </view>
     <view v-if="title" class="title">
-      <view style="position: relative">
+      <view style="position: relative;">
         <img class="img" src="/static/image/button-rank.png" mode="widthFix" />
         <view class="text">{{ title }}</view>
       </view>
@@ -25,14 +25,14 @@ export default class Template extends Vue {
 .bg
   position relative
   vertical-align top
-  min-height 300upx
+  min-height 200upx
   .inner
     background #009EEB
-    clip-path polygon(20px 0, 100% 0, 100% 20%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 80%, 0 20px)
+    clip-path polygon(40upx 0, 100% 0, 100% 20%, 100% calc(100% - 40upx), calc(100% - 40upx) 100%, 0 100%, 0 80%, 0 40upx)
     &:after
       content ''
       position absolute
-      clip-path polygon(20px 0, 100% 0, 100% 20%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 80%, 0 20px)
+      clip-path polygon(40upx 0, 100% 0, 100% 20%, 100% calc(100% - 40upx), calc(100% - 40upx) 100%, 0 100%, 0 80%, 0 40upx)
       top 1px
       left 1px
       right 1px
