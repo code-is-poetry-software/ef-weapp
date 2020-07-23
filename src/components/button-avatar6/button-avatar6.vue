@@ -7,7 +7,7 @@
     </view>
     <view class="score">
       <text v-if="item.bestLapIn">{{ item.bestLapIn }} 个</text>
-      <text style="margin-left: 10upx; font-size: 28upx">{{ _.get(item, "bestLap.duration") }} </text>
+      <text style="margin-left: 10upx; font-size: 20upx">{{ _.get(item, "bestLap.duration") }} </text>
       <text style="margin-left: 10upx">s/lap</text>
     </view>
     <view v-if="title" class="title">{{ title }}</view>
@@ -20,7 +20,7 @@
     </view>
     <view class="avatar-box">
       <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
-      <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
+      <img class="avatar" :src="user.avatarUrl" style="height:81upx;"/>
     </view>
   </view>
 </template>
@@ -67,7 +67,8 @@ export default class Template extends Vue {
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
-      width 132upx
+      width 100upx
+			
   .avatar-bg
     position absolute
     width 132upx

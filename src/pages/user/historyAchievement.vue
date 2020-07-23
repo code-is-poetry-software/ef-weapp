@@ -7,7 +7,7 @@
     </view>
     <view class="content">
       <view class="user-info">
-				<button-rank2 :item="item" />
+				<button-rank3 :item="item" />
       </view>
         <view style="padding: 10upx 38upx 60upx">
 					<view  class="block">

@@ -2,8 +2,8 @@
   <view class="button-avatar5" @click="$emit('click')">
     <img class="img" src="/static/image/button-avatar5.png" mode="widthFix" />
     <view class="avatar-box">
-      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
-      <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
+      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix"/>
+      <img class="avatar"  :src="user.avatarUrl" style="height: 188upx;"/>
     </view>
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
@@ -36,16 +36,15 @@ export default class Template extends Vue {
     height 188upx
     top 0
     left 30upx
-    background var(--primary)
     display flex
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
-      width 297upx
-  .avatar-bg
-    position absolute
-    width 357upx
-    filter blur(10rpx)
+      width 220upx
+		.avatar-bg
+			position absolute
+			width 357upx
+			filter blur(10rpx)
   .info
     position absolute
     left 255upx

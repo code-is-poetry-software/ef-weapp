@@ -10,12 +10,12 @@
     </view>
     <view v-if="title" class="title">{{ title }}</view>
     <view v-if="rank" class="rank-info">
-      <span class="rank">{{ rank }}</span>
+      <span class="rank">{{ rank }}</span> 
       <span class="text">{{ rankText }}</span>
     </view>
 		<view class="avatar-box">
       <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
-      <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
+      <img class="avatar" :src="user.avatarUrl" style="height: 81upx;" />
 		</view>
   </view>
 </template>
@@ -58,7 +58,7 @@ export default class Template extends Vue {
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
-      width 132upx
+      width 105upx
 		.avatar-bg
 			position absolute
 			width 132upx
