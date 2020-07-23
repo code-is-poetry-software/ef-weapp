@@ -5,20 +5,20 @@
       <button-title1 text="潮玩记录" />
       <icon-details />
     </view>
-		<view class="rankingClass">
-			<icon-ranking :grade="35"/>
-		</view>
+    <view class="rankingClass">
+      <icon-ranking :grade="35" />
+    </view>
     <view class="content">
       <view class="user-info">
         <button-avatar5 :user="user" />
       </view>
-					
+
       <border1>
         <view style="padding: 220upx 38upx 60upx">
-          <block1 >
-            <view class="list">
-              <view class="list-item" v-for="(item, index) in curList" :key="item">
-                <button-avatar6 :user="user" :rank="index + 1" />
+          <block1>
+            <view class="list" v-if="latestCourse.scores">
+              <view class="list-item" v-for="(item, index) in latestCourse.scores" :key="item">
+                <button-avatar6 :item="item" :rank="index + 1" />
               </view>
             </view>
           </block1>
@@ -30,20 +30,20 @@
       <border1 title="个人奖杯记录">
         <view style="padding: 51upx 38upx 23upx ">
           <block1>
-						<view>
-							<trophyRecord  style="margin-top: 10upx;" />
-						</view>
-					</block1>
+            <view>
+              <trophyRecord style="margin-top: 10upx;" />
+            </view>
+          </block1>
         </view>
       </border1>
     </view>
 
     <view class="content2">
       <border1 title="个人最佳成绩">
-        <view style="padding: 20upx 0upx 13upx ">
-					<view style="color: #FFFFFF;margin-top: 30upx;margin-left: -53upx;">
-						<button-rank3 />
-					</view>
+        <view style="padding: 50upx 0upx 100upx">
+          <view class="small-button" v-for="item in scores" :key="item._id">
+            <button-rank3 :item="item" @click="goHistoryDetail" />
+          </view>
         </view>
       </border1>
     </view>
@@ -53,52 +53,39 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { authStore } from "../../store/auth";
+import * as api from "../../../common/vmeitime-http";
+import { Course } from "../../type";
 
 @Component
 export default class Template extends Vue {
-  curList = [
-    {
-      id: 0,
-      name: "竞速无人机",
-      date: "2020年6月8日",
-      score: "5:0"
-    },
-    {
-      id: 0,
-      name: "竞速无人机",
-      date: "2020年6月8日",
-      score: "5:0"
-    },
-    {
-      id: 0,
-      name: "竞速无人机",
-      date: "2020年6月8日",
-      score: "5:0"
-    },
-    {
-      id: 0,
-      name: "竞速无人机",
-      date: "2020年6月8日",
-      score: "5:0"
-    },
-    {
-      id: 0,
-      name: "竞速无人机",
-      date: "2020年6月8日",
-      score: "5:0"
-    },
-    {
-      id: 0,
-      name: "竞速无人机",
-      date: "2020年6月8日",
-      score: "5:0"
-    }
-  ];
   onLoad() {
-    authStore.devLogin();
+    authStore.devLogin().then(data => {
+      this.loadCourse();
+      this.loadScores();
+    });
   }
   get user() {
     return authStore.user;
+  }
+
+  latestCourse: Partial<Course> = {};
+  async loadCourse() {
+    const res = await api.getList({ type: "course", data: { limit: 1 } });
+    if (res.data?.length) {
+      this.latestCourse = res.data[0];
+    }
+  }
+
+  scores: any = [];
+  async loadScores() {
+    const res = await api.getList({ type: "score", data: { limit: 5 } });
+    if (res.data?.length) {
+      this.scores = res.data;
+    }
+  }
+
+  goHistoryDetail() {
+    uni.navigateTo({ url: "/pages/user/historyDetail" });
   }
 }
 </script>
@@ -112,7 +99,6 @@ export default class Template extends Vue {
     margin 0 auto
     width 629upx
     position relative
-		
     .user-info
       display flex
       position absolute
@@ -126,7 +112,7 @@ export default class Template extends Vue {
       text-align center
       .list-item
         position relative
-        transform scale(0.8)
+        transform scale(0.85)
   .content1
     margin 52upx auto
     width 629upx
@@ -135,8 +121,10 @@ export default class Template extends Vue {
     margin 52upx auto
     width 629upx
     position relative
-	.rankingClass
-		position absolute
-		left 57upx
-		top 278upx
+    .small-button
+      transform scale(0.95)
+.rankingClass
+  position absolute
+  left 57upx
+  top 278upx
 </style>

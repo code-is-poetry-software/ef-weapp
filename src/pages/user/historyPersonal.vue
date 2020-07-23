@@ -4,14 +4,14 @@
       <button-title1 text="潮玩记录" />
       <icon-details />
     </view>
-		<view  class="content">
-			<view class="user-info">
-				<button-avatar1 :user="user" />
-			</view>
-		</view>
-		<view style="color: #FFFFFF;margin-top: 25upx;">
-			<button-rank3  :user="user"/>
-		</view>
+    <view class="content">
+      <view class="user-info">
+        <button-avatar1 :user="user" />
+      </view>
+    </view>
+    <view style="color: #FFFFFF;margin-top: 25upx;text-align:center">
+      <button-rank3 :user="user" />
+    </view>
   </view>
 </template>
 
@@ -28,7 +28,6 @@ export default class Template extends Vue {
   get user() {
     return authStore.user;
   }
-	
 }
 </script>
 
@@ -38,20 +37,19 @@ export default class Template extends Vue {
   .content
     margin 0 auto
     width 80%
-	.user-info
-		display flex
-		position relative
+.user-info
+  display flex
+  position relative
   .list
     text-align center
-	  
-	.info
-	  position absolute
-	  left 110upx
-	  top 13upx
-	  font-size 28upx
-	  font-family Alibaba PuHuiTi
-	  font-weight bold
-	  letter-spacing 2px
-	  // color #FFFFFF
-	  z-index 1
+.info
+  position absolute
+  left 110upx
+  top 13upx
+  font-size 28upx
+  font-family Alibaba PuHuiTi
+  font-weight bold
+  letter-spacing 2px
+  // color #FFFFFF
+  z-index 1
 </style>
