@@ -1,21 +1,15 @@
 <template>
   <view class="rank page">
     <with-bg />
-    <view style="margin-left: 60upx;margin-top:60upx">
+    <view style="margin-left: 60upx; margin-top: 60upx;">
       <button-rank text="EF PARK排行榜" />
     </view>
     <view>
       <img class="icon-user" src="/static/image/icon-user.png" mode="widthFix" />
     </view>
-    <view class="column-center" style="margin-top:100upx" @click="navigateTo({ url: '/pages/rank/detail' })">
-      <view style="margin-top: 50upx">
-        <button-rank-item text="竞速无人机排行榜" />
-      </view>
-      <view style="margin-top: 50upx">
-        <button-rank-item text="对战无人机排行榜" />
-      </view>
-      <view style="margin-top: 50upx">
-        <button-rank-item text="动力方程赛车排行榜" />
+    <view class="column-center" style="margin-top: 100upx;">
+      <view style="margin-top: 50upx;" v-for="item in projects" :key="item" @click="navigateTo({ url: '/pages/rank/detail?project=' + item })">
+        <button-rank-item :text="item + '排行榜'" />
       </view>
     </view>
   </view>
@@ -25,7 +19,9 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class RankIndex extends Vue {}
+export default class RankIndex extends Vue {
+  projects = ["竞速无人机", "对战无人机", "动力方程赛车"];
+}
 </script>
 
 <style lang="stylus" scoped>

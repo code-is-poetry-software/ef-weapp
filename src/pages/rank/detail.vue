@@ -1,25 +1,32 @@
 <template>
   <view class="rank-detail page">
     <with-bg />
-    <view style="margin-left: 60upx;margin-top:60upx">
+    <view style="margin-left: 60upx; margin-top: 60upx;">
       <button-rank text="竞速无人机排行榜" />
     </view>
-    <view style="position: absolute; right:61upx;top:65upx">
+    <view style="position: absolute; right: 61upx; top: 65upx;">
       <button-user />
     </view>
 
-    <view style="margin: 47upx 0 78upx;text-align:center">
-      <button-avatar4 :user="user" title="您目前排名:" />
+    <view style="margin: 47upx 0 78upx; text-align: center;">
+      <!-- <button-avatar4 :item="item" title="您目前排名:" /> -->
     </view>
 
-    <view style="padding: 0 40upx;position: relative">
+    <view style="padding: 0 40upx; position: relative;">
       <view class="tabs">
-        <button-tab styleClass="margin-top:-50rpx;letter-spacing: 17px;" :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label"></button-tab>
+        <button-tab
+          styleClass="margin-top:-50rpx;letter-spacing: 17px;"
+          :active="item.value == tab.curTab"
+          v-for="item in tab.tabs"
+          :key="item.value"
+          @click="selectTab(item)"
+          :text="item.label"
+        ></button-tab>
       </view>
       <border1>
         <view class="list">
           <view class="list-item" v-for="(item, index) in curList" :key="item">
-            <button-avatar4 :rank="index + 1" />
+            <button-avatar4 :rank="index + 1" :item="item" />
           </view>
         </view>
       </border1>
@@ -30,6 +37,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { authStore } from "../../store/auth";
+import * as api from "../../../common/vmeitime-http";
 
 @Component
 export default class Template extends Vue {
@@ -37,90 +45,16 @@ export default class Template extends Vue {
     curTab: "all",
     tabs: [
       { label: "总榜", value: "all" },
-      { label: "月榜", value: "month" },
-      { label: "周榜", value: "week" }
+      { label: "月榜", value: "this-month" },
+      { label: "周榜", value: "this-week" }
     ]
   };
+  project = "";
 
   list = {
-    all: [
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      },
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      },
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      },
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      },
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      },
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      }
-    ],
-    month: [
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      },
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      },
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      }
-    ],
-    week: [
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      },
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      },
-      {
-        id: 0,
-        name: "竞速无人机",
-        date: "2020年6月8日",
-        score: "5:0"
-      }
-    ]
+    all: [],
+    "this-month": [],
+    "this-week": []
   };
 
   get user() {
@@ -131,12 +65,35 @@ export default class Template extends Vue {
     return this.list[this.tab.curTab];
   }
 
-  onLoad() {
-    authStore.devLogin();
+  set curList(val) {
+    this.list[this.tab.curTab] = val;
+  }
+
+  onLoad(data) {
+    if (data.project) {
+      this.project = data.project;
+    }
+    authStore.devLogin().then(() => {
+      this.loadRankList();
+    });
   }
 
   selectTab(item) {
     this.tab.curTab = item.value;
+    this.curList = [];
+    this.loadRankList();
+  }
+
+  loading = false;
+  async loadRankList() {
+    if (this.loading) return;
+    this.loading = true;
+    const { curTab } = this.tab;
+    const res = await api.getList({ type: "score", data: { limit: 10, skip: this.curList.length, sort: "-value", project: this.project, withRankIn: curTab == "all" ? "" : curTab } });
+    if (res.data) {
+      this.curList = [...this.curList, ...res.data];
+    }
+    this.loading = false;
   }
 }
 </script>

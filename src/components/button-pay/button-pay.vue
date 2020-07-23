@@ -12,8 +12,10 @@ import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 export default class Template extends Vue {
   @Prop({ default: "" }) text: string;
   @Prop({ default: "" }) openType: string;
+  @Prop({ default: false }) disabled: boolean;
 
   onClick() {
+    if (this.disabled) return;
     this.$emit("click");
   }
 }
