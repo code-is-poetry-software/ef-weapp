@@ -3,7 +3,7 @@
     <img class="img" src="/static/image/button-rank2.png" mode="widthFix" />
     <view class="info">
       <view style="font-size:16upx;">项目:</view>
-			<view style="font-size: 28upx;margin-left: 44upx;margin-top: -26upx;">{{ _.get(item, "payments.0.title").substr(0, 7) }} </view>
+			<view style="font-size: 28upx;margin-left: 46upx;margin-top: -30upx;">{{ _.get(item, "payments.0.title").substr(0, 7) }} </view>
       <view style="font-size: 16upx;margin-top: 20upx;">时间:</view>
 			<view style="font-size: 28upx;margin-left: 46upx;margin-top: -30upx;"> {{ item.date }} </view>
 			<view style="margin-left: 42upx;">

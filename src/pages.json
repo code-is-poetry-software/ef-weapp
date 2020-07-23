@@ -106,6 +106,12 @@
       "style": {
         "navigationBarTitleText": "uni-app"
       }
+    },
+    {
+      "path": "pages/user/historyAchievement",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
     }
   ],
   "globalStyle": {
@@ -167,6 +173,12 @@
         "path": "pages/user/historyPersonal",
         "query": ""
       },
+      {
+        "name": "潮玩记录_historyAchievement",
+        "path": "pages/user/historyAchievement",
+        "query": ""
+      },
+			
       {
         "name": "分享测试",
         "path": "pages/booking/share",
