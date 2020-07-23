@@ -6,12 +6,12 @@
 			</view>
     <view class="info">
       <view style="font-size:16upx;">项目:</view>
-			<view style="font-size: 28upx;margin-left: 46upx;margin-top: -32upx;">{{item.project }} </view>
+			<view style="font-size: 28upx;margin-left: 46upx;margin-top: -32upx;">{{item.project || project }} </view>
       <view style="font-size: 16upx;margin-top: 20upx;">时间:</view>
 			<view style="font-size: 28upx;margin-left: 46upx;margin-top: -32upx;"> {{ moment(item.createdAt).format('YYYY年MM月DD日') }} </view>
 			<view style="margin-left: 42upx;">
 			  <text>{{ moment(item.createdAt).format('hh:mm')  }} </text>
-        <text v-if="item.playersInCourse">{{item.playersInCourse}}人场</text>
+        <text v-if="item.playersInCourse" style="margin-left: 10upx">{{item.playersInCourse}}人场</text>
 			</view>
 			<view class="status2"> 
 				<view style="margin-left: -95upx;font-size: 16upx;margin-top: 10upx;">成绩：</view>
@@ -30,6 +30,7 @@ import { config } from "../../../config";
 export default class Template extends Vue {
   @Prop({ default: {} }) item: any;
   @Prop({ default: "1" }) type: string;
+  @Prop({ default: "" }) project: string;
 
   config = config;
 }

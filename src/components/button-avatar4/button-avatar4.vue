@@ -6,7 +6,7 @@
     </view>
     <view class="avatar-box">
       <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
-      <img class="avatar" :src="user.avatarUrl" style="height: 81upx;" />
+      <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
     </view>
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
@@ -105,7 +105,7 @@ export default class Template extends Vue {
     font-family Alibaba PuHuiTi
   .rank-info
     position absolute
-    left 60upx
+    left 80upx
     top 20upx
     color var(--text-primary)
     z-index 1

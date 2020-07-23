@@ -9,7 +9,7 @@
     </view>
 
     <view style="margin: 47upx 0 78upx; text-align: center;">
-      <!-- <button-avatar4 :item="item" title="您目前排名:" /> -->
+      <button-avatar4 v-if="userScore" :item="userScore" title="您目前排名:" :rank="userScore.rankInCourse + 1" />
     </view>
 
     <view style="padding: 0 40upx; position: relative;">
@@ -75,13 +75,16 @@ export default class Template extends Vue {
     }
     authStore.devLogin().then(() => {
       this.loadRankList();
+      this.loadUserScore();
     });
   }
 
   selectTab(item) {
     this.tab.curTab = item.value;
     this.curList = [];
+    this.userScore = null;
     this.loadRankList();
+    this.loadUserScore();
   }
 
   loading = false;
@@ -94,6 +97,18 @@ export default class Template extends Vue {
       this.curList = [...this.curList, ...res.data];
     }
     this.loading = false;
+  }
+
+  userScore: any = null;
+  async loadUserScore() {
+    const { curTab } = this.tab;
+    const res = await api.getList({
+      type: "score",
+      data: { limit: 1, player: this.user.id, sort: "-value", skip: this.curList.length, project: this.project, withRankIn: curTab == "all" ? "" : curTab }
+    });
+    if (res.data) {
+      this.userScore = res.data[0];
+    }
   }
 }
 </script>

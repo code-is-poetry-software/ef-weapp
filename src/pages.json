@@ -108,7 +108,7 @@
       }
     },
     {
-      "path": "pages/user/historyAchievement",
+      "path": "pages/course/detail",
       "style": {
         "navigationBarTitleText": "uni-app"
       }
@@ -174,11 +174,11 @@
         "query": ""
       },
       {
-        "name": "潮玩记录_historyAchievement",
-        "path": "pages/user/historyAchievement",
+        "name": "course/detail",
+        "path": "pages/course/detail",
         "query": ""
       },
-			
+
       {
         "name": "分享测试",
         "path": "pages/booking/share",

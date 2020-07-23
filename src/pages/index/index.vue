@@ -4,25 +4,25 @@
     <login />
     <with-bg :showTop="false" />
     <view>
-      <img style="width: 320upx" src="/static/image/img1.png" mode="widthFix" />
+      <img style="width: 320upx;" src="/static/image/img1.png" mode="widthFix" />
     </view>
-    <view style="margin-top: 60upx">
-      <img style="width: 380upx" src="/static/image/img2.png" mode="widthFix" />
+    <view style="margin-top: 60upx;">
+      <img style="width: 380upx;" src="/static/image/img2.png" mode="widthFix" />
     </view>
-    <view style="margin-top: 50upx" @click="e => goCreateBooking({ url: '/pages/game/car', name: 'EF安亭潮玩公园' })">
-      <img style="width: 600upx" src="/static/image/button-car.png" mode="widthFix" />
+    <view style="margin-top: 50upx;" @click="e => goCreateBooking({ url: '/pages/game/car', name: 'EF安亭动力方程公园' })">
+      <img style="width: 600upx;" src="/static/image/button-car.png" mode="widthFix" />
     </view>
-    <view style="margin-bottom: 40upx;margin-top: 20upx" @click="e => goCreateBooking({ url: '/pages/game/uav', name: 'EF安亭卡丁车公园' })">
-      <img style="width: 600upx" src="/static/image/button-uav.png" mode="widthFix" />
+    <view style="margin-bottom: 40upx; margin-top: 20upx;" @click="e => goCreateBooking({ url: '/pages/game/uav', name: 'EF安亭潮玩公园' })">
+      <img style="width: 600upx;" src="/static/image/button-uav.png" mode="widthFix" />
     </view>
-    <view style="margin-bottom: 20upx">
+    <view style="margin-bottom: 20upx;">
       <view v-for="booking in userBookings" :key="booking.id">
         <view v-for="project in booking.projects" :key="project._id">
           <booking-item :item="booking" :project="project" @click="goBookingDetail(booking)" />
         </view>
       </view>
     </view>
-    <view style="margin-bottom: 8upx">
+    <view style="margin-bottom: 8upx;">
       <home-menuitem @click="e => navigateTo({ url: '/pages/rank/index', checkAuth: true })" text="EF PARK 排行榜" />
     </view>
     <home-menuitem @click="e => navigateTo({ url: '/pages/user/index', checkAuth: true })" text="我的潮玩ID" />
@@ -50,7 +50,7 @@ export default class Index extends Vue {
     storeStore.loadStore();
     this.wechatLogin().then(async () => {
       if (data.bookingId) {
-        uni.navigateTo({url: `/pages/booking/detail?id=${data.bookingId}`, })
+        uni.navigateTo({ url: `/pages/booking/detail?id=${data.bookingId}` });
       }
       await bookingStore.loadUserBooking();
     });

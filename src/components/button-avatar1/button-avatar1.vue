@@ -57,6 +57,7 @@ export default class Template extends Vue {
     left 190upx
     top 45upx
     color white
+    text-align left
     z-index 1
     font-style italic
     font-family Alibaba PuHuiTi
