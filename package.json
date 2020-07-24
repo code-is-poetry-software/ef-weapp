@@ -1,6 +1,6 @@
 {
-  "name": "efpark-weapp",
-  "version": "0.1.0",
+  "name": "ef-weapp",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "npm run dev:h5",

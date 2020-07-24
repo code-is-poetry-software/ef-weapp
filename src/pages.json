@@ -13,67 +13,67 @@
     {
       "path": "pages/rank/index",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "排行榜"
       }
     },
     {
       "path": "pages/rank/detail",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "排行榜"
       }
     },
     {
       "path": "pages/user/index",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "个人中心"
       }
     },
     {
       "path": "pages/game/car",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "动力方程卡丁车"
       }
     },
     {
       "path": "pages/game/uav",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "潮玩无人机"
       }
     },
     {
       "path": "pages/booking/share",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "加入潮玩项目"
       }
     },
     {
       "path": "pages/user/history",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "潮玩记录列表"
       }
     },
     {
       "path": "pages/user/historyDetails",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "潮玩记录详情"
       }
     },
     {
       "path": "pages/user/game",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "潮玩记录"
       }
     },
     {
       "path": "pages/user/payment",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "支付明细"
       }
     },
     {
       "path": "pages/booking/detail",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "分享潮玩项目"
       }
     },
 
@@ -86,13 +86,13 @@
     {
       "path": "pages/racing/user",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "添加玩家"
       }
     },
     {
       "path": "pages/racing/checkin",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "创建潮玩场次"
       }
     },
     {
@@ -104,7 +104,7 @@
     {
       "path": "pages/racing/list",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "潮玩场次列表"
       }
     },
     {
