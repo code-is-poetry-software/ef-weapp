@@ -81,8 +81,12 @@ export default class Index extends Vue {
     this.navigateTo({ url, checkMobile: false });
   }
 
-  goBookingDetail(item) {
-    console.log(item);
+  async goBookingDetail(item) {
+    const payArgs = this._.get(item, "payments.0.payArgs");
+
+    if (payArgs) {
+      await bookingStore.handlePayment(payArgs);
+    }
     uni.navigateTo({ url: `/pages/booking/detail?id=${item.id}` });
   }
 }

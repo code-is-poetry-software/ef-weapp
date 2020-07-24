@@ -2,7 +2,7 @@
   <view class="user-index page">
     <with-bg />
     <get-phonenumber />
-    <view style="padding:140upx 0 183upx 58upx">
+    <view style="padding: 140upx 0 183upx 58upx;">
       <button-title1 text="导航" />
     </view>
 
@@ -13,10 +13,10 @@
       <border1>
         <view class="cards">
           <view class="card">
-            <button-userinfo label="余 额" :value="user.balacne || 0" />
+            <button-userinfo label="余 额" :value="balance || 0" />
           </view>
           <view class="card">
-            <button-userinfo label="积 分" :value="user.points || 0" />
+            <button-userinfo label="积 分" :value="points || 0" />
           </view>
           <view class="card">
             <button-userinfo label="玩家等级" value="萌新玩家" />
@@ -25,13 +25,13 @@
 
         <view class="menus">
           <view class="menu" @click="navigateTo({ url: '/pages/user/history' })">
-            <img style="width: 451upx" src="/static/image/img-user-history.png" mode="widthFix" />
+            <img style="width: 451upx;" src="/static/image/img-user-history.png" mode="widthFix" />
           </view>
           <view class="menu" @click="navigateTo({ url: '/pages/user/game' })">
-            <img style="width: 451upx" src="/static/image/img-user-game.png" mode="widthFix" />
+            <img style="width: 451upx;" src="/static/image/img-user-game.png" mode="widthFix" />
           </view>
           <view class="menu" @click="navigateTo({ url: '/pages/user/payment' })">
-            <img style="width: 451upx" src="/static/image/img-user-payment.png" mode="widthFix" />
+            <img style="width: 451upx;" src="/static/image/img-user-payment.png" mode="widthFix" />
           </view>
         </view>
       </border1>
@@ -48,6 +48,14 @@ import { authStore } from "../../store/auth";
 export default class UserIndex extends Vue {
   get user() {
     return authStore.user;
+  }
+
+  get balance() {
+    return Number(this.user.balacne).toFixed(0);
+  }
+
+  get points(){
+    return Number(this.user.points).toFixed(0);
   }
 
   onLoad() {

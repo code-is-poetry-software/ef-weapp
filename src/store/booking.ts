@@ -3,6 +3,7 @@ import { VuexModule, Module, Action } from "vuex-class-modules";
 import * as api from "../../common/vmeitime-http";
 import { Booking } from "../type";
 import { authStore } from "./auth";
+import { _ } from "../utils/lodash";
 
 @Module({ generateMutationSetters: true })
 class BookingStore extends VuexModule {
@@ -19,6 +20,10 @@ class BookingStore extends VuexModule {
   @Action
   async createBooking(data: Parameters<typeof api.createBooking>[0]) {
     const res = await api.createBooking(data);
+    const payArgs = _.get(res, "data.payments.0.payArgs");
+    if (payArgs) {
+      await this.handlePayment(payArgs);
+    }
     if (res.data.id) {
       uni.navigateTo({ url: `/pages/booking/detail?id=${res.data.id}` });
     }

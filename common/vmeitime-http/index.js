@@ -126,7 +126,7 @@ export const handleItem = ({ type, id, data, method = "POST" }) => {
   });
 };
 
-export const createBooking = ({ store, date, type = "play", paymentGateway = "wechat", projects, checkInAt }) => {
+export const createBooking = ({ store, date, type = "play", paymentGateway = "wechatpay", projects, checkInAt }) => {
   const data = _.omitBy({ store, date, type, projects, checkInAt }, _.isNil);
   return http.request({
     url: `/booking?paymentGateway=${paymentGateway}`,

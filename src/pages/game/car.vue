@@ -20,19 +20,19 @@
     <u-form :model="form" ref="uForm" class="form">
       <view class="u-flex u-flex-row form-item" @click="date.show = true">
         <button-title text="选择日期" />
-        <view style="margin: 20upx 0 0 20upx">
+        <view style="margin: 20upx 0 0 20upx;">
           <span class="with-border">{{ date.selected.year }}</span>
-          <span class="color-blue" style="margin: 0 12upx">年</span>
+          <span class="color-blue" style="margin: 0 12upx;">年</span>
           <span class="with-border">{{ date.selected.month }}</span>
-          <span class="color-blue" style="margin: 0 12upx">月</span>
+          <span class="color-blue" style="margin: 0 12upx;">月</span>
           <span class="with-border">{{ date.selected.day }}</span>
-          <span class="color-blue" style="margin: 0 12upx">日</span>
+          <span class="color-blue" style="margin: 0 12upx;">日</span>
         </view>
         <u-calendar v-model="date.show" mode="date" @change="e => (date.selected = e)"></u-calendar>
       </view>
       <view class="u-flex u-flex-row form-item" @click="checkIn.show = true">
         <button-title text="选择场次" />
-        <view class="with-border" style="margin: 20upx 0 0 20upx">{{ form.checkIn }}</view>
+        <view class="with-border" style="margin: 20upx 0 0 20upx;">{{ form.checkIn }}</view>
         <u-select mode="single-column" v-model="checkIn.show" :list="checkInTimeOptions" @confirm="e => (form.checkIn = e[0].value)"></u-select>
       </view>
       <view class="price-bar">
@@ -41,7 +41,7 @@
 
       <view class="column-center">
         <button-pay @click="createBooking" text="立即支付" :disabled="!payable" />
-        <view style="margin-top:20upx">
+        <view style="margin-top: 20upx;">
           <u-radio-group :value="submit.useBalance">
             <u-radio name="useBalance" @change="radioChange">使用余额支付</u-radio>
           </u-radio-group>
@@ -136,7 +136,7 @@ export default class Car extends Vue {
     const { checkIn: checkInAt } = this.form;
     const { id: store } = this.curStore;
     const projects = this.projects;
-    await bookingStore.createBooking({ store, date, checkInAt, projects, paymentGateway: "cash" });
+    await bookingStore.createBooking({ store, date, checkInAt, projects });
   }
 
   price = 0;

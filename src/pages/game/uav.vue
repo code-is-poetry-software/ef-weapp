@@ -141,7 +141,7 @@ export default class Car extends Vue {
     const { checkIn: checkInAt } = this.form;
     const { id: store } = this.curStore;
     const projects = this.projects;
-    await bookingStore.createBooking({ store, date, checkInAt, projects, paymentGateway: "cash" });
+    await bookingStore.createBooking({ store, date, checkInAt, projects });
   }
 
   price = 0;
