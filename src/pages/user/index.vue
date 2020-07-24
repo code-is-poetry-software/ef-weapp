@@ -54,7 +54,7 @@ export default class UserIndex extends Vue {
     return Number(this.user.balacne).toFixed(0);
   }
 
-  get points(){
+  get points() {
     return Number(this.user.points).toFixed(0);
   }
 

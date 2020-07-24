@@ -49,7 +49,7 @@
     {
       "path": "pages/user/history",
       "style": {
-        "navigationBarTitleText": "潮玩记录列表"
+        "navigationBarTitleText": "潮玩记录"
       }
     },
     {
@@ -61,7 +61,7 @@
     {
       "path": "pages/user/game",
       "style": {
-        "navigationBarTitleText": "潮玩记录"
+        "navigationBarTitleText": "潮玩项目"
       }
     },
     {
@@ -76,29 +76,16 @@
         "navigationBarTitleText": "分享潮玩项目"
       }
     },
-
-    {
-      "path": "pages/racing/playerDetails",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
-    },
     {
       "path": "pages/racing/user",
       "style": {
-        "navigationBarTitleText": "添加玩家"
+        "navigationBarTitleText": "游戏玩家"
       }
     },
     {
       "path": "pages/racing/checkin",
       "style": {
         "navigationBarTitleText": "创建潮玩场次"
-      }
-    },
-    {
-      "path": "pages/user/historyPersonal",
-      "style": {
-        "navigationBarTitleText": "uni-app"
       }
     },
     {
@@ -110,7 +97,7 @@
     {
       "path": "pages/course/detail",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "比赛详情"
       }
     }
   ],
@@ -164,16 +151,6 @@
         "query": ""
       },
       {
-        "name": "historyDetails",
-        "path": "pages/user/historyDetails",
-        "query": ""
-      },
-      {
-        "name": "潮玩记录_historyPersonal",
-        "path": "pages/user/historyPersonal",
-        "query": ""
-      },
-      {
         "name": "course/detail",
         "path": "pages/course/detail",
         "query": ""
@@ -192,11 +169,6 @@
       {
         "name": "racing/user",
         "path": "pages/racing/user",
-        "query": ""
-      },
-      {
-        "name": "racing/playerDetails",
-        "path": "pages/racing/playerDetails",
         "query": ""
       },
       {
