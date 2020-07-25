@@ -25,6 +25,7 @@ export default class Template extends Vue {
   .img
     position absolute
     width 400upx
+    height 100upx
     right 0
     top 0
   .text

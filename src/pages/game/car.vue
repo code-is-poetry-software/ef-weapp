@@ -11,7 +11,7 @@
 
       <view class="mode-list">
         <view v-for="item in mode.modes" :key="item.label" class="list-item flex items-center">
-          <img :style="[{ width: item.size ? '160rpx' : '120rpx', marginRight: item.size ? '10rpx' : '40rpx' }]" :src="item.image" mode="widthFix" />
+          <img :style="[{ width: item.size ? '160rpx' : '120rpx', height: '120rpx', marginRight: item.size ? '10rpx' : '40rpx' }]" :src="item.image" mode="widthFix" />
           <button-mode :text="item.label" :amount.sync="item.amount" />
         </view>
       </view>

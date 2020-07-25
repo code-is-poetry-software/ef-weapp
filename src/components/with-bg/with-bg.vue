@@ -19,6 +19,7 @@ export default class Template extends Vue {
 .with-bg
   .img
     width 750upx
+    height 60upx
   .top
     position absolute
     top 0
