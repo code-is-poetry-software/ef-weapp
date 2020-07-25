@@ -14,7 +14,7 @@ class AuthStore extends VuexModule {
     avatarUrl: "",
     openid: "",
     mobile: "",
-    balacne: 0,
+    balance: 0,
     points: 0
   };
 

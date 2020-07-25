@@ -32,7 +32,7 @@ export interface User {
   avatarUrl: string;
   openid: string;
   mobile: string;
-  balacne: number;
+  balance: number;
   points: number;
   store?: Store;
 }
