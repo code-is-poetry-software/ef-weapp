@@ -6,7 +6,7 @@
         <button-title text="选择模式" />
       </view>
       <view>
-        <img class="icon-user" src="/static/image/icon-user.png" mode="widthFix" />
+        <img class="icon-user" src="/static/image/icon-user.png" @click="navigateTo({ url: '/pages/user/index' })" mode="widthFix" />
       </view>
 
       <view class="mode-list">

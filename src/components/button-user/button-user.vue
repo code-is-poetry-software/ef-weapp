@@ -1,6 +1,6 @@
 <template>
   <view class="button-user" @click="$emit('click')">
-    <img class="icon-user" src="/static/image/icon-user.png" mode="widthFix" />
+    <img class="icon-user"  src="/static/image/icon-user.png" @click="navigateTo({ url: '/pages/user/index' })" mode="widthFix" />
   </view>
 </template>
 

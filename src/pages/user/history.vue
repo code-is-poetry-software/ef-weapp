@@ -3,7 +3,7 @@
     <with-bg />
     <view style="padding: 140upx 62upx 233upx 58upx;" class="flex justify-between align-center">
       <button-title1 text="潮玩记录" />
-      <icon-details />
+      <icon-details @click="navigateTo({ url: '/pages/index/index' })"/>
     </view>
     <view class="rankingClass">
       <icon-ranking :grade="35" />

@@ -12,11 +12,11 @@
       <view class="text">ID: {{ user.name }}</view>
     </view>
     <view class="score">
-      <text v-if="item.bestLapIn">{{ item.bestLapIn }} 个</text>
-      <text style="margin-left: 10upx; font-size: 28upx;">{{ _.get(item, "bestLap.duration") }} </text>
-      <text style="margin-left: 10upx;">s/lap</text>
+      <text v-if="item.bestLapIn" tyle="font-size: 15upx;">{{ item.bestLapIn }} 个</text>
+      <text style="margin-left: 10upx; font-size: 27upx">{{ _.get(item, "bestLap.duration") }} </text>
+      <text style="margin-left: 10upx;font-size: 22upx;">s/lap</text>
     </view>
-    <view v-if="title" class="title">{{ title }}</view>
+    <view v-if="title" class="title" style="margin-top: -16upx;">{{ title }}</view>
     <view v-if="rank" class="rank-info">
       <span class="rank">{{ rank }}</span>
       <span class="text">{{ rankText }}</span>
@@ -60,8 +60,8 @@ export default class Template extends Vue {
     position absolute
     width 132upx
     height 83upx
-    top 5upx
-    left 194upx
+    top -2upx
+    left 200upx
     background var(--primary)
     display flex
     justify-content center
@@ -83,7 +83,7 @@ export default class Template extends Vue {
     font-weight bold
     .text
       font-size 28upx
-      margin-left 15upx
+      margin-left 30upx
     .text1
       font-size 22upx
   .score
@@ -105,8 +105,8 @@ export default class Template extends Vue {
     font-family Alibaba PuHuiTi
   .rank-info
     position absolute
-    left 80upx
-    top 20upx
+    left 100upx
+    top 0upx
     color var(--text-primary)
     z-index 1
     font-style italic
@@ -120,7 +120,7 @@ export default class Template extends Vue {
       margin-left 4upx
   .text2
     position absolute
-    left 522upx
+    left 524upx
     top 107upx
     font-size 19upx
     color #FFFFFF

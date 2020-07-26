@@ -8,7 +8,7 @@
       <view style="font-size: 16upx;margin-top: 20upx;">场次:</view> 
 			<view style="font-size: 28upx;margin-left: 51upx;margin-top: -32upx;">{{ item.date }}</view>
 			<view style="font-size: 43upx;margin-left: 268upx;margin-top: -54upx;">{{ item.checkInAt.substr(0, 5) }}</view> 
-			<view style="font-size: 28upx;margin-left: 442upx;margin-top: -40upx;">6人场</view>
+			<view style="font-size: 28upx;margin-left: 442upx;margin-top: -50upx;">6人场</view>
     </view>
   </view>
 </template>

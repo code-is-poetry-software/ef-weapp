@@ -2,7 +2,7 @@
   <view class="rank-detail page">
     <with-bg />
     <view style="margin-left: 60upx; margin-top: 60upx;">
-      <button-rank text="竞速无人机排行榜" />
+      <button-rank :text="project" />
     </view>
     <view style="position: absolute; right: 61upx; top: 65upx;">
       <button-user />
@@ -104,8 +104,10 @@ export default class Template extends Vue {
     const { curTab } = this.tab;
     const res = await api.getList({
       type: "score",
-      data: { limit: 1, player: this.user.id, sort: "-value", skip: this.curList.length, project: this.project, withRankIn: curTab == "all" ? "" : curTab }
-    });
+      // data: { limit: 1, player: this.user.id, sort: "-value", skip: this.curList.length, project: this.project, withRankIn: curTab == "all" ? "" : curTab }
+			data: {   sort: "-value", skip: this.curList.length, project: this.project, withRankIn: curTab == "all" ? "" : curTab }
+			
+		});
     if (res.data) {
       this.userScore = res.data[0];
     }

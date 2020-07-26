@@ -6,9 +6,9 @@
       <view class="text">ID: {{ user.name }}</view>
     </view>
     <view class="score">
-      <text v-if="item.bestLapIn">{{ item.bestLapIn }} 个</text>
-      <text style="margin-left: 10upx; font-size: 20upx">{{ _.get(item, "bestLap.duration") }} </text>
-      <text style="margin-left: 10upx">s/lap</text>
+      <text v-if="item.bestLapIn" style="font-size: 15upx;">{{ item.bestLapIn }} 个</text>
+      <text style="margin-left: 10upx; font-size: 27upx">{{ _.get(item, "bestLap.duration") }} </text>
+      <text style="margin-left: 10upx;font-size: 22upx;">s/lap</text>
     </view>
     <view v-if="title" class="title">{{ title }}</view>
     <view v-if="rank" class="rank-info">
@@ -60,8 +60,8 @@ export default class Template extends Vue {
     position absolute
     width 132upx
     height 83upx
-    top 5upx
-    left 172upx
+    top -5upx
+    left 184upx
     background var(--primary)
     display flex
     justify-content center
@@ -90,8 +90,8 @@ export default class Template extends Vue {
       font-size 22upx
   .score
     position absolute
-    left 233upx
-    top 87upx
+    left 248upx
+    top 92upx
     color white
     z-index 1
     font-style italic
@@ -115,22 +115,22 @@ export default class Template extends Vue {
   font-family Alibaba PuHuiTi
 .rank-info
   position absolute
-  left 80upx
-  top -3upx
+  left 85upx
+  top -37upx
   color var(--text-primary)
   z-index 1
   font-style italic
   font-weight bold
   .rank
     font-family NightMachine
-    font-size 89upx
+    font-size 113upx
   .text
     font-family Gotham-Bold
-    font-size 23upx
+    font-size 18upx
 .text2
   position absolute
-  left 467upx
-  top 95upx
+  left 492upx
+  top 100upx
   font-size 15upx
   color #FFFFFF
 .Line_1_1

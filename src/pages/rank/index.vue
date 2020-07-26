@@ -5,7 +5,7 @@
       <button-rank text="EF PARK排行榜" />
     </view>
     <view>
-      <img class="icon-user" src="/static/image/icon-user.png" mode="widthFix" />
+      <img class="icon-user" src="/static/image/icon-user.png" @click="navigateTo({ url: '/pages/user/index' })" mode="widthFix" />
     </view>
     <view class="column-center" style="margin-top: 100upx;">
       <view style="margin-top: 50upx;" v-for="item in projects" :key="item" @click="navigateTo({ url: '/pages/rank/detail?project=' + item })">

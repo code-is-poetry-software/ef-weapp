@@ -5,10 +5,10 @@
       <view class="text">场次:</view>
 			<view style="font-size: 23upx;margin-top: -6upx;">{{ item.date }} {{ item.checkInAt }}</view>
       <view class="flex">
-        <view style="font-size: 15upx;">项目:</view>
+        <view style="font-size: 15upx;margin-top: 7upx;">项目:</view>
 				<view style="font-size: 38upx;margin-top: -10upx;">{{ project.name }}</view>
-        <view style="font-size: 15upx;margin-left: 5upx;">数量:</view> 
-				<view style="font-size: 38upx;">{{ project.count }}</view>
+        <view style="font-size: 15upx;margin-left: 5upx;margin-top: 7upx;">数量:</view> 
+				<view style="font-size: 38upx;margin-top: -12upx;margin-left: 4upx;">{{ project.count }}</view>
       </view>
     </view> 
   </view>

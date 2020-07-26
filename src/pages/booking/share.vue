@@ -1,7 +1,7 @@
 <template>
   <view class="share column-center">
     <view>
-      <img class="icon-user" src="/static/image/icon-user.png" mode="widthFix" />
+      <img class="icon-user" src="/static/image/icon-user.png" @click="navigateTo({ url: '/pages/user/index' })" mode="widthFix" />
     </view>
     <view class="user-share column-center">
       <button-avatar :user="user" />
