@@ -1,14 +1,14 @@
 <template>
   <view class="button-rank1" @click="$emit('click')">
     <img class="img" src="/static/image/button-rank1.png" mode="widthFix" />
-		<view class="status">{{ config.statusLabel[item.status] }}</view>
+    <view class="status">{{ config.statusLabel[item.status] }}</view>
     <view class="info">
       <view style="font-size: 16upx;">项目:</view>
-			<view style="font-size: 28upx;margin-left: 51upx;margin-top: -32upx;">{{ _.get(item, "payments.0.title").substr(0, 7) }} </view>
-      <view style="font-size: 16upx;margin-top: 20upx;">场次:</view> 
-			<view style="font-size: 28upx;margin-left: 51upx;margin-top: -32upx;">{{ item.date }}</view>
-			<view style="font-size: 43upx;margin-left: 268upx;margin-top: -54upx;">{{ item.checkInAt.substr(0, 5) }}</view> 
-			<view style="font-size: 28upx;margin-left: 442upx;margin-top: -50upx;">6人场</view>
+      <view style="font-size: 28upx; margin-left: 51upx; margin-top: -32upx;">{{ project.name }} </view>
+      <view style="font-size: 16upx; margin-top: 20upx;">场次:</view>
+      <view style="font-size: 28upx; margin-left: 51upx; margin-top: -32upx;">{{ item.date }}</view>
+      <view style="font-size: 43upx; margin-left: 268upx; margin-top: -54upx;">{{ item.checkInAt.substr(0, 5) }}</view>
+      <view style="font-size: 28upx; margin-left: 442upx; margin-top: -40upx;">{{ project.count }}人场</view>
     </view>
   </view>
 </template>
@@ -20,7 +20,12 @@ import { config } from "../../../config";
 @Component
 export default class Template extends Vue {
   @Prop({ default: {} }) item: Booking;
+  @Prop({ default: {} }) project: Booking["projects"][0];
   config = config;
+
+  async goDetail() {
+    uni.navigateTo({ url: `/pages/booking/detail?id=${this.item.id}` });
+  }
 }
 </script>
 
