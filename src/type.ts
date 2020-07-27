@@ -35,6 +35,7 @@ export interface User {
   balance: number;
   points: number;
   store?: Store;
+  role: string;
 }
 
 export interface Payment {

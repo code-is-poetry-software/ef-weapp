@@ -15,7 +15,8 @@ class AuthStore extends VuexModule {
     openid: "",
     mobile: "",
     balance: 0,
-    points: 0
+    points: 0,
+    role: "customer"
   };
 
   async devLogin() {

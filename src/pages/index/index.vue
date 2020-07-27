@@ -46,11 +46,18 @@ export default class Index extends Vue {
     return bookingStore.userBookings;
   }
 
+  get user() {
+    return authStore.user;
+  }
+
   onLoad(data) {
     storeStore.loadStore();
     this.wechatLogin().then(async () => {
       if (data.bookingId) {
         uni.navigateTo({ url: `/pages/booking/detail?id=${data.bookingId}` });
+      }
+      if (this.user.role == "manager") {
+        uni.redirectTo({ url: "/pages/racing/list" });
       }
       await bookingStore.loadUserBooking();
     });

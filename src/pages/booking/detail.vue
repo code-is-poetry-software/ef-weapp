@@ -103,7 +103,7 @@ export default class PaymentSuccess extends Vue {
 
   onShareAppMessage(res) {
     const that = this;
-    const path = `/pages/index/index?code=${this.code}`;
+    const path = `/pages/booking/share?code=${this.code}`;
     console.log(path);
 
     return {
