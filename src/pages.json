@@ -53,12 +53,6 @@
       }
     },
     {
-      "path": "pages/user/historyDetails",
-      "style": {
-        "navigationBarTitleText": "潮玩记录详情"
-      }
-    },
-    {
       "path": "pages/user/game",
       "style": {
         "navigationBarTitleText": "潮玩项目"

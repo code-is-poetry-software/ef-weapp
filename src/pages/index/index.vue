@@ -25,7 +25,10 @@
     <view style="margin-bottom: 8upx;">
       <home-menuitem @click="e => navigateTo({ url: '/pages/rank/index', checkAuth: true })" text="EF PARK 排行榜" />
     </view>
-    <home-menuitem @click="e => navigateTo({ url: '/pages/user/index', checkAuth: true })" text="我的潮玩ID" />
+    <view style="margin-bottom: 16upx;">
+      <home-menuitem @click="e => navigateTo({ url: '/pages/user/index', checkAuth: true })" text="我的潮玩ID" />
+    </view>
+    <home-menuitem v-if="user.role == 'manager'" @click="goStore" text="场次管理" />
   </view>
 </template>
 
@@ -56,9 +59,6 @@ export default class Index extends Vue {
       if (data.bookingId) {
         uni.navigateTo({ url: `/pages/booking/detail?id=${data.bookingId}` });
       }
-      if (this.user.role == "manager") {
-        uni.redirectTo({ url: "/pages/racing/list" });
-      }
       await bookingStore.loadUserBooking();
     });
   }
@@ -81,6 +81,10 @@ export default class Index extends Vue {
     } catch (err) {
       utils.helper.errorHandler(err);
     }
+  }
+
+  goStore() {
+    uni.redirectTo({ url: "/pages/racing/list" });
   }
 
   goCreateBooking({ url, name }: { url: string; name: string }) {

@@ -3,10 +3,20 @@
     <with-bg />
     <view style="padding: 140upx 62upx 233upx 58upx;" class="flex justify-between align-center">
       <button-title1 text="潮玩记录" />
-      <icon-details @click="navigateTo({ url: '/pages/index/index' })"/>
+      <icon-details @click="navigateTo({ url: '/pages/index/index' })" />
     </view>
     <view class="rankingClass">
-      <icon-ranking :grade="35" />
+      <view class="icon-ranking" @click="$emit('click')">
+        <view class="info">
+          <img class="rankingr" src="/static/image/icon-ranking.png" />
+          <view class="text">35</view>
+        </view>
+        <view class="info2">
+          <view class="text2">CONFIRME</view>
+          <img class="button-tab-active" src="/static/image/button-tab-active.png" />
+          <img class="progres" src="/static/image/icon-progres.png" mode="widthFix" />
+        </view>
+      </view>
     </view>
     <view class="content">
       <view class="user-info">
@@ -32,7 +42,23 @@
         <view style="padding: 51upx 38upx 23upx;">
           <block1>
             <view>
-              <trophyRecord style="margin-top: 10upx;" />
+              <view class="trophyRecord">
+                <view>
+                  <img class="img" src="/static/image/trophyRecord.png" />
+                </view>
+                <view class="info">
+                  <view class="text2">竞速无人机</view>
+                  <view class="text3">对战无人机</view>
+                </view>
+                <view class="info2">
+                  <view class="text4">1</view>
+                  <view class="text5">1</view>
+                  <view class="text6">1</view>
+                  <view class="text7">1</view>
+                  <view class="text8">1</view>
+                  <view class="text9">1</view>
+                </view>
+              </view>
             </view>
           </block1>
         </view>
@@ -71,7 +97,7 @@ export default class Template extends Vue {
 
   latestCourse: Partial<Course> = {};
   async loadCourse() {
-    const res = await api.getList({ type: "course", data: { limit: 1 } });
+    const res = await api.getList({ type: "course", data: { player: this.user.id, limit: 1 } });
     if (res.data?.length) {
       this.latestCourse = res.data[0];
     }
@@ -79,7 +105,7 @@ export default class Template extends Vue {
 
   scores: any = [];
   async loadScores() {
-    const res = await api.getList({ type: "score", data: { limit: 5 } });
+    const res = await api.getList({ type: "score", data: { limit: 5, player: this.user.id } });
     if (res.data?.length) {
       this.scores = res.data;
     }
@@ -132,4 +158,115 @@ export default class Template extends Vue {
   position absolute
   left 57upx
   top 278upx
+.trophyRecord
+  // display flex
+  align-items center
+  justify-content center
+  .img
+    width 450upx
+    height 250upx
+    margin-top 26rpx
+  .info
+    left 190upx
+    top 45upx
+    z-index 1
+    font-style italic
+    font-family Alibaba PuHuiTi
+    font-weight bold
+  .info2
+    left 190upx
+    top 45upx
+    z-index 1
+    font-style italic
+    font-family Alibaba PuHuiTi
+    font-weight bold
+  .text2
+    position absolute
+    color #0090D9
+    top 17upx
+    left 46upx
+  .text3
+    position absolute
+    color #0090D9
+    top 170upx
+    left 46upx
+  .text4
+    position absolute
+    top 75upx
+    left 144upx
+    color #ECF5FF
+  .text5
+    position absolute
+    top 75upx
+    left 294upx
+    color #ECF5FF
+  .text6
+    position absolute
+    top 75upx
+    left 451upx
+    color #ECF5FF
+  .text7
+    position absolute
+    top 235upx
+    left 144upx
+    color #ECF5FF
+  .text8
+    position absolute
+    top 235upx
+    left 294upx
+    color #ECF5FF
+  .text9
+    position absolute
+    top 235upx
+    left 451upx
+    color #ECF5FF
+.rankingClass
+  .icon-ranking
+    display flex
+    align-items center
+    justify-content center
+  .button-tab-active
+    position absolute
+    width 282upx
+    height 68upx
+    top 263upx
+    left 249upx
+  .rankingr
+    position absolute
+    width 133upx
+    height 150upx
+    top 225upx
+    left 105upx
+  .info
+    left 190upx
+    top 45upx
+    color #ECF5FF
+    z-index 1
+    font-style italic
+    font-family Alibaba PuHuiTi
+    font-weight bold
+  .info2
+    left 190upx
+    top 45upx
+    color #0090D9
+    z-index 1
+    font-style italic
+    font-family Alibaba PuHuiTi
+    font-weight bold
+  .text
+    position absolute
+    top 255upx
+    left 144upx
+    font-size 18px
+  .text2
+    position absolute
+    top 216upx
+    left 288upx
+    font-size 15px
+  .progres
+    position absolute
+    width 55upx
+    height 55upx
+    top 285upx
+    left 266upx
 </style>

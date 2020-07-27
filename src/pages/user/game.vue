@@ -40,6 +40,10 @@ export default class Template extends Vue {
   list: any[] = [];
   loading = false;
 
+  get user() {
+    return authStore.user;
+  }
+
   onLoad() {
     authStore.devLogin().then(() => {
       this.loadBooking();
@@ -54,7 +58,7 @@ export default class Template extends Vue {
     if (this.loading) return;
     this.loading = true;
     const status = this.tab.curTab;
-    const res = await api.getList({ type: "booking", data: { status: status == "all" ? null : status, limit: 10, skip: this.list.length } });
+    const res = await api.getList({ type: "booking", data: { customer: this.user.id, status: status == "all" ? null : status, limit: 10, skip: this.list.length } });
     if (res.data) {
       this.list = [...this.list, ...res.data];
     }
