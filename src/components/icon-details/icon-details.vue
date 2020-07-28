@@ -18,4 +18,5 @@ export default class Template extends Vue {
 .icon-details
   .details
     width 75upx
+    height 75upx
 </style>

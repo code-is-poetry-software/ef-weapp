@@ -1,6 +1,6 @@
 <template>
   <view class="button-title" @click="$emit('click')">
-    <img class="img" src="/static/image/arrow-3.png" @click="uni.navigateBack()"  mode="widthFix" />
+    <img class="img" src="/static/image/arrow-3.png" @click="uni.navigateBack()" mode="widthFix" />
     <view class="text">{{ text }}</view>
   </view>
 </template>
@@ -21,6 +21,7 @@ export default class Template extends Vue {
   align-items center
   .img
     width 36upx
+    height 45upx
     right 0
     top 0
   .text
