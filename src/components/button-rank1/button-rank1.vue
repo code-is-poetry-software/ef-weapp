@@ -1,6 +1,6 @@
 <template>
   <view class="button-rank1" @click="$emit('click')">
-    <img class="img" src="/static/image/button-rank1.png" mode="widthFix" />
+    <img class="img" src="/static/image/button-rank1.png"  style="height: 154upx;" mode="widthFix" />
     <view class="status">{{ config.statusLabel[item.status] }}</view>
     <view class="info">
       <view style="font-size: 16upx;">项目:</view>

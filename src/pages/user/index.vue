@@ -25,13 +25,13 @@
 
         <view class="menus">
           <view class="menu" @click="navigateTo({ url: '/pages/user/history' })">
-            <img style="width: 451upx;" src="/static/image/img-user-history.png" mode="widthFix" />
+            <img style="width: 451upx;height: 122upx;" src="/static/image/img-user-history.png" mode="widthFix" />
           </view>
           <view class="menu" @click="navigateTo({ url: '/pages/user/game' })">
-            <img style="width: 451upx;" src="/static/image/img-user-game.png" mode="widthFix" />
+            <img style="width: 451upx;height: 122upx;" src="/static/image/img-user-game.png" mode="widthFix" />
           </view>
           <view class="menu" @click="navigateTo({ url: '/pages/user/payment' })">
-            <img style="width: 451upx;" src="/static/image/img-user-payment.png" mode="widthFix" />
+            <img style="width: 451upx;height: 122upx;" src="/static/image/img-user-payment.png" mode="widthFix" />
           </view>
         </view>
       </border1>

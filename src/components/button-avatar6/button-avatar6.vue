@@ -7,7 +7,7 @@
     </view>
     <view class="score">
       <text v-if="item.bestLap">
-        <text v-if="item.bestLapIn" style="font-size: 15upx;">{{ item.bestLapIn }} 个</text>
+        <text v-if="item.bestLapIn" style="font-size: 18upx;">{{ item.bestLapIn }} 个</text>
         <text style="margin-left: 10upx; font-size: 27upx;">{{ _.get(item, "bestLap.duration") }} </text><text style="margin-left: 10upx; font-size: 22upx;">s/lap</text>
       </text>
       <text v-else>
@@ -93,7 +93,7 @@ export default class Template extends Vue {
       font-size 22upx
   .score
     position absolute
-    left 248upx
+    left 246upx
     top 92upx
     color white
     z-index 1
@@ -118,8 +118,8 @@ export default class Template extends Vue {
   font-family Alibaba PuHuiTi
 .rank-info
   position absolute
-  left 85upx
-  top -37upx
+  left 109upx
+  top -8upx
   color var(--text-primary)
   z-index 1
   font-style italic

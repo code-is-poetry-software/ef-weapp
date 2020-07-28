@@ -60,6 +60,7 @@ export default class Template extends Vue {
   display inline-block
   .img
     width 629upx
+		height 138upx
   .avatar-box
     position absolute
     width 132upx
@@ -70,12 +71,14 @@ export default class Template extends Vue {
     display flex
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
-    .avatar
-      width 105upx
-  .avatar-bg
-    position absolute
-    width 132upx
-    filter blur(10upx)
+		.avatar
+			height 52upx
+			width 105upx
+		.avatar-bg
+			position absolute
+			height 66upx
+			width 132upx
+			filter blur(10upx)
   .info
     position absolute
     left 285upx
@@ -109,8 +112,8 @@ export default class Template extends Vue {
     font-family Alibaba PuHuiTi
   .rank-info
     position absolute
-    left 100upx
-    top 0upx
+    left 127upx
+    top 20upx
     color var(--text-primary)
     z-index 1
     font-style italic
@@ -125,7 +128,7 @@ export default class Template extends Vue {
   .text2
     position absolute
     left 524upx
-    top 107upx
+    top 105upx
     font-size 19upx
     color #FFFFFF
 </style>

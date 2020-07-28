@@ -8,12 +8,12 @@
     <view class="rankingClass">
       <view class="icon-ranking" @click="$emit('click')">
         <view class="info">
-          <img class="rankingr" src="/static/image/icon-ranking.png" />
+          <img class="rankingr" src="/static/image/icon-ranking.png" mode="widthFix" />
           <view class="text">35</view>
         </view>
         <view class="info2">
           <view class="text2">CONFIRME</view>
-          <img class="button-tab-active" src="/static/image/button-tab-active.png" />
+          <img class="button-tab-active" src="/static/image/button-tab-active.png" mode="widthFix"/>
           <img class="progres" src="/static/image/icon-progres.png" mode="widthFix" />
         </view>
       </view>

@@ -1,6 +1,6 @@
 <template>
   <view class="button-payment" @click="$emit('click')">
-    <img class="img" src="/static/image/button-payment.png" mode="widthFix" />
+    <img class="img" src="/static/image/button-payment.png" style="height: 122upx;"  mode="widthFix" />
     <view class="info">
       <view style="font-size: 16upx;">项目:</view>
       <view style="font-size: 28upx;margin-left: 52upx;margin-top: -32upx;">{{ item.title.substr(0, 7) }} </view>
@@ -9,7 +9,7 @@
     </view>
     <view class="status">
       <view style="font-size: 16upx;">费用：</view>
-      <view style="font-size: 53upx;">{{ item.amount }}</view>
+      <view style="font-size: 44upx;">{{ item.amount }}</view>
     </view>
   </view>
 </template>

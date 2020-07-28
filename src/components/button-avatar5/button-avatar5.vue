@@ -3,7 +3,7 @@
     <img class="img" src="/static/image/button-avatar5.png" mode="widthFix" />
     <view class="avatar-box">
       <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix"/>
-      <img class="avatar"  :src="user.avatarUrl" style="height: 188upx;"/>
+      <img class="avatar"  :src="user.avatarUrl" mode="widthFix"/>
     </view>
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
@@ -30,6 +30,7 @@ export default class Template extends Vue {
   justify-content center
   .img
     width 577upx
+		height 209upx
   .avatar-box
     position absolute
     width 297upx
@@ -41,9 +42,11 @@ export default class Template extends Vue {
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
       width 220upx
+			height 188upx
 		.avatar-bg
 			position absolute
-			width 357upx
+			width 335upx
+			height 178upx
 			filter blur(10rpx)
   .info
     position absolute

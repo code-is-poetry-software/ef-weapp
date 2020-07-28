@@ -110,6 +110,7 @@ export default class Template extends Vue {
     left 36upx
     top 40upx
     width 534upx
+		height 23upx
   .text
     position absolute
     left 239upx

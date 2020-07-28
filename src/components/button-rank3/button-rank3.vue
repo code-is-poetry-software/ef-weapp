@@ -24,7 +24,7 @@
           <view style="font-size: 16upx;">成绩：</view>
           <view v-if="item">
             <text v-if="item.bestLapIn">
-              <text style="font-size: 15upx;">{{ item.bestLapIn }} 个</text>
+              <text style="font-size: 18upx;">{{ item.bestLapIn }} 个</text>
               <text style="margin-left: 10upx; font-size: 27upx;">{{ _.get(item, "bestLap.duration") }} </text><text style="margin-left: 10upx; font-size: 22upx;">s/lap</text>
             </text>
             <text v-else>
@@ -93,7 +93,7 @@ export default class Template extends Vue {
   top 19upx
 .text
   position absolute
-  top 26upx
+  top 25upx
   left 483upx
   font-size 17upx
 </style>

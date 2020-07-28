@@ -28,6 +28,7 @@ export default class Template extends Vue {
   text-align center
   .img
     width 175upx
+		height 156upx
   .text
     margin -10upx 0 0 -4upx
     position absolute
