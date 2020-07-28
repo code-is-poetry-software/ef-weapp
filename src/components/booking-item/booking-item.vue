@@ -2,15 +2,17 @@
   <view class="booking-item" @click="$emit('click')">
     <img class="img" src="/static/image/booking-item.png" mode="widthFix" />
     <view class="info">
-      <view class="text">场次:</view>
-			<view style="font-size: 23upx;margin-top: -6upx;">{{ item.date }} {{ item.checkInAt }}</view>
       <view class="flex">
-        <view style="font-size: 15upx;margin-top: 7upx;">项目:</view>
-				<view style="font-size: 38upx;margin-top: -10upx;">{{ project.name }}</view>
-        <view style="font-size: 15upx;margin-left: 5upx;margin-top: 7upx;">数量:</view> 
-				<view style="font-size: 38upx;margin-top: -12upx;margin-left: 4upx;">{{ project.count }}</view>
+        <view class="text" style="margin: 0 8upx 0 0;">场次:</view>
+        <view class="gotham-bold" style="font-size: 23upx; margin-top: -6upx;">{{ item.date }} {{ item.checkInAt }}</view>
       </view>
-    </view> 
+      <view class="flex">
+        <view style="font-size: 15upx; margin: 7upx 8upx 0 0;">项目:</view>
+        <view style="font-size: 38upx; margin-top: -10upx;">{{ project.name }}</view>
+        <view style="font-size: 15upx; margin: 7upx 8upx 0 30upx;">数量:</view>
+        <view style="font-size: 38upx; margin-top: -12upx;">{{ project.count }}</view>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -36,19 +38,17 @@ export default class Template extends Vue {
   display flex
   align-items center
   justify-content center
-		.text
-			position absolute
-			font-size 15upx
-		
+  .text
+    font-size 15upx
   .img
     width 563upx
     position absolute
   .info
     z-index 1
-    font-family Alibaba PuHuiTi
     font-weight bold
+    font-family Alibaba PuHuiTi
     letter-spacing 2upx
     color rgba(0, 144, 217, 1)
-	.flex
-	  margin-top 12upx
+.flex
+  margin-top 12upx
 </style>

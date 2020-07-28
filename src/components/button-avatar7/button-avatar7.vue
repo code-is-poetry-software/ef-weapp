@@ -1,22 +1,28 @@
 <template>
   <view class="button-avatar7" @click="$emit('click')">
     <img class="img" src="/static/image/button-avatar7.png" mode="widthFix" />
-			<img class="Line_1_1"  src="/static/image/Line_1_1" />
+    <img class="Line_1_1" src="/static/image/Line_1_1" />
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
     </view>
-    <view class="score">
-      5个 10‘6 s/lap
+    <view class="score" v-if="item">
+      <text v-if="item.bestLap">
+        <text v-if="item.bestLapIn" style="font-size: 15upx;">{{ item.bestLapIn }} 个</text>
+        <text style="margin-left: 10upx; font-size: 27upx;">{{ _.get(item, "bestLap.duration") }} </text><text style="margin-left: 10upx; font-size: 22upx;">s/lap</text>
+      </text>
+      <text v-else>
+        {{ item.result }}
+      </text>
     </view>
     <view v-if="title" class="title">{{ title }}</view>
     <view v-if="rank" class="rank-info">
-      <span class="rank">{{ rank }}</span> 
+      <span class="rank">{{ rank }}</span>
       <span class="text">{{ rankText }}</span>
     </view>
-		<view class="avatar-box">
+    <view class="avatar-box">
       <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
       <img class="avatar" :src="user.avatarUrl" style="height: 81upx;" />
-		</view>
+    </view>
   </view>
 </template>
 
@@ -28,6 +34,7 @@ import { User } from "../../type";
 @Component
 export default class Template extends Vue {
   @Prop({ default: {} }) user: User;
+  @Prop({ default: {} }) item: any;
   @Prop({ default: "" }) title: string;
   @Prop({ default: "9" }) rank: string;
 
@@ -59,10 +66,10 @@ export default class Template extends Vue {
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
       width 105upx
-		.avatar-bg
-			position absolute
-			width 132upx
-			filter blur(10upx)
+  .avatar-bg
+    position absolute
+    width 132upx
+    filter blur(10upx)
   .info
     position absolute
     left 345upx
@@ -86,45 +93,45 @@ export default class Template extends Vue {
     z-index 1
     font-style italic
     font-family Alibaba PuHuiTi
-		font-size 22upx
-	.placeholder
-    position absolute
-    width 144upx 
-    height 86upx 
-    top 0upx
-    left 168upx
-    clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
-  .title
-    position absolute
-    left 108upx
-    top 0
-    color var(--text-primary)
-    z-index 1
-    font-style italic
-    font-weight bold
-    font-family Alibaba PuHuiTi
-  .rank-info
-    position absolute
-    left 80upx
-    top -3upx
-    color var(--text-primary)
-    z-index 1
-    font-style italic
-    font-weight bold
-    .rank
-      font-family NightMachine
-      font-size 89upx
-    .text
-      font-family Gotham-Bold
-      font-size 23upx
-	.text2
-		position absolute
-		left 457upx
-		top 91upx
-		font-size 19upx
-		color #FFFFFF
-	.Line_1_1
-		position absolute
-		width 350upx
-		height 350upx
+  font-size 22upx
+.placeholder
+  position absolute
+  width 144upx
+  height 86upx
+  top 0upx
+  left 168upx
+  clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
+.title
+  position absolute
+  left 108upx
+  top 0
+  color var(--text-primary)
+  z-index 1
+  font-style italic
+  font-weight bold
+  font-family Alibaba PuHuiTi
+.rank-info
+  position absolute
+  left 80upx
+  top -3upx
+  color var(--text-primary)
+  z-index 1
+  font-style italic
+  font-weight bold
+  .rank
+    font-family NightMachine
+    font-size 89upx
+  .text
+    font-family Gotham-Bold
+    font-size 23upx
+.text2
+  position absolute
+  left 457upx
+  top 91upx
+  font-size 19upx
+  color #FFFFFF
+.Line_1_1
+  position absolute
+  width 350upx
+  height 350upx
 </style>

@@ -12,9 +12,13 @@
       <view class="text">ID: {{ user.name }}</view>
     </view>
     <view class="score">
-      <text v-if="item.bestLapIn" tyle="font-size: 15upx;">{{ item.bestLapIn }} 个</text>
-      <text style="margin-left: 10upx; font-size: 27upx">{{ _.get(item, "bestLap.duration") }} </text>
-      <text style="margin-left: 10upx;font-size: 22upx;">s/lap</text>
+      <text v-if="item.bestLap" style="margin-left: 20upx;">
+        <text v-if="item.bestLapIn" style="font-size: 15upx;">{{ item.bestLapIn }} 个</text>
+        <text style="margin-left: 10upx; font-size: 27upx;">{{ _.get(item, "bestLap.duration") }} </text><text style="margin-left: 10upx; font-size: 22upx;">s/lap</text>
+      </text>
+      <text v-else style="margin-left: 80upx;">
+        {{ item.result }}
+      </text>
     </view>
     <view v-if="title" class="title" style="margin-top: -16upx;">{{ title }}</view>
     <view v-if="rank" class="rank-info">

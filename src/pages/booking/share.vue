@@ -106,7 +106,7 @@ export default class BookingDetail extends Vue {
     .share-text
       color var(--text-primary)
       font-size 35upx
-      font-family AlibabaPuHuiTiB-GBpc-EUC-H
+      font-family Alibaba PuHuiTi
       font-weight bold
   .share-info
     position relative

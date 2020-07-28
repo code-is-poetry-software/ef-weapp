@@ -55,7 +55,7 @@ export default class Template extends Vue {
       top 5upx
       z-index 1
       font-size 27upx
-      font-family AlibabaPuHuiTiB-GBpc-EUC-H
+      font-family Alibaba PuHuiTi
       font-weight bold
       color white
 </style>

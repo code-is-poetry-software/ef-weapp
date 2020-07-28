@@ -4,29 +4,29 @@
     <view>
       <img class="icon-user" src="/static/image/icon-user.png" @click="navigateTo({ url: '/pages/user/index' })" mode="widthFix" />
     </view>
-    <view style="margin-bottom: 72upx">
-      <img style="width: 128upx" src="/static/image/img3.png" mode="widthFix" />
+    <view style="margin-bottom: 72upx;">
+      <img style="width: 128upx;" src="/static/image/img3.png" mode="widthFix" />
     </view>
     <view class="text-success">您已成功缴费锁定</view>
-    <view style="margin-bottom: 72upx" v-if="item">
+    <view style="margin-bottom: 72upx;" v-if="item">
       <view v-for="project in item.projects" :key="project._id">
         <booking-item :item="item" :project="project" />
       </view>
     </view>
     <text class="text-remind" style="font-size: 23upx;">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
 
-    <view style="position: relative">
-      <img style="width: 572upx" src="/static/image/img-share.png" mode="widthFix" />
+    <view style="position: relative;">
+      <img style="width: 572upx;" src="/static/image/img-share.png" mode="widthFix" />
       <view class="qrcode">
-        <canvas canvas-id="qrcode" style="width: 150px;height: 150px;" />
+        <canvas canvas-id="qrcode" style="width: 150px; height: 150px;" />
       </view>
     </view>
     <view v-if="isOwner && item">
-      <view v-for="project in item.projects" :key="project._id" style="margin-top: 16upx">
+      <view v-for="project in item.projects" :key="project._id" style="margin-top: 16upx;">
         <button-share :text="project.name" :active.sync="project.active" />
       </view>
     </view>
-    <view v-if="isOwner" style="margin-top: 46upx">
+    <view v-if="isOwner" style="margin-top: 46upx;">
       <button-pay @click="inviteFriend" text="邀请好友" />
     </view>
     <u-popup v-model="showShare" mode="bottom">
@@ -47,11 +47,28 @@ export default class PaymentSuccess extends Vue {
   item: Booking | null = null;
   code: string = "";
   showShare = false;
+
+  get user() {
+    return authStore.user;
+  }
+
+  get isOwner() {
+    if (!this.item) return false;
+    return this.item.customer.id == this.user.id;
+  }
+
+  get invitationProjects() {
+    if (!this.item) return [];
+    return this.item.projects.filter(i => i.active).map(i => ({ name: i.name, count: 1 }));
+  }
+
   onLoad(data) {
     if (data.id) {
+      console.log(this.user);
+
       this.loadBooking(data.id).then(data => {
         if (!data) return;
-        const ticket = data.tickets.find(i => i.player.id === this.user.id);
+        const ticket = data.tickets.find(i => i.player?.id === this.user.id);
         if (ticket) {
           this.makeQrcode({ text: ticket.code });
         }
@@ -74,20 +91,6 @@ export default class PaymentSuccess extends Vue {
         console.log(res);
       }
     });
-  }
-
-  get user() {
-    return authStore.user;
-  }
-
-  get isOwner() {
-    if (!this.item) return false;
-    return this.item.customer.id == this.user.id;
-  }
-
-  get invitationProjects() {
-    if (!this.item) return [];
-    return this.item.projects.filter(i => i.active).map(i => ({ name: i.name, count: 1 }));
   }
 
   async loadBooking(id) {

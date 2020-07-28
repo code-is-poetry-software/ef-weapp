@@ -18,7 +18,7 @@
             </view>
             <view class="list">
               <view class="list-item" v-for="(item, index) in item.scores" :key="item">
-                <button-avatar7 :user="user" :rank="index + 1" />
+                <button-avatar7 :user="user" :rank="index + 1" :item="item" />
               </view>
             </view>
           </slot>
@@ -48,7 +48,7 @@ export default class Template extends Vue {
   }
 
   get userScore() {
-    return this.item.scores.find(i => i.player.id == this.user.id);
+    return this.item?.scores?.find(i => i.player.id == this.user.id);
   }
 
   loading = false;
@@ -115,6 +115,6 @@ export default class Template extends Vue {
     left 239upx
     font-size 32upx
     color #0090D9
-    font-family AlibabaPuHuiTiB-GBpc-EUC-H
+    font-family Alibaba PuHuiTi
     top 27upx
 </style>

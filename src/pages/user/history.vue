@@ -26,7 +26,7 @@
       <border1>
         <view style="padding: 220upx 24upx 60upx;">
           <block1>
-            <button-rank3 :item="latestCourse" @click="goCourseDetail(latestCourse.id)" />
+            <button-rank3  v-if="latestScore" :item="latestScore" :project="latestCourse.project" @click="goCourseDetail(latestCourse.id)" />
             <view class="list" v-if="latestCourse.scores">
               <view class="list-item" v-for="(item, index) in latestCourse.scores" :key="item">
                 <button-avatar6 :item="item" :rank="index + 1" @click="goCourseDetail(latestCourse.id)" />
@@ -93,6 +93,11 @@ export default class Template extends Vue {
   }
   get user() {
     return authStore.user;
+  }
+
+  get latestScore() {
+    const score = this.latestCourse?.scores?.find(i => i.player.id == this.user.id);
+    return score;
   }
 
   latestCourse: Partial<Course> = {};

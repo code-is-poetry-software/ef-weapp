@@ -1,9 +1,27 @@
-<script lang="ts">
+<script>
 import Vue from "vue";
-export default Vue.extend({
+export default {
   mpType: "app",
   onLaunch() {
     console.log("App Launch");
+    // Promise.all(
+    //   [
+    //     { family: "NightMachine", url: 'url("https://cdn.uice.lu/ef/Night%20Machine.otf")' },
+    //     { family: "Alibaba PuHuiTi", url: 'url("https://cdn.uice.lu/ef/Alibaba-PuHuiTi-Regular.otf")' },
+    //     { family: "Gotham-Bold", url: 'url("https://cdn.uice.lu/ef/Gotham-BoldItalic.otf")' }
+    //   ].map(i =>
+    //     uni.loadFontFace({
+    //       family: i.family,
+    //       source: i.url,
+    //       success(res) {
+    //         console.log(`load font ${i.family} success`);
+    //       },
+    //       fail(err) {
+    //         console.log(`load font ${i.family} failed`);
+    //       }
+    //     })
+    //   )
+    // );
   },
   onShow() {
     console.log("App Show");
@@ -11,7 +29,7 @@ export default Vue.extend({
   onHide() {
     console.log("App Hide");
   }
-});
+};
 </script>
 
 <style lang="scss">
@@ -25,6 +43,23 @@ body
   --primary #3d8ad7
   --secondary #d3f1fe
   --text-primary #0090D9
+@font-face
+  font-family 'Alibaba PuHuiTi'
+  src url('https://cdn.uice.lu/ef/Alibaba-PuHuiTi-Regular.otf')
+@font-face
+  font-family 'Alibaba PuHuiTi'
+  src url('https://cdn.uice.lu/ef/Alibaba-PuHuiTi-Bold.otf')
+  font-weight bold
+@font-face
+  font-family 'NightMachine'
+  src url('https://cdn.uice.lu/ef/Night%20Machine.otf')
+@font-face
+  font-family 'Gotham-Bold'
+  src url('https://cdn.uice.lu/ef/Gotham-BoldItalic.otf')
+.puhui
+  font-family Alibaba PuHuiTi
+.gotham-bold
+  font-family Gotham-Bold
 .flex
   display flex
 .justify-between
