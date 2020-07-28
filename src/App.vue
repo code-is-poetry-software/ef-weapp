@@ -43,16 +43,15 @@ body
   --primary #3d8ad7
   --secondary #d3f1fe
   --text-primary #0090D9
-  font-family Alibaba PuHuiTi, normal
-@font-face
-  font-family 'Alibaba PuHuiTi'
-  src url('https://cdn.uice.lu/ef/Alibaba-PuHuiTi-Regular.otf')
-  font-display swap
-@font-face
-  font-family 'Alibaba PuHuiTi'
-  src url('https://cdn.uice.lu/ef/Alibaba-PuHuiTi-Bold.otf')
-  font-display swap
-  font-weight bold
+// @font-face
+// font-family 'Alibaba PuHuiTi'
+// src url('https://cdn.uice.lu/ef/Alibaba-PuHuiTi-Regular.otf')
+// font-display swap
+// @font-face
+// font-family 'Alibaba PuHuiTi'
+// src url('https://cdn.uice.lu/ef/Alibaba-PuHuiTi-Bold.otf')
+// font-display swap
+// font-weight bold
 @font-face
   font-family 'NightMachine'
   src url('https://cdn.uice.lu/ef/Night%20Machine.otf')
