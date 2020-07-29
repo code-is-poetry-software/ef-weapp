@@ -30,6 +30,7 @@ export default class Template extends Vue {
   justify-content center
   .img
     width 570upx
+		height 67upx
   .avatar
     position absolute
     width 240upx

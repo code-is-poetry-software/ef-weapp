@@ -32,6 +32,7 @@ export default class Template extends Vue {
     border none
   .img
     width 400upx
+		height 86upx
   .text
     position absolute
     font-size 50upx

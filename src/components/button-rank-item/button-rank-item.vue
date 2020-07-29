@@ -1,6 +1,6 @@
 <template>
   <view class="button-rank-item" @click="$emit('click')">
-    <img class="img" src="/static/image/button-rank-item.png" mode="widthFix" />
+    <img class="img" src="/static/image/button-rank-item.png" mode="widthFix" style="height: 96upx;"/>
     <view class="text">{{ text }}</view>
   </view>
 </template>

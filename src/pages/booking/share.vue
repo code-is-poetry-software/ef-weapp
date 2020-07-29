@@ -56,12 +56,12 @@ export default class BookingDetail extends Vue {
   }
 
   onLoad(data) {
-    authStore.wechatLogin().then(() => {
-      if (data.code) {
-        this.code = data.code;
-        this.loading(data.code);
-      }
-    });
+    // authStore.wechatLogin().then(() => {
+    //   if (data.code) {
+    //     this.code = data.code;
+    //     this.loading(data.code);
+    //   }
+    // });
   }
 
   async loading(code) {

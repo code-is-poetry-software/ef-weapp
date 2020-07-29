@@ -13,7 +13,7 @@
         <view>
           <view>
             <text style="font-size: 16upx;">时间:</text>
-            <text style="font-size: 28upx; margin-left: 8upx;"> {{ moment(item.createdAt).format("YYYY年MM月DD日") }} </text>
+            <text style="font-size: 26upx; margin-left: 8upx;"> {{ moment(item.createdAt).format("YYYY年MM月DD日") }} </text>
           </view>
           <view style="margin-left: 48upx;">
             <text>{{ moment(item.createdAt).format("hh:mm") }} </text>
@@ -60,6 +60,7 @@ export default class Template extends Vue {
   color white
   .img
     width 607upx
+		height 156upx
   .info
     position absolute
     left 33upx

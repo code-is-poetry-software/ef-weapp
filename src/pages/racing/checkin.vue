@@ -1,7 +1,7 @@
 <template>
   <view class="checkin page">
     <with-bg />
-    <button-pattern-switcher v-if="projects" :activeItem.sync="item.project" :items="projects" :disabled="type === 'detail'" />
+    <button-pattern-switcher  :activeItem.sync="item.project" :items="projects" :disabled="type === 'detail'" />
 
     <view style="margin: 80upx " v-if="item.players">
       <u-grid :col="3" :border="false">

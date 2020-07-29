@@ -48,7 +48,7 @@ export default class Template extends Vue {
   }
 
   get userScore() {
-    return this.item?.scores?.find(i => i.player.id == this.user.id);
+    // return this.item?.scores?.find(i => i.player.id == this.user.id);
   }
 
   loading = false;

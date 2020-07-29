@@ -1,7 +1,7 @@
 <template>
   <view class="with-bg">
-    <img v-if="showTop" class="img top" src="/static/image/bg-img1.png" mode="widthFix" />
-    <img v-if="showBottom" class="img bottom" src="/static/image/bg-img2.png" mode="widthFix" />
+    <img v-if="showTop" class="img top" src="/static/image/bg-img1.png" mode="widthFix" style="height: 61upx;"/>
+    <img v-if="showBottom" class="img bottom" src="/static/image/bg-img2.png" mode="widthFix" style="height: 61upx;"/>
   </view>
 </template>
 

@@ -28,6 +28,7 @@ export default class Template extends Vue {
   justify-content center
   .img
     width 320upx
+		height 68upx
   .text
     position absolute
     left 40upx

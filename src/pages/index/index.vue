@@ -4,17 +4,17 @@
     <login />
     <with-bg :showTop="false" />
     <view>
-      <img style="width: 320upx;" src="/static/image/img1.png" mode="widthFix" />
+      <img style="width: 320upx;height: 46upx;" src="/static/image/img1.png" mode="widthFix" />
     </view>
     <view style="margin: 60upx 0 50upx;">
-      <img style="width: 380upx;" src="/static/image/img2.png" mode="widthFix" />
+      <img style="width: 380upx;height: 381upx;" src="/static/image/img2.png" mode="widthFix" />
     </view>
     <view v-if="user.role == 'customer'">
       <view @click="e => goCreateBooking({ url: '/pages/game/car', name: 'EF安亭动力方程公园' })">
-        <img style="width: 600upx;" src="/static/image/button-car.png" mode="widthFix" />
+        <img style="width: 600upx;height: 188upx;" src="/static/image/button-car.png" mode="widthFix" />
       </view>
       <view style="margin-bottom: 40upx; margin-top: 20upx;" @click="e => goCreateBooking({ url: '/pages/game/uav', name: 'EF安亭潮玩公园' })">
-        <img style="width: 600upx;" src="/static/image/button-uav.png" mode="widthFix" />
+        <img style="width: 600upx;height: 188upx;" src="/static/image/button-uav.png" mode="widthFix" />
       </view>
       <view style="margin-bottom: 20upx;">
         <view v-for="booking in userBookings" :key="booking.id">

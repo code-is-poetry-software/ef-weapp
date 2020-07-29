@@ -1,6 +1,6 @@
 <template>
   <view class="button-rank" @click="$emit('click')">
-    <img class="img" src="/static/image/button-rank.png" mode="widthFix" />
+    <img class="img" src="/static/image/button-rank.png" mode="widthFix" style="height 71upx;"/>
     <view class="text">{{ text }}</view>
   </view>
 </template>
@@ -25,6 +25,7 @@ export default class Template extends Vue {
   .img
     position absolute
     width 100%
+		
     right 0
     top 0
   .text

@@ -20,6 +20,7 @@ export default class Template extends Vue {
   justify-content center
   .arrow
     width 500upx
+		height 136upx
   .text
     position absolute
     font-size 58upx

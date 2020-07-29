@@ -7,7 +7,7 @@
     </view>
     <view class="tabs" style="margin: 0 0 18upx 0;">
       <button-tab1 :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
-      <img style="width: 63upx; margin-left: 20upx;" src="/static/image/img-dot1.png" mode="widthFix" />
+      <img style="width: 63upx; margin-left: 20upx;height: 9upx;" src="/static/image/img-dot1.png" mode="widthFix" />
     </view>
     <view class="list">
       <view class="list-item" v-for="booking in list" :key="booking.id">

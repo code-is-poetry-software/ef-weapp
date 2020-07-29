@@ -1,7 +1,6 @@
 <template>
   <view class="button-avatar6" @click="$emit('click')">
-    <img class="img" src="/static/image/button-avatar6.png" mode="widthFix" />
-    <img class="Line_1_1" src="/static/image/Line_1_1" />
+    <img class="img" src="/static/image/button-avatar6.png" mode="widthFix" style="height: 138upx;"  />
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
     </view>
@@ -23,8 +22,8 @@
       <view class="text2">查看战绩</view>
     </view>
     <view class="avatar-box">
-      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
-      <img class="avatar" :src="user.avatarUrl" style="height: 81upx;" />
+      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" style="height: 81upx;" />
+      <img class="avatar" :src="user.avatarUrl" mode="widthFix" style="height: 81upx;" />
     </view>
   </view>
 </template>
