@@ -1,6 +1,6 @@
 <template>
   <view class="home-menu-item" @click="$emit('click')">
-    <img class="img" src="/static/image/home-menu-item.png" mode="widthFix" />
+    <img class="img" src="/static/image/home-menu-item.png" mode="widthFix" style="height: 69upx;"/>
     <view class="text">{{ text }}</view>
   </view>
 </template>
@@ -23,6 +23,7 @@ export default class Template extends Vue {
   justify-content center
   .img
     width 566upx
+		
     position absolute
   .text
     font-size 40upx

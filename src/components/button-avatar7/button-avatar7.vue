@@ -1,6 +1,6 @@
 <template>
   <view class="button-avatar7" @click="$emit('click')">
-    <img class="img" src="/static/image/button-avatar7.png" mode="widthFix" />
+    <img class="img" src="/static/image/button-avatar7.png" mode="widthFix" style="height: 138upx;"/>
     <img class="Line_1_1" src="/static/image/Line_1_1" />
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
@@ -20,7 +20,7 @@
       <span class="text">{{ rankText }}</span>
     </view>
     <view class="avatar-box">
-      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
+      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" style="height: 81upx;"/>
       <img class="avatar" :src="user.avatarUrl" style="height: 81upx;" />
     </view>
   </view>

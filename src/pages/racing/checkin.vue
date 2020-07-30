@@ -2,7 +2,6 @@
   <view class="checkin page">
     <with-bg />
     <button-pattern-switcher  :activeItem.sync="item.project" :items="projects" :disabled="type === 'detail'" />
-
     <view style="margin: 80upx " v-if="item.players">
       <u-grid :col="3" :border="false">
         <u-grid-item v-for="item in item.players" :key="item">

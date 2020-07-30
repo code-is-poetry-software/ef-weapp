@@ -54,6 +54,7 @@ export default class Template extends Vue {
 .small
   .button-avatar
     width 200upx
+		height 136upx
   .avatar-box
     position absolute
     width 155upx

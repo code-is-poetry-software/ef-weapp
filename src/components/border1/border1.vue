@@ -5,7 +5,7 @@
     </view>
     <view v-if="title" class="title">
       <view style="position: relative;">
-        <img class="img" src="/static/image/button-rank.png" mode="widthFix" />
+        <img class="img" src="/static/image/button-rank.png" mode="widthFix" style="height: 48upx;"/>
         <view class="text">{{ title }}</view>
       </view>
     </view>

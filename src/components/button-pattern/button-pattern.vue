@@ -28,6 +28,7 @@ export default class Template extends Vue {
   display inline-block
   .img
     width 300upx
+		height 72upx
 .text
   position absolute
   left 20upx
