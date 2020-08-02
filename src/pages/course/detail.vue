@@ -47,9 +47,10 @@ export default class Template extends Vue {
     return authStore.user;
   }
 
-  // get userScore() {
-  // return this.item?.scores?.find(i => i.player.id == this.user.id);
-  // }
+  get userScore() {
+    if (!this.item?.scores.length) return;
+    return this.item?.scores?.find(i => i.player.id == this.user.id);
+  }
 
   loading = false;
   async loadCourse(id) {

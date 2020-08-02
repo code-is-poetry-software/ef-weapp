@@ -3,21 +3,26 @@
     <img class="button-avatar" src="/static/image/button-avatar2.png" mode="widthFix" />
 
     <view class="avatar-box">
-      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" />
-      <img class="avatar" :src="user.avatarUrl" mode="widthFix" />
+      <img class="avatar-bg" :src="item.avatarUrl" mode="widthFix" />
+      <img class="avatar" :src="item.avatarUrl" mode="widthFix" />
     </view>
-    <view class="text">ID: {{ user.name }}</view>
+    <view class="text">{{ name }}</view>
   </view>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
-import { User } from "../../type";
+import nzhcn from "nzh/cn";
 
 @Component
 export default class Template extends Vue {
-  @Prop({ default: { name: "朱一旦的赛车手" } }) user: User;
+  @Prop({ default: {} }) item: any;
   @Prop({ default: "" }) type: string;
+
+  get name() {
+    console.log(this.item);
+    return nzhcn.encodeS(this.item.equipmentNum) + "号无人机";
+  }
 }
 </script>
 

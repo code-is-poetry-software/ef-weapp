@@ -28,7 +28,7 @@
           <span class="with-border">{{ date.selected.day }}</span>
           <span class="color-blue" style="margin: 0 12upx;">日</span>
         </view>
-        <u-calendar v-model="date.show" mode="date" @change="e => (date.selected = e)"></u-calendar>
+        <u-calendar v-model="date.show" mode="date" :max-date="maxDate" :min-date="today" @change="e => (date.selected = e)"></u-calendar>
       </view>
       <view class="u-flex u-flex-row form-item" @click="checkIn.show = true">
         <button-title text="选择场次" />
@@ -42,7 +42,7 @@
       <view class="column-center">
         <button-pay @click="createBooking" text="立即支付" :disabled="!payable" />
         <view style="margin-top: 20upx;">
-          <u-radio-group :value="submit.useBalance">
+          <u-radio-group :value="submit.useBalance" v-if="balanceEnough">
             <u-radio name="useBalance" @change="radioChange">使用余额支付</u-radio>
           </u-radio-group>
         </view>
@@ -62,6 +62,10 @@ const tomorrow = _moment().add(1, "day");
 
 @Component
 export default class Car extends Vue {
+  today = this.moment().format("YYYY-MM-DD");
+  maxDate = this.moment()
+    .add(1, "week")
+    .format("YYYY-MM-DD");
   form = {
     checkIn: ""
   };
@@ -88,6 +92,10 @@ export default class Car extends Vue {
       { label: "动力方程超级赛道", amount: "0", image: "/static/image/icon-car3.png", size: "large" }
     ]
   };
+
+  get user() {
+    return authStore.user;
+  }
 
   get projects() {
     return this.mode.modes.filter(i => Number(i.amount) > 0).map(i => ({ name: i.label, count: Number(i.amount) }));
@@ -131,12 +139,21 @@ export default class Car extends Vue {
     this.submit.useBalance = this.submit.useBalance === "useBalance" ? "" : "useBalance";
   }
 
+  get balanceEnough() {
+    if (!this.user.balance) return false;
+    return this.user.balance > 0;
+  }
+  get useBalance() {
+    if (!this.balanceEnough) return false;
+    return this.submit.useBalance == "useBalance";
+  }
+
   async createBooking() {
     const date = this.date.selected.result;
     const { checkIn: checkInAt } = this.form;
     const { id: store } = this.curStore;
     const projects = this.projects;
-    await bookingStore.createBooking({ store, date, checkInAt, projects });
+    await bookingStore.createBooking({ store, date, checkInAt, projects, useBalance: this.useBalance });
   }
 
   price = 0;

@@ -13,7 +13,7 @@
         </view>
         <view class="info2">
           <view class="text2">CONFIRME</view>
-          <img class="button-tab-active" src="/static/image/button-tab-active.png" mode="widthFix"/>
+          <img class="button-tab-active" src="/static/image/button-tab-active.png" mode="widthFix" />
           <img class="progres" src="/static/image/icon-progres.png" mode="widthFix" />
         </view>
       </view>
@@ -25,8 +25,8 @@
 
       <border1>
         <view style="padding: 220upx 24upx 60upx;">
-          <block1>
-            <button-rank3  v-if="latestScore" :item="latestScore" :project="latestCourse.project" @click="goCourseDetail(latestCourse.id)" />
+          <block1 v-if="latestScore">
+            <button-rank3 v-if="latestScore" :item="latestScore" :project="latestCourse.project" @click="goCourseDetail(latestCourse.id)" />
             <view class="list" v-if="latestCourse.scores">
               <view class="list-item" v-for="(item, index) in latestCourse.scores" :key="item">
                 <button-avatar6 :item="item" :rank="index + 1" @click="goCourseDetail(latestCourse.id)" />
@@ -51,12 +51,12 @@
                   <view class="text3">对战无人机</view>
                 </view>
                 <view class="info2">
-                  <view class="text4">1</view>
-                  <view class="text5">1</view>
-                  <view class="text6">1</view>
-                  <view class="text7">1</view>
-                  <view class="text8">1</view>
-                  <view class="text9">1</view>
+                  <view class="text4">-</view>
+                  <view class="text5">-</view>
+                  <view class="text6">-</view>
+                  <view class="text7">-</view>
+                  <view class="text8">-</view>
+                  <view class="text9">-</view>
                 </view>
               </view>
             </view>
@@ -65,7 +65,7 @@
       </border1>
     </view>
 
-    <view class="content2">
+    <view class="content2" v-if="scores.length">
       <border1 title="个人最佳成绩">
         <view style="padding: 50upx 0upx 100upx;">
           <view class="small-button" v-for="item in scores" :key="item._id">
