@@ -18,14 +18,20 @@ export default class Template extends Vue {
 
   show = false;
 
+  clearAmountOnNextChange = false;
+
   onClick() {
     this.show = true;
+    if (this.amount) {
+      this.clearAmountOnNextChange = true;
+    }
     this.$emit("click");
   }
 
   onChange(e) {
-    const amount = this.amount == "0" ? e : String(this.amount) + e;
+    const amount = this.amount == "0" || this.clearAmountOnNextChange ? e : String(this.amount) + e;
     if (Number(amount) > this.max) return;
+    this.clearAmountOnNextChange = false;
     this.$emit("update:amount", amount);
   }
 

@@ -31,7 +31,7 @@ export default class Template extends Vue {
   .text
     position absolute
     left 120upx
-    top 35upx
+    top 32upx
     font-size 28upx
     font-family Alibaba PuHuiTi
     font-weight bold
