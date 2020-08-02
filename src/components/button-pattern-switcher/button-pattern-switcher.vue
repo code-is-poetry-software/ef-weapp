@@ -2,7 +2,7 @@
   <view class="button-avatar" @click="$emit('click')">
     <u-grid :col="2" :border="false">
       <u-grid-item v-for="item in items" :key="item.value">
-        <button-pattern  :item="item" @click="setActiveItem(item)" />
+        <button-pattern :activeItem="activeItem" :item="item" @click="setActiveItem(item)" />
       </u-grid-item>
     </u-grid>
   </view>

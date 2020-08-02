@@ -5,7 +5,7 @@
       <button-avatar2 v-if="user" :user="user" />
     </view>
     <view style="margin-top: 300upx">
-      <button-Arrow text="一号无人机" />
+      <button-Arrow :text="text" />
     </view>
   </view>
 </template>
@@ -16,15 +16,21 @@ import { event } from "../../utils/event";
 import { authStore } from "../../store/auth";
 import * as api from "../../../common/vmeitime-http";
 import { User } from "../../type";
+import nzhcn from "nzh/cn";
 
 @Component
 export default class UserIndex extends Vue {
+  equipmentNum: string = "0";
   onLoad(data) {
     if (data.id) {
       this.loadUser(data.id);
+      this.equipmentNum = data.equipmentNum;
     }
   }
   user: User | null = null;
+  get text() {
+    return nzhcn.encodeS(this.equipmentNum) + "号无人机";
+  }
 
   async loadUser(id) {
     const res = await api.getItem({ type: "User", id });

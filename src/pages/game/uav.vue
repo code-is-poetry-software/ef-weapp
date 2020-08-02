@@ -41,7 +41,7 @@
       <view class="column-center">
         <button-pay @click="createBooking" text="立即支付" />
         <view style="margin-top: 20upx;">
-          <u-radio-group :value="submit.useBalance">
+          <u-radio-group :value="submit.useBalance" v-if="balanceEnough">
             <u-radio name="useBalance" @change="radioChange">使用余额支付</u-radio>
           </u-radio-group>
         </view>
@@ -87,7 +87,9 @@ export default class Car extends Vue {
       { label: "竞速无人机", amount: "0", size: "large" }
     ]
   };
-
+  get user() {
+    return authStore.user;
+  }
   get projects() {
     return this.mode.modes.filter(i => Number(i.amount) > 0).map(i => ({ name: i.label, count: Number(i.amount) }));
   }
@@ -102,6 +104,15 @@ export default class Car extends Vue {
 
   get checkInTimeOptions() {
     return this.curStore.checkInTimeOptions.map(i => ({ value: i[0], label: i[0] }));
+  }
+
+  get balanceEnough() {
+    if (!this.user.balance) return false;
+    return this.user.balance > 0;
+  }
+  get useBalance() {
+    if (!this.balanceEnough) return false;
+    return this.submit.useBalance == "useBalance";
   }
 
   @Watch("projects")
@@ -141,7 +152,7 @@ export default class Car extends Vue {
     const { checkIn: checkInAt } = this.form;
     const { id: store } = this.curStore;
     const projects = this.projects;
-    await bookingStore.createBooking({ store, date, checkInAt, projects });
+    await bookingStore.createBooking({ store, date, checkInAt, projects, useBalance: this.useBalance });
   }
 
   price = 0;

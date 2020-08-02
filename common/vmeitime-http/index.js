@@ -126,10 +126,10 @@ export const handleItem = ({ type, id, data, method = "POST" }) => {
   });
 };
 
-export const createBooking = ({ store, date, type = "play", paymentGateway = "wechatpay", projects, checkInAt }) => {
+export const createBooking = ({ store, date, type = "play", paymentGateway = "wechatpay", projects, checkInAt, useBalance }) => {
   const data = _.omitBy({ store, date, type, projects, checkInAt }, _.isNil);
   return http.request({
-    url: `/booking?paymentGateway=${paymentGateway}`,
+    url: `/booking?paymentGateway=${paymentGateway}&useBalance=${useBalance}`,
     method: "POST",
     dataType: "json",
     data
