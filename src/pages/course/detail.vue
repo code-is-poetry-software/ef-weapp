@@ -47,9 +47,9 @@ export default class Template extends Vue {
     return authStore.user;
   }
 
-  get userScore() {
-    // return this.item?.scores?.find(i => i.player.id == this.user.id);
-  }
+  // get userScore() {
+  // return this.item?.scores?.find(i => i.player.id == this.user.id);
+  // }
 
   loading = false;
   async loadCourse(id) {
@@ -110,7 +110,7 @@ export default class Template extends Vue {
     left 36upx
     top 40upx
     width 534upx
-		height 23upx
+    height 23upx
   .text
     position absolute
     left 239upx
