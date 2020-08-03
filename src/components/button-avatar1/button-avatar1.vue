@@ -1,15 +1,15 @@
 <template>
   <view class="button-avatar1" @click="$emit('click')">
-    <img v-if="user.mobile" class="img" src="/static/image/button-avatar1.png" mode="widthFix" />
+    <img v-if="!user.mobile" class="img" src="/static/image/button-avatar1.png" mode="widthFix" />
     <img v-else class="img" src="/static/image/button-avatar1_1.png" mode="widthFix" />
     <view class="avatar-box">
       <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" style="height: 210upx;"/>
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" style="height:150upx;" />
     </view>
-    <view class="text2" @click="checkMobile">获取手机号</view>
+    <view v-if="!user.mobile" class="text2" @click="checkMobile">获取手机号</view>
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
-      <view class="text1">手机号: {{ user.mobile || "" }}</view>
+      <view  class="text1">手机号: {{ user.mobile || "" }}</view>
     </view>
   </view>
 </template>
