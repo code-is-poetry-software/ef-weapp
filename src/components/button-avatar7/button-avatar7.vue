@@ -1,6 +1,6 @@
 <template>
   <view class="button-avatar7" @click="$emit('click')">
-    <img class="img" src="/static/image/button-avatar7.png" mode="widthFix" style="height: 138upx;"/>
+    <img class="img" src="/static/image/button-avatar7.png" mode="widthFix" style="height: 138upx;" />
     <img class="Line_1_1" src="/static/image/Line_1_1" />
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
@@ -10,7 +10,7 @@
         <text v-if="item.bestLapIn" style="font-size: 15upx;">{{ item.bestLapIn }} 个</text>
         <text style="margin-left: 10upx; font-size: 27upx;">{{ _.get(item, "bestLap.duration") }} </text><text style="margin-left: 10upx; font-size: 22upx;">s/lap</text>
       </text>
-      <text v-else>
+      <text v-else  style="margin-left: 80upx;">
         {{ item.result }}
       </text>
     </view>
@@ -20,7 +20,7 @@
       <span class="text">{{ rankText }}</span>
     </view>
     <view class="avatar-box">
-      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" style="height: 81upx;"/>
+      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" style="height: 81upx;" />
       <img class="avatar" :src="user.avatarUrl" style="height: 81upx;" />
     </view>
   </view>
@@ -54,6 +54,7 @@ export default class Template extends Vue {
   justify-content center
   .img
     width 629upx
+    height 209upx
   .avatar-box
     position absolute
     width 132upx

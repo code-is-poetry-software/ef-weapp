@@ -30,6 +30,7 @@ export default class Template extends Vue {
   text-align left
   .img
     width 607upx
+		height 209upx
   .info
     position absolute
     left 110upx

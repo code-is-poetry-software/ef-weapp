@@ -60,7 +60,7 @@ export default class Template extends Vue {
   display inline-block
   .img
     width 629upx
-		height 138upx
+    height 138upx
   .avatar-box
     position absolute
     width 132upx
@@ -71,14 +71,14 @@ export default class Template extends Vue {
     display flex
     justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
-		.avatar
-			height 52upx
-			width 105upx
-		.avatar-bg
-			position absolute
-			height 66upx
-			width 132upx
-			filter blur(10upx)
+  .avatar
+    height 52upx
+    width 105upx
+  .avatar-bg
+    position absolute
+    height 66upx
+    width 132upx
+    filter blur(10upx)
   .info
     position absolute
     left 285upx

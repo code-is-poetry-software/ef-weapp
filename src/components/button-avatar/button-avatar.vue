@@ -1,7 +1,10 @@
 <template>
   <view class="button-avatar" @click="$emit('click')">
     <img class="img" src="/static/image/button-avatar.png" mode="widthFix" />
-    <img class="avatar" :src="user.avatarUrl" />
+    <view class="avatar-box">
+      <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" style="height: 210upx;" />
+      <img class="avatar" :src="user.avatarUrl" mode="widthFix" style="height: 150upx;" />
+    </view>
     <view class="info">
       <view class="text">您的好友</view>
       <view class="text1">{{ user.name }}</view>
@@ -25,19 +28,27 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .button-avatar
   position relative
-  display flex
+  display inline-block
   align-items center
   justify-content center
   .img
     width 570upx
-		height 67upx
-  .avatar
+    height 67upx
+  .avatar-box
     position absolute
     width 240upx
     height 150upx
     top 0
-    left 25upx
+    left 15upx
+    display flex
+    justify-content center
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
+    .avatar
+      width 150upx
+    .avatar-bg
+      position absolute
+      width 240upx
+      filter blur(10rpx)
   .info
     position absolute
     left 205upx

@@ -58,7 +58,7 @@ import { bookingStore } from "../../store/booking";
 import { storeStore } from "../../store/store";
 import { authStore } from "../../store/auth";
 import * as api from "../../../common/vmeitime-http";
-const tomorrow = _moment().add(1, "day");
+const today = _moment();
 
 @Component
 export default class Car extends Vue {
@@ -72,10 +72,10 @@ export default class Car extends Vue {
   date = {
     show: false,
     selected: {
-      day: tomorrow.dates(),
-      month: tomorrow.month() + 1,
-      result: tomorrow.format("YYYY-MM-DD"),
-      year: tomorrow.year()
+      day: today.dates(),
+      month: today.month() + 1,
+      result: today.format("YYYY-MM-DD"),
+      year: today.year()
     }
   };
   checkIn = {

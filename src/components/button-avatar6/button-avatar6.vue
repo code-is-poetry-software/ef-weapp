@@ -1,6 +1,6 @@
 <template>
   <view class="button-avatar6" @click="$emit('click')">
-    <img class="img" src="/static/image/button-avatar6.png" mode="widthFix" style="height: 138upx;"  />
+    <img class="img" src="/static/image/button-avatar6.png" mode="widthFix" style="height: 138upx;" />
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
     </view>
@@ -9,7 +9,7 @@
         <text v-if="item.bestLapIn" style="font-size: 18upx;">{{ item.bestLapIn }} 个</text>
         <text style="margin-left: 10upx; font-size: 27upx;">{{ _.get(item, "bestLap.duration") }} </text><text style="margin-left: 10upx; font-size: 22upx;">s/lap</text>
       </text>
-      <text v-else>
+      <text v-else style="margin-left: 80upx;">
         {{ item.result }}
       </text>
     </view>
@@ -59,6 +59,7 @@ export default class Template extends Vue {
   justify-content center
   .img
     width 629upx
+    height 209upx
   .avatar-box
     position absolute
     width 132upx
