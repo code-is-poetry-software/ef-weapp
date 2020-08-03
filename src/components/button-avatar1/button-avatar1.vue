@@ -1,6 +1,7 @@
 <template>
   <view class="button-avatar1" @click="$emit('click')">
-    <img class="img" src="/static/image/button-avatar1.png" mode="widthFix" />
+    <img v-if="user.mobile" class="img" src="/static/image/button-avatar1.png" mode="widthFix" />
+    <img v-else class="img" src="/static/image/button-avatar1_1.png" mode="widthFix" />
     <view class="avatar-box">
       <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" style="height: 210upx;"/>
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" style="height:150upx;" />
