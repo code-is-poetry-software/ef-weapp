@@ -23,6 +23,7 @@ export interface Booking {
       count: number;
       name: "string";
       _id: string;
+      active?: boolean;
     }>;
   }>;
 }
@@ -70,6 +71,7 @@ export interface Course {
   }>;
   scores: Score[];
   project: string;
+  sequence: number;
   start: string;
   store: Store;
   updatedAt: string;

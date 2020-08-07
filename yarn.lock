@@ -10225,10 +10225,10 @@ uuid@^3.3.2, uuid@^3.4.0:
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.4.0.tgz?cache=0&sync_timestamp=1590000998251&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fuuid%2Fdownload%2Fuuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha1-sj5DWK+oogL+ehAK8fX4g/AgB+4=
 
-uview-ui@^1.3.61:
-  version "1.3.61"
-  resolved "https://registry.npm.taobao.org/uview-ui/download/uview-ui-1.3.61.tgz?cache=0&sync_timestamp=1592545221469&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fuview-ui%2Fdownload%2Fuview-ui-1.3.61.tgz#e272ead80f729d79ec8e5754c40e710df333ae5f"
-  integrity sha1-4nLq2A9ynXnsjldUxA5xDfMzrl8=
+uview-ui@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.npm.taobao.org/uview-ui/download/uview-ui-1.6.0.tgz#5a2121c35f745daa8d15abb901f85a49fbba2124"
+  integrity sha1-WiEhw190XaqNFau5AfhaSfu6ISQ=
 
 v8-to-istanbul@^4.1.3:
   version "4.1.4"

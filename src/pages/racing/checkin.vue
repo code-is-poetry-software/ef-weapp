@@ -1,34 +1,10 @@
 <template>
   <view class="checkin page">
-    <with-bg />
-    <button-pattern-switcher :activeItem.sync="item.project" :items="projects" :disabled="type === 'detail'" />
-    <view style="margin: 80upx " v-if="item.players">
-      <u-grid :col="3" :border="false">
-        <u-grid-item v-for="item in item.players" :key="item">
-          <button-avatar2 type="small" :item="item" @click="goUserDetail(item)" />
-        </u-grid-item>
-      </u-grid>
-    </view>
-    <view v-if="item.start">
-      <view style="text-align:center; font-size: 100upx;color: #0090D9;">{{ timeBetween }}</view>
-      <view style="margin-top: 155upx;">
-        <button-time @click="reset" />
-      </view>
-    </view>
-    <view v-else>
-      <view>
-        <view class="button-diamond" @click="scanCode">
-          <img class="Diamond" src="/static/image/Button_Diamond.png" mode="widthFix" />
-          <view class="text"> 验&nbsp&nbsp票 </view>
-        </view>
-      </view>
-      <view style="margin-top: 105upx;" v-if="type == 'detail'">
-        <view class="button-Arrow" @click="startGame">
-          <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
-          <view class="text"> 开&nbsp&nbsp&nbsp始 </view>
-        </view>
-      </view>
-    </view>
+    <u-radio-group v-model="form.sequence" @change="radioGroupChange">
+      <u-radio @change="radioChange" v-for="(item, index) in list" :key="index" :name="item.sequence">
+        {{ item.sequence }}
+      </u-radio>
+    </u-radio-group>
   </view>
 </template>
 
@@ -36,27 +12,18 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import * as api from "../../../common/vmeitime-http";
 import { authStore } from "../../store/auth";
-import { Course } from "../../type";
+import { Course, Booking } from "../../type";
 import { Moment } from "moment";
 
 @Component
 export default class Template extends Vue {
-  item: Partial<Course> = {
-    id: "",
-    project: "",
-    players: []
+  list: Course[] = [];
+  form = {
+    sequence: 0
   };
+  booking: Booking | null = null;
 
   now: Moment = this.moment();
-
-  get timeBetween() {
-    if (!this.item.start) return "";
-    return this.moment(this.now.diff(this.item.start)).format("mm’ss");
-  }
-
-  get type() {
-    return this.item.id ? "detail" : "create";
-  }
 
   get user() {
     return authStore.user;
@@ -67,30 +34,40 @@ export default class Template extends Vue {
   }
 
   onLoad(data) {
-    authStore.devLogin();
-    if (data.id) {
-      this.loadItem(data.id);
-    }
+    authStore.devLogin().then(async () => {
+      if (data.code) {
+        const res = await api.joinBooking({ code: data.code, preview: true });
+        if (res.data) {
+          this.booking = res.data;
+        }
+      }
+      this.loadList();
+    });
+  }
+  radioChange(e) {}
+
+  radioGroupChange(e) {
+    this.form.sequence = e;
   }
 
   goUserDetail(item) {
     uni.navigateTo({ url: `/pages/racing/user?id=${item.id}&equipmentNum=${item.equipmentNum}` });
   }
 
-  async startGame() {
-    const res = await api.handleItem({
-      type: "course",
-      id: this.item.id,
-      method: "PUT",
-      data: {
-        startNow: true
-      }
-    });
-    if (res.data) {
-      this.item = res.data;
-    }
-    this.checkTime();
-  }
+  // async startGame() {
+  //   const res = await api.handleItem({
+  //     type: "course",
+  //     id: this.item.id,
+  //     method: "PUT",
+  //     data: {
+  //       startNow: true
+  //     }
+  //   });
+  //   if (res.data) {
+  //     this.item = res.data;
+  //   }
+  //   this.checkTime();
+  // }
 
   checkTimeInterval: any;
   checkTime() {
@@ -101,71 +78,38 @@ export default class Template extends Vue {
     }, 1000);
   }
 
-  async loadItem(id) {
-    const res = await api.getItem({ type: "course", id });
+  async loadList() {
+    const res = await api.getList({ type: "course", data: { status: "checking", limit: 5, sort: "sequence", store: this.user.store?.id } });
     if (res.data) {
-      this.item = res.data;
+      this.list = res.data.sort((a, b) => a.sequence - b.sequence);
       this.checkTime();
 
-      return this.item;
+      return this.list;
     }
   }
 
-  reset() {
-    this.item = {
-      id: "",
-      project: "",
-      players: []
-    };
-    if (this.checkTimeInterval) clearInterval(this.checkTimeInterval);
-  }
+  // reset() {
+  //   this.item = {
+  //     id: "",
+  //     project: "",
+  //     players: []
+  //   };
+  //   if (this.checkTimeInterval) clearInterval(this.checkTimeInterval);
+  // }
 
-  async createCourse(code) {
-    const res = await api.handleType({
-      type: "course",
-      data: {
-        project: this.item.project,
-        newPlayers: [code]
-      }
-    });
-    if (res.data) {
-      this.item = res.data;
-    }
-  }
-  async updateCourse(code) {
-    const res = await api.handleItem({
-      type: "course",
-      id: this.item.id,
-      method: "PUT",
-      data: {
-        newPlayers: [code]
-      }
-    });
-    if (res.data) {
-      this.item = res.data;
-    }
-  }
-
-  scanCode() {
-    if (this.type == "create") {
-      if (!this.item.project) {
-        return uni.showToast({
-          title: "请先选择项目",
-          icon: "none"
-        });
-      }
-    }
-    uni.scanCode({
-      success: async data => {
-        if (this.type == "create") {
-          return this.createCourse(data.result);
-        }
-        if (this.type == "detail") {
-          return this.updateCourse(data.result);
-        }
-      }
-    });
-  }
+  // async updateCourse(code) {
+  //   const res = await api.handleItem({
+  //     type: "course",
+  //     id: this.item.id,
+  //     method: "PUT",
+  //     data: {
+  //       newPlayers: [code]
+  //     }
+  //   });
+  //   if (res.data) {
+  //     this.item = res.data;
+  //   }
+  // }
 }
 </script>
 
@@ -173,29 +117,4 @@ export default class Template extends Vue {
 .checkin
   position relative
   padding 200upx 0
-  .button-diamond
-    position relative
-    display flex
-    align-items center
-    justify-content center
-    .Diamond
-      width 301upx
-      height 130upx
-    .text
-      position absolute
-      font-size 50rpx
-      color #0090D9
-  .button-Arrow
-    // position relative
-    display flex
-    align-items center
-    justify-content center
-    .arrow2
-      width 600upx
-      height 150upx
-      color #0090D9
-    .text
-      position absolute
-      color White
-      font-size 100upx
 </style>

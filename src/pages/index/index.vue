@@ -31,6 +31,8 @@
       </view>
     </view>
     <home-menuitem v-if="user.role == 'manager'" @click="goStore" text="场次管理" />
+    <home-menuitem v-if="user.role == 'manager'" @click="goCoach" text="教练入口" />
+
   </view>
 </template>
 
@@ -87,6 +89,9 @@ export default class Index extends Vue {
 
   goStore() {
     uni.redirectTo({ url: "/pages/racing/list" });
+  }
+  goCoach(){
+    uni.redirectTo({ url: "/pages/racing/coach" });
   }
 
   goCreateBooking({ url, name }: { url: string; name: string }) {

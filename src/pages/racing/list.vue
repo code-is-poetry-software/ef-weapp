@@ -1,11 +1,12 @@
 <template>
   <view class="racing-list">
+    <u-tabs ref="tabs" :list="projects" :is-scroll="false" :current="currentTabIndex" @change="changeTab"></u-tabs>
     <u-cell-group>
       <u-cell-item v-for="item in list" :key="item.id" :title="getTitle(item)" @click="goDetail(item)"></u-cell-item>
     </u-cell-group>
 
     <view style="position: absolute; bottom:0; left:0; z-index; 10;width: 100%">
-      <u-button shape="square" @click="navigateTo({ url: '/pages/racing/checkin' })">创建竞赛</u-button>
+      <u-button shape="square" @click="createCourse">创建竞赛</u-button>
     </view>
   </view>
 </template>
@@ -19,13 +20,18 @@ import * as api from "../../../common/vmeitime-http";
 export default class Template extends Vue {
   list: any[] = [];
   loading = false;
-
+  currentTabIndex = 0;
+  changeTab(index) {
+    this.list = [];
+    this.currentTabIndex = index;
+    this.loadList();
+  }
   getTitle(item) {
     return item.project + this.moment(item.createdAt).format("YYYY-MM-DD hh:mm:ss");
   }
 
   onReachBottom() {
-    this.loadPayment();
+    this.loadList();
   }
 
   get token() {
@@ -36,22 +42,39 @@ export default class Template extends Vue {
     return authStore.user;
   }
 
+  get projects() {
+    return this.user.store?.projects.map(i => ({ name: i.name }));
+  }
+
+  get curProject() {
+    if (!this.projects) return "";
+    return this.projects[this.currentTabIndex].name;
+  }
+
   onLoad() {
     authStore.devLogin().then(() => {
-      this.loadPayment();
+      this.loadList();
     });
   }
 
   onShow() {
     if (!this.token) return;
     this.list = [];
-    this.loadPayment();
+    this.loadList();
   }
 
-  async loadPayment() {
+  createCourse() {
+    uni.scanCode({
+      success: async data => {
+        const code = data.result;
+      }
+    });
+  }
+
+  async loadList() {
     if (this.loading) return;
     this.loading = true;
-    const res = await api.getList({ type: "course", data: { limit: 10, skip: this.list.length, store: this.user.store } });
+    const res = await api.getList({ type: "course", data: { status: "checking", project: this.curProject, limit: 10, skip: this.list.length, store: this.user.store?.id } });
     if (res.data) {
       this.list = [...this.list, ...res.data];
     }

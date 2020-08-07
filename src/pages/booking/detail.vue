@@ -8,12 +8,6 @@
       <img style="width: 128upx; height: 128upx;" src="/static/image/img3.png" mode="widthFix" />
     </view>
     <view class="text-success">您已成功缴费锁定</view>
-    <view style="margin-bottom: 72upx;" v-if="item">
-      <view v-for="project in item.projects" :key="project._id">
-        <booking-item :item="item" :project="project" />
-      </view>
-    </view>
-    <text class="text-remind" style="font-size: 23upx;">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
 
     <view style="position: relative;">
       <img style="width: 572upx; height: 368upx;" src="/static/image/img-share.png" mode="widthFix" />
@@ -22,13 +16,22 @@
         <img v-show="qrcodeUrl" :src="qrcodeUrl" style="width: 150px; height: 150px;" mode="widthFix" />
       </view>
     </view>
+    <text class="text-remind" style="font-size: 23upx;">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
     <view v-if="isOwner && item">
-      <view v-for="project in item.projects" :key="project._id" style="margin-top: 16upx;">
-        <button-share :text="project.name" :active.sync="project.active" />
+      <view style="margin-bottom: 72upx;" v-if="userTickets">
+        <view v-for="project in userTickets.projects" :key="project._id">
+          <booking-item selectable :item="item" :project="project" :active="project.active" @click="seletProject(project)" />
+        </view>
       </view>
+      <!-- <view v-for="project in item.projects" :key="project._id" style="margin-top: 16upx;">
+        <button-share :text="project.name" :active.sync="project.active" />
+      </view> -->
     </view>
     <view v-if="isOwner" style="margin-top: 46upx;">
-      <button-pay @click="inviteFriend" text="邀请好友" />
+      <view class="button-invite" @click="inviteFriend">
+        <img class="img" src="/static/image/button-invite.png" mode="widthFix" />
+        <view class="text"> 邀请好友 </view>
+      </view>
     </view>
     <u-popup v-model="showShare" mode="bottom">
       <u-button open-type="share" @click="share">确认分享</u-button>
@@ -53,16 +56,20 @@ export default class PaymentSuccess extends Vue {
     return authStore.user;
   }
 
+  get userTickets() {
+    return this.item?.tickets.find(i => i.player.id == this.user.id);
+  }
+
   get isOwner() {
     if (!this.item) return false;
     return this.item.customer.id == this.user.id;
   }
 
   get invitationProjects() {
-    if (!this.item) return [];
-    return this.item.projects.filter(i => i.active).map(i => ({ name: i.name, count: 1 }));
+    if (!this.userTickets) return [];
+    return this.userTickets.projects.filter(i => i.active).map(i => ({ name: i.name, count: 1 }));
   }
-
+  timer: any = null;
   onLoad(data) {
     if (data.id) {
       console.log(this.user);
@@ -74,7 +81,21 @@ export default class PaymentSuccess extends Vue {
           this.makeQrcode({ text: ticket.code });
         }
       });
+      // this.timer = setInterval(() => {
+      //   this.loadBooking(data.id).then(data => {
+      //     if(!data) return
+
+      //   })
+      // }, 10000)
     }
+  }
+
+  onUnload() {
+    clearInterval(this.timer);
+  }
+
+  seletProject(project) {
+    this.$set(project, "active", !project.active);
   }
 
   qrcodeUrl = "";
@@ -174,4 +195,24 @@ export default class PaymentSuccess extends Vue {
     width 100%
     top 40upx
     left 0
+
+  .button-invite
+    position relative
+    display inline-block
+    align-items center
+    margin 0 8upx
+    text-align center
+    .img
+      width 240upx
+      height 96upx
+    .text
+      position absolute
+      font-size 30upx
+      font-family Alibaba PuHuiTi
+      left 56upx
+      top 16upx
+      font-weight bold
+      letter-spacing 2px
+      color white
+      z-index 1
 </style>

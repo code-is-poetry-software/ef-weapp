@@ -89,6 +89,12 @@
       }
     },
     {
+      "path": "pages/racing/coach",
+      "style": {
+        "navigationBarTitleText": "当前潮玩项目"
+      }
+    },
+    {
       "path": "pages/course/detail",
       "style": {
         "navigationBarTitleText": "比赛详情"
@@ -153,12 +159,12 @@
       {
         "name": "分享测试",
         "path": "pages/booking/share",
-        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYxOGZlY2Q3ODkyMjMwYjdhOTk1MWE1IDVmMjdjNTZiY2Q0NTQzNTNkZDFiZjVkOQ.NFitrIGLkBl0CdKc1Aa-JxPQlLLeIrdVInbkQKbhamQ"
+        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYyY2NkYjZhZTFmZGYyODcyNmM0YjMwIDVmMmQwYzJiYWUxZmRmMjg3MjZjNGNiZg._KeM_arS4XGyNCJzJfokEl6bXXv29lSVDHjRTqvknl8"
       },
       {
         "name": "racing/checkin",
         "path": "pages/racing/checkin",
-        "query": ""
+        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYyY2NkYjZhZTFmZGYyODcyNmM0YjMwIDVmMmQwYzJiYWUxZmRmMjg3MjZjNGNiZg._KeM_arS4XGyNCJzJfokEl6bXXv29lSVDHjRTqvknl8"
       },
       {
         "name": "racing/user",
@@ -168,6 +174,11 @@
       {
         "name": "racing/list",
         "path": "pages/racing/list",
+        "query": ""
+      },
+      {
+        "name": "racing/coach",
+        "path": "pages/racing/coach",
         "query": ""
       }
     ]

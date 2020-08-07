@@ -1,6 +1,8 @@
 <template>
   <view class="booking-item" @click="$emit('click')">
-    <img class="img" src="/static/image/booking-item.png" mode="widthFix" />
+    <img class="img" v-if="selectable" :src="active ? '/static/image/booking-item1-active.png' : '/static/image/booking-item1.png'" mode="widthFix" />
+    <img class="img" v-else src="/static/image/booking-item.png" mode="widthFix" />
+
     <view class="info">
       <view class="flex">
         <view class="text" style="margin: 0 8upx 0 0;">场次:</view>
@@ -24,10 +26,8 @@ import { Booking } from "../../type";
 export default class Template extends Vue {
   @Prop({ default: {} }) item: Booking;
   @Prop({ default: {} }) project: Booking["projects"][0];
-
-  async goDetail() {
-    uni.navigateTo({ url: `/pages/booking/detail?id=${this.item.id}` });
-  }
+  @Prop({ default: false }) selectable: boolean;
+  @Prop({ default: false }) active: boolean;
 }
 </script>
 
