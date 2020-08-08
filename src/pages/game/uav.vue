@@ -1,5 +1,5 @@
 <template>
-  <view class="car">
+  <view class="car page">
     <view>
       <with-bg />
       <view>

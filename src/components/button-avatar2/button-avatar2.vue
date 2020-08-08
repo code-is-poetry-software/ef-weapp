@@ -20,8 +20,10 @@ export default class Template extends Vue {
   @Prop({ default: "" }) type: string;
 
   get name() {
-    console.log(this.item);
-    return nzhcn.encodeS(this.item.equipmentNum) + "号无人机";
+    if (this.item.equipmentNum) {
+      return nzhcn.encodeS(this.item.equipmentNum) + "号无人机";
+    }
+    return this.item.name;
   }
 }
 </script>
@@ -44,6 +46,7 @@ export default class Template extends Vue {
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
   .avatar
     width 240upx
+    z-index 1
   .avatar-bg
     position absolute
     filter blur(10rpx)
@@ -59,7 +62,7 @@ export default class Template extends Vue {
 .small
   .button-avatar
     width 200upx
-		height 136upx
+  height 136upx
   .avatar-box
     position absolute
     width 155upx

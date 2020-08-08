@@ -18,8 +18,12 @@
       </view>
       <view style="margin-bottom: 20upx;">
         <view v-for="booking in userBookings" :key="booking.id">
-          <view v-for="project in booking.projects" :key="project._id">
-            <booking-item :item="booking" :project="project" @click="goBookingDetail(booking)" />
+          <view v-for="ticket in booking.tickets" :key="ticket._id">
+            <view v-if="ticket.player.id === user.id">
+              <view v-for="project in ticket.projects" :key="project._id">
+                <booking-item :item="booking" :project="project" @click="goBookingDetail(booking)" />
+              </view>
+            </view>
           </view>
         </view>
       </view>
@@ -32,7 +36,6 @@
     </view>
     <home-menuitem v-if="user.role == 'manager'" @click="goStore" text="场次管理" />
     <home-menuitem v-if="user.role == 'manager'" @click="goCoach" text="教练入口" />
-
   </view>
 </template>
 
@@ -90,7 +93,7 @@ export default class Index extends Vue {
   goStore() {
     uni.redirectTo({ url: "/pages/racing/list" });
   }
-  goCoach(){
+  goCoach() {
     uni.redirectTo({ url: "/pages/racing/coach" });
   }
 

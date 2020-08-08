@@ -19,6 +19,7 @@ export interface Booking {
   tickets: Array<{
     code: string;
     player: User;
+    _id: string;
     projects: Array<{
       count: number;
       name: "string";
@@ -73,6 +74,7 @@ export interface Course {
   project: string;
   sequence: number;
   start: string;
+  end: string;
   store: Store;
   updatedAt: string;
   createdAt: string;

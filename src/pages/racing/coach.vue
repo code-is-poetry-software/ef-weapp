@@ -1,26 +1,37 @@
 <template>
   <view class="checkin page">
     <with-bg />
-    <button-pattern-switcher :activeItem.sync="item.project" :items="projects" :disabled="type === 'detail'" />
-    <view style="margin: 80upx " v-if="item.players">
-      <u-grid :col="3" :border="false">
-        <u-grid-item v-for="item in item.players" :key="item">
-          <button-avatar2 type="small" :item="item" @click="goUserDetail(item)" />
-        </u-grid-item>
-      </u-grid>
-    </view>
-    <view v-if="item.start">
-      <view style="text-align:center; font-size: 100upx;color: #0090D9;">{{ timeBetween }}</view>
-      <view style="margin-top: 155upx;">
-        <button-time @click="reset" />
+    <view v-if="item.id">
+      <button-pattern-switcher :activeItem.sync="item.project" :items="projects" :disabled="type === 'detail'" />
+      <view style="margin: 80upx;" v-if="item.players">
+        <u-grid :col="3" :border="false">
+          <u-grid-item v-for="item in item.players" :key="item">
+            <button-avatar2 type="small" :item="item" @click="goUserDetail(item)" />
+          </u-grid-item>
+        </u-grid>
+      </view>
+      <view v-if="item.start && !item.end">
+        <view style="text-align: center; font-size: 100upx; color: #0090d9;">{{ timeBetween }}</view>
+        <view style="margin-top: 155upx;">
+          <view class="button-Arrow" @click="endGame">
+            <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
+            <view class="text"> 结&nbsp&nbsp&nbsp束 </view>
+          </view>
+        </view>
+      </view>
+      <view v-else>
+        <view style="margin-top: 105upx;">
+          <view class="button-Arrow" @click="startGame">
+            <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
+            <view class="text"> 开&nbsp&nbsp&nbsp始 </view>
+          </view>
+        </view>
       </view>
     </view>
     <view v-else>
-      <view style="margin-top: 105upx;">
-        <view class="button-Arrow" @click="startGame">
-          <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
-          <view class="text"> 开&nbsp&nbsp&nbsp始 </view>
-        </view>
+      <u-empty text="当前无正在进行的项目"> </u-empty>
+      <view class="flex justify-center">
+        <u-button size="medium" @click="loadItem">刷新</u-button>
       </view>
     </view>
   </view>
@@ -60,9 +71,16 @@ export default class Template extends Vue {
     return this.user.store?.projects.map(i => ({ label: i.name, value: i.name }));
   }
 
+  timer: any = null;
+
   onLoad(data) {
-    authStore.devLogin();
-    this.loadItem();
+    authStore.devLogin().then(() => {
+      this.loadItem();
+
+      this.timer = setInterval(() => {
+        this.loadItem();
+      }, 10000);
+    });
   }
 
   goUserDetail(item) {
@@ -84,6 +102,20 @@ export default class Template extends Vue {
     this.checkTime();
   }
 
+  async endGame() {
+    const res = await api.handleItem({
+      type: "course",
+      id: this.item.id,
+      method: "PUT",
+      data: {
+        endNow: true
+      }
+    });
+    if (res.data) {
+      this.item = res.data;
+    }
+  }
+
   checkTimeInterval: any;
   checkTime() {
     if (this.checkTimeInterval) clearInterval(this.checkTimeInterval);
@@ -94,37 +126,15 @@ export default class Template extends Vue {
   }
 
   async loadItem() {
-    const res = await api.getList({type: "course", data:{status: "waiting", limit:1, sort: "sequence"}});
-    if (res.data) {
-      this.item = res.data;
+    const res = await api.getList({ type: "course", data: { status: "waiting,started", limit: 1, order: "sequence" } });
+    if (res.data[0]) {
+      this.item = res.data[0];
       this.checkTime();
 
       return this.item;
     }
   }
 
-
-  reset() {
-    this.item = {
-      id: "",
-      project: "",
-      players: []
-    };
-    if (this.checkTimeInterval) clearInterval(this.checkTimeInterval);
-  }
-
-  async createCourse(code) {
-    const res = await api.handleType({
-      type: "course",
-      data: {
-        project: this.item.project,
-        newPlayers: [code]
-      }
-    });
-    if (res.data) {
-      this.item = res.data;
-    }
-  }
   async updateCourse(code) {
     const res = await api.handleItem({
       type: "course",
@@ -137,27 +147,6 @@ export default class Template extends Vue {
     if (res.data) {
       this.item = res.data;
     }
-  }
-
-  scanCode() {
-    if (this.type == "create") {
-      if (!this.item.project) {
-        return uni.showToast({
-          title: "请先选择项目",
-          icon: "none"
-        });
-      }
-    }
-    uni.scanCode({
-      success: async data => {
-        if (this.type == "create") {
-          return this.createCourse(data.result);
-        }
-        if (this.type == "detail") {
-          return this.updateCourse(data.result);
-        }
-      }
-    });
   }
 }
 </script>

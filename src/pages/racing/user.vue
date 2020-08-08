@@ -1,10 +1,10 @@
 <template>
   <view class="match page">
     <with-bg />
-    <view style="text-align: center">
-      <button-avatar2 v-if="user" :user="user" />
+    <view style="text-align: center;">
+      <button-avatar2 v-if="user" :item="user" />
     </view>
-    <view style="margin-top: 300upx">
+    <view style="margin-top: 300upx;">
       <button-Arrow :text="text" />
     </view>
   </view>

@@ -154,7 +154,6 @@ export default class PaymentSuccess extends Vue {
     const res = await api.handleItem({ type: "booking", id: this.item.id, method: "PUT", data: { invitation: { projects: this.invitationProjects } } });
     if (!res.data.tickets) return;
     const { code } = this._.last(res.data.tickets) as any;
-    // this.code = "eyJhbGciOiJIUzI1NiJ9.NWYwYWM1YTQ1ZDNiMzEwZGFkNjdmMDcyIDVmMGIyZDBiNWQzYjMxMGRhZDY3ZjViZQ.gVdu1d_q48NkUtIaX3Ho_ibGFmgG62Z2JNYwPGDDy4Y";
     this.code = code;
     this.showShare = true;
   }
@@ -195,7 +194,6 @@ export default class PaymentSuccess extends Vue {
     width 100%
     top 40upx
     left 0
-
   .button-invite
     position relative
     display inline-block

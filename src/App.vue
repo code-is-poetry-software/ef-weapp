@@ -66,6 +66,8 @@ body
   font-family Gotham-Bold
 .flex
   display flex
+.justify-center
+  justify-content center
 .justify-between
   justify-content space-between
 .items-center

@@ -1,5 +1,5 @@
 <template>
-  <view class="car">
+  <view class="car page">
     <view>
       <with-bg />
       <view>
@@ -63,9 +63,7 @@ const today = _moment();
 @Component
 export default class Car extends Vue {
   today = this.moment().format("YYYY-MM-DD");
-  maxDate = this.moment()
-    .add(1, "week")
-    .format("YYYY-MM-DD");
+  maxDate = this.moment().add(1, "week").format("YYYY-MM-DD");
   form = {
     checkIn: ""
   };

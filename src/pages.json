@@ -159,12 +159,12 @@
       {
         "name": "分享测试",
         "path": "pages/booking/share",
-        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYyY2NkYjZhZTFmZGYyODcyNmM0YjMwIDVmMmQwYzJiYWUxZmRmMjg3MjZjNGNiZg._KeM_arS4XGyNCJzJfokEl6bXXv29lSVDHjRTqvknl8"
+        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYyZTQ4MTY3NGEwODc0ZThkYTgyMjQyIDVmMmU1MTRmMWRkOTdkMDFiN2RjNTNiMQ.0cL62IYhxtqKVuncMJDA6HhrKNv6mJrso7XChGVdZUc"
       },
       {
         "name": "racing/checkin",
         "path": "pages/racing/checkin",
-        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYyY2NkYjZhZTFmZGYyODcyNmM0YjMwIDVmMmQwYzJiYWUxZmRmMjg3MjZjNGNiZg._KeM_arS4XGyNCJzJfokEl6bXXv29lSVDHjRTqvknl8"
+        "query": "code=eyJhbGciOiJIUzI1NiJ9.NWYyZTQ4MTY3NGEwODc0ZThkYTgyMjQyIDVmMmU1MTRmMWRkOTdkMDFiN2RjNTNiMQ.0cL62IYhxtqKVuncMJDA6HhrKNv6mJrso7XChGVdZUc"
       },
       {
         "name": "racing/user",
