@@ -25,6 +25,7 @@ import * as api from "../../../common/vmeitime-http";
 import { authStore } from "../../store/auth";
 import { Course, Booking } from "../../type";
 import { Moment } from "moment";
+import { moment } from "../../utils/moment";
 
 @Component
 export default class Template extends Vue {
@@ -86,7 +87,10 @@ export default class Template extends Vue {
   }
 
   async loadList() {
-    const res = await api.getList({ type: "course", data: { project: this.curProject, status: "checking", limit: 5, order: "sequence", store: this.user.store?.id } });
+    const res = await api.getList({
+      type: "course",
+      data: { date: moment().format("YYYY-MM-DD"), project: this.curProject, status: "checking", limit: 5, order: "sequence", store: this.user.store?.id }
+    });
     if (res.data) {
       this.list = res.data.sort((a, b) => a.sequence - b.sequence);
 

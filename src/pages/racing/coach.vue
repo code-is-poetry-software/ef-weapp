@@ -46,11 +46,7 @@ import { Moment } from "moment";
 
 @Component
 export default class Template extends Vue {
-  item: Partial<Course> = {
-    id: "",
-    project: "",
-    players: []
-  };
+  item: Partial<Course> = {};
 
   now: Moment = this.moment();
 
@@ -111,9 +107,8 @@ export default class Template extends Vue {
         endNow: true
       }
     });
-    if (res.data) {
-      this.item = res.data;
-    }
+    this.item = {};
+    this.loadItem();
   }
 
   checkTimeInterval: any;
@@ -127,25 +122,12 @@ export default class Template extends Vue {
 
   async loadItem() {
     const res = await api.getList({ type: "course", data: { status: "waiting,started", limit: 1, order: "sequence" } });
+    this.item = {};
     if (res.data[0]) {
       this.item = res.data[0];
       this.checkTime();
 
       return this.item;
-    }
-  }
-
-  async updateCourse(code) {
-    const res = await api.handleItem({
-      type: "course",
-      id: this.item.id,
-      method: "PUT",
-      data: {
-        newPlayers: [code]
-      }
-    });
-    if (res.data) {
-      this.item = res.data;
     }
   }
 }
