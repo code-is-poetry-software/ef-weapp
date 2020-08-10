@@ -36,8 +36,9 @@ export default class Template extends Vue {
   }
 
   backspace() {
-    const amount = this.amount.length ? this.amount.substr(0, this.amount.length - 1) : this.amount;
-    this.$emit("update:amount", amount || 0);
+    const amountWas = this.amount.toString();
+    const amount = amountWas.length ? amountWas.substr(0, amountWas.length - 1) : amountWas;
+    this.$emit("update:amount", +amount || 0);
   }
   get image() {
     return Number(this.amount) > 0 ? "/static/image/button-mode-active.png" : "/static/image/button-mode.png";
