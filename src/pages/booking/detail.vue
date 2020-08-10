@@ -23,9 +23,6 @@
           <booking-item selectable :item="item" :project="project" :active="project.active" @click="seletProject(project)" />
         </view>
       </view>
-      <!-- <view v-for="project in item.projects" :key="project._id" style="margin-top: 16upx;">
-        <button-share :text="project.name" :active.sync="project.active" />
-      </view> -->
     </view>
     <view v-if="isOwner" style="margin-top: 46upx;">
       <view class="button-invite" @click="inviteFriend">

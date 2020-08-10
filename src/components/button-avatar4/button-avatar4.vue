@@ -74,6 +74,7 @@ export default class Template extends Vue {
   .avatar
     height 52upx
     width 105upx
+    z-index 1
   .avatar-bg
     position absolute
     height 66upx

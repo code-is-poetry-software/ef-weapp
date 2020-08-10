@@ -10,7 +10,7 @@
         <text v-if="item.bestLapIn" style="font-size: 15upx;">{{ item.bestLapIn }} 个</text>
         <text style="margin-left: 10upx; font-size: 27upx;">{{ _.get(item, "bestLap.duration") }} </text><text style="margin-left: 10upx; font-size: 22upx;">s/lap</text>
       </text>
-      <text v-else  style="margin-left: 80upx;">
+      <text v-else style="margin-left: 80upx;">
         {{ item.result }}
       </text>
     </view>
@@ -67,6 +67,8 @@ export default class Template extends Vue {
     clip-path polygon(35% 0, 100% 0%, 65% 100%, 0 100%)
     .avatar
       width 105upx
+      height 100upx
+      z-index 1
   .avatar-bg
     position absolute
     width 132upx
