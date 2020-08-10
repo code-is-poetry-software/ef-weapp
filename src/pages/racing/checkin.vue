@@ -3,7 +3,7 @@
     <with-bg />
     <view style="margin-bottom: 72upx;" v-if="userTickets">
       <view v-for="project in userTickets.projects" :key="project._id">
-        <booking-item selectable :item="booking" :project="project" :active="project.name == curProject" @click="seletProject(project)" />
+        <booking-item selectable :item="booking" :project="project" :active="project.name == curProject" @click="seletProject(project)" :watingProjects="_.get(user, 'store.projects')" />
       </view>
     </view>
     <view class="select-bar">
@@ -13,6 +13,7 @@
         </u-radio>
       </u-radio-group>
     </view>
+
     <view style="position: absolute; bottom:0; left:0; z-index; 10;width: 100%">
       <u-button shape="square" @click="updateCourse" :disabled="!curentSelectdCourse">安排竞赛</u-button>
     </view>
@@ -58,7 +59,8 @@ export default class Template extends Vue {
   seletProject(project) {
     this.curProject = project.name;
     this.list = [];
-    this.loadList();
+    this.loadData();
+    authStore.loadManagerStore();
   }
 
   onLoad(data) {
@@ -66,6 +68,7 @@ export default class Template extends Vue {
       if (data.code) {
         this.code = data.code;
         this.loadBooking();
+        authStore.loadManagerStore();
       }
     });
   }
@@ -86,10 +89,10 @@ export default class Template extends Vue {
     uni.navigateTo({ url: `/pages/racing/user?id=${item.id}&equipmentNum=${item.equipmentNum}` });
   }
 
-  async loadList() {
+  async loadData() {
     const res = await api.getList({
       type: "course",
-      data: { date: moment().format("YYYY-MM-DD"), project: this.curProject, status: "checking", limit: 5, order: "sequence", store: this.user.store?.id }
+      data: { project: this.curProject, status: "checking", limit: 5, order: "sequence", store: this.user.store?.id }
     });
     if (res.data) {
       this.list = res.data.sort((a, b) => a.sequence - b.sequence);
@@ -108,7 +111,7 @@ export default class Template extends Vue {
         newPlayers: [this.code]
       }
     });
-    await Promise.all([this.loadBooking(), this.loadList()]);
+    await Promise.all([this.loadBooking(), this.loadData(), authStore.loadManagerStore()]);
   }
 }
 </script>

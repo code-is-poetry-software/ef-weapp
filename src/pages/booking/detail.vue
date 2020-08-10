@@ -30,6 +30,24 @@
         <view class="text"> 邀请好友 </view>
       </view>
     </view>
+    <view style="margin-top: 50upx;">
+      <view class="button-course" v-for="(item, index) in course" :key="index">
+        <img class="img" src="/static/image/button-rank1.png" style="height: 154upx;" mode="widthFix" />
+        <view class="status">{{ config.statusLabel.waiting }}</view>
+        <view class="info">
+          <view class="flex items-center">
+            <view style="font-size: 16upx;">项目:</view>
+            <view style="font-size: 28upx;">{{ item.project }} </view>
+          </view>
+          <view class="flex items-center" style="margin-top: 20upx;">
+            <view style="font-size: 16upx;">场次:</view>
+            <view style="font-size: 28upx;">{{ item.date }}</view>
+            <view style="font-size: 28upx; margin-left: 20upx;">第{{ item.sequence }}场</view>
+            <view style="font-size: 28upx; margin-left: 40upx;">{{ item.players.length }}人场</view>
+          </view>
+        </view>
+      </view>
+    </view>
     <u-popup v-model="showShare" mode="bottom">
       <u-button open-type="share" @click="share">确认分享</u-button>
     </u-popup>
@@ -39,15 +57,18 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import * as api from "../../../common/vmeitime-http";
-import { Booking } from "../../type";
+import { Booking, Course } from "../../type";
 import uQRCode from "../../../common/uqrcode";
 import { authStore } from "../../store/auth";
+import { config } from "../../../config";
 
 @Component
 export default class PaymentSuccess extends Vue {
   item: Booking | null = null;
   code: string = "";
   showShare = false;
+  course: Course[] = [];
+  config = config;
 
   get user() {
     return authStore.user;
@@ -69,8 +90,7 @@ export default class PaymentSuccess extends Vue {
   timer: any = null;
   onLoad(data) {
     if (data.id) {
-      console.log(this.user);
-
+      this.loadCourse();
       this.loadBooking(data.id).then(data => {
         if (!data) return;
         const ticket = data.tickets.find(i => i.player?.id === this.user.id);
@@ -78,12 +98,9 @@ export default class PaymentSuccess extends Vue {
           this.makeQrcode({ text: ticket.code });
         }
       });
-      // this.timer = setInterval(() => {
-      //   this.loadBooking(data.id).then(data => {
-      //     if(!data) return
-
-      //   })
-      // }, 10000)
+      this.timer = setInterval(() => {
+        this.loadCourse();
+      }, 10000);
     }
   }
 
@@ -122,6 +139,13 @@ export default class PaymentSuccess extends Vue {
         this.item.projects = this.item.projects.map(i => ({ ...i, active: false }));
       }
       return this.item;
+    }
+  }
+
+  async loadCourse() {
+    const res = await api.getList({ type: "course", data: { player: this.user.id, status: "checking,waiting,started" } });
+    if (res.data) {
+      this.course = res.data;
     }
   }
 
@@ -210,4 +234,29 @@ export default class PaymentSuccess extends Vue {
       letter-spacing 2px
       color white
       z-index 1
+  .button-course
+    position relative
+    display inline-block
+    align-items center
+    justify-content center
+    text-align left
+    .img
+      width 607upx
+      height 209upx
+    .info
+      position absolute
+      left 20upx
+      top 32upx
+      font-size 28upx
+      font-family Alibaba PuHuiTi
+      font-weight bold
+      letter-spacing 2px
+      color var(--text-primary)
+      z-index 1
+    .status
+      position absolute
+      font-size 20upx
+      color white
+      right 19upx
+      top 5upx
 </style>

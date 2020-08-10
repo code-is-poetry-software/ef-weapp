@@ -11,8 +11,10 @@
       <view class="flex">
         <view style="font-size: 15upx; margin: 7upx 8upx 0 0;">项目:</view>
         <view style="font-size: 38upx; margin-top: -10upx;">{{ project.name }}</view>
-        <view style="font-size: 15upx; margin: 7upx 8upx 0 30upx;">数量:</view>
+        <view style="font-size: 15upx; margin: 7upx 8upx 0 20upx;">数量:</view>
         <view style="font-size: 38upx; margin-top: -12upx;">{{ project.count }}</view>
+        <view v-if="WaitingCourses" style="font-size: 15upx; margin: 7upx 8upx 0 10upx;">等待:</view>
+        <view v-if="WaitingCourses" style="font-size: 38upx; margin-top: -12upx;">{{ WaitingCourses }}</view>
       </view>
     </view>
   </view>
@@ -28,6 +30,12 @@ export default class Template extends Vue {
   @Prop({ default: {} }) project: Booking["projects"][0];
   @Prop({ default: false }) selectable: boolean;
   @Prop({ default: false }) active: boolean;
+  @Prop({ default: null }) watingProjects: any[];
+
+  get WaitingCourses() {
+    if (!this.watingProjects || !this.watingProjects.length) return;
+    return this.watingProjects.find(i => i.name == this.project.name).waitingCourses;
+  }
 }
 </script>
 

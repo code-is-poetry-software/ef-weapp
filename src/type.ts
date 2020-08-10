@@ -61,10 +61,13 @@ export interface Store {
     name: string;
     price: number;
   }>;
+  waitingCourses?: number;
 }
 
 export interface Course {
   id: string;
+  status: string;
+  date: string;
   players: Array<{
     avatarUrl: string;
     id: string;
