@@ -56,7 +56,7 @@ export interface Payment {
 export interface Store {
   id: string;
   name: string;
-  checkInTimeOptions: Array<Array<string>>;
+  checkInTimeOptions: Array<string>;
   projects: Array<{
     name: string;
     price: number;

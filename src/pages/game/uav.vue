@@ -27,7 +27,7 @@
           <span class="with-border">{{ date.selected.day }}</span>
           <span class="color-blue" style="margin: 0 12upx;">日</span>
         </view>
-        <u-calendar v-model="date.show" mode="date" @change="e => (date.selected = e)"></u-calendar>
+        <u-calendar v-model="date.show" mode="date" :max-date="maxDate" :min-date="today" @change="e => (date.selected = e)"></u-calendar>
       </view>
       <view class="u-flex u-flex-row form-item" @click="checkIn.show = true">
         <button-title text="选择场次" />
@@ -57,20 +57,22 @@ import { bookingStore } from "../../store/booking";
 import { storeStore } from "../../store/store";
 import { authStore } from "../../store/auth";
 import * as api from "../../../common/vmeitime-http";
-const today = _moment();
+const now = _moment();
 
 @Component
 export default class Car extends Vue {
+  today = this.moment().format("YYYY-MM-DD");
+  maxDate = this.moment().add(1, "week").format("YYYY-MM-DD");
   form = {
     checkIn: ""
   };
   date = {
     show: false,
     selected: {
-      day: today.dates(),
-      month: today.month() + 1,
-      result: today.format("YYYY-MM-DD"),
-      year: today.year()
+      day: now.dates(),
+      month: now.month() + 1,
+      result: now.format("YYYY-MM-DD"),
+      year: now.year()
     }
   };
   checkIn = {
@@ -103,7 +105,13 @@ export default class Car extends Vue {
   }
 
   get checkInTimeOptions() {
-    return this.curStore.checkInTimeOptions.map(i => ({ value: i[0], label: i[0] }));
+    return this.curStore.checkInTimeOptions
+      .filter(i => {
+        if (this.date.selected.result > now.format("YYYY-MM-DD")) return true;
+        const end = i.split("-")[1];
+        return _moment().format("HH:mm") < end;
+      })
+      .map(i => ({ value: i, label: i }));
   }
 
   get balanceEnough() {
@@ -129,6 +137,14 @@ export default class Car extends Vue {
     }
     this.getPrice();
     this.initData();
+    if (!this.checkInTimeOptions.length) {
+      this.date.selected = {
+        day: now.add(1, "day").dates(),
+        month: now.add(1, "day").month() + 1,
+        result: now.add(1, "day").format("YYYY-MM-DD"),
+        year: now.add(1, "day").year()
+      };
+    }
   }
 
   initData() {

@@ -108,7 +108,12 @@ export default class Car extends Vue {
   }
 
   get checkInTimeOptions() {
-    return this.curStore.checkInTimeOptions.map(i => ({ value: i[0], label: i[0] }));
+    return this.curStore.checkInTimeOptions
+      .filter(i => {
+        const end = i.split("-")[1];
+        return _moment().format("HH:mm") < end;
+      })
+      .map(i => ({ value: i, label: i }));
   }
 
   @Watch("projects")
