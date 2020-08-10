@@ -9,6 +9,10 @@
 
 <script lang="ts">
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
+// @ts-ignore
+import buttonBg from "../../static/image/button-mode.png";
+// @ts-ignore
+import buttonBgActive from "../../static/image/button-mode-active.png";
 
 @Component
 export default class Template extends Vue {
@@ -41,7 +45,7 @@ export default class Template extends Vue {
     this.$emit("update:amount", +amount || 0);
   }
   get image() {
-    return Number(this.amount) > 0 ? "/static/image/button-mode-active.png" : "/static/image/button-mode.png";
+    return Number(this.amount) > 0 ? buttonBgActive : buttonBg;
   }
 }
 </script>
