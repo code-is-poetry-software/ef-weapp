@@ -32,8 +32,18 @@
       </view>
       <view class="u-flex u-flex-row form-item" @click="checkIn.show = true">
         <button-title text="选择场次" />
-        <view class="with-border" style="margin: 20upx 0 0 20upx;">{{ form.checkIn }}</view>
-        <u-select mode="single-column" v-model="checkIn.show" :list="checkInTimeOptions" @confirm="e => (form.checkIn = e[0].value)"></u-select>
+        <view class="with-border" style="margin: 20upx 0 0 20upx;">{{ checkIn.label }}</view>
+        <u-select
+          mode="single-column"
+          v-model="checkIn.show"
+          :list="checkInTimeOptions"
+          @confirm="
+            e => {
+              form.checkInAt = e[0].value;
+              checkIn.label = e[0].label;
+            }
+          "
+        ></u-select>
       </view>
       <view class="price-bar">
         <button-price :text="price" />
@@ -58,26 +68,27 @@ import { bookingStore } from "../../store/booking";
 import { storeStore } from "../../store/store";
 import { authStore } from "../../store/auth";
 import * as api from "../../../common/vmeitime-http";
-const today = _moment();
+const now = _moment();
 
 @Component
 export default class Car extends Vue {
   today = this.moment().format("YYYY-MM-DD");
   maxDate = this.moment().add(1, "week").format("YYYY-MM-DD");
-  form = {
-    checkIn: ""
+  form: { checkInAt: string | null } = {
+    checkInAt: ""
   };
   date = {
     show: false,
     selected: {
-      day: today.dates(),
-      month: today.month() + 1,
-      result: today.format("YYYY-MM-DD"),
-      year: today.year()
+      day: now.dates(),
+      month: now.month() + 1,
+      result: now.format("YYYY-MM-DD"),
+      year: now.year()
     }
   };
   checkIn = {
-    show: false
+    show: false,
+    label: ""
   };
   submit = {
     useBalance: "useBalance"
@@ -104,16 +115,21 @@ export default class Car extends Vue {
   }
 
   get payable() {
-    return this.projects.some(i => i.count > 0) && this.form.checkIn;
+    return this.projects.some(i => i.count > 0) && this.form.checkInAt;
   }
 
   get checkInTimeOptions() {
-    return this.curStore.checkInTimeOptions
+    const checkInTimeOptions: { value: string | null; label: string }[] = this.curStore.checkInTimeOptions
       .filter(i => {
+        if (this.date.selected.result > now.format("YYYY-MM-DD")) return true;
         const end = i.split("-")[1];
         return _moment().format("HH:mm") < end;
       })
       .map(i => ({ value: i, label: i }));
+    if (checkInTimeOptions.length === 0) {
+      checkInTimeOptions.push({ value: null, label: "无可用时间段" });
+    }
+    return checkInTimeOptions;
   }
 
   @Watch("projects")
@@ -121,6 +137,11 @@ export default class Car extends Vue {
   @Watch("form", { deep: true })
   onLoadPrice() {
     this.getPrice({ force: true });
+  }
+
+  @Watch("date.selected.result")
+  onDateChange() {
+    this.initData();
   }
 
   async mounted() {
@@ -133,8 +154,9 @@ export default class Car extends Vue {
   }
 
   initData() {
-    if (!this.form.checkIn && this.checkInTimeOptions.length > 0) {
-      this.form.checkIn = this.checkInTimeOptions[0].value;
+    if (!this.form.checkInAt && this.checkInTimeOptions.length > 0) {
+      this.form.checkInAt = this.checkInTimeOptions[0].value;
+      this.checkIn.label = this.checkInTimeOptions[0].label;
     }
   }
 
@@ -153,7 +175,7 @@ export default class Car extends Vue {
 
   async createBooking() {
     const date = this.date.selected.result;
-    const { checkIn: checkInAt } = this.form;
+    const { checkInAt } = this.form;
     const { id: store } = this.curStore;
     const projects = this.projects;
     await bookingStore.createBooking({ store, date, checkInAt, projects, useBalance: this.useBalance });
@@ -167,7 +189,7 @@ export default class Car extends Vue {
     }
     this.loadingPrice = true;
     const date = this.date.selected.result;
-    const { checkIn: checkInAt } = this.form;
+    const { checkInAt } = this.form;
     const { id: store } = this.curStore;
     const projects = this.projects;
     try {
