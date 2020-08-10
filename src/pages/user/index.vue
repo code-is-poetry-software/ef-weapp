@@ -77,7 +77,7 @@ export default class UserIndex extends Vue {
 <style lang="stylus" scoped>
 .user-index
   position relative
-  padding 0 0 200rpx
+  padding 0 0
   .content
     margin 0 auto
     width 629upx

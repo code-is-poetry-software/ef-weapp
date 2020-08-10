@@ -6,7 +6,7 @@
     </u-cell-group>
 
     <view style="position: absolute; bottom:0; left:0; z-index; 10;width: 100%">
-      <u-button shape="square" @click="createCourse">创建竞赛</u-button>
+      <u-button class="main" type="primary" shape="square" :ripple="true" @click="createCourse">扫码添加玩家</u-button>
     </view>
   </view>
 </template>
@@ -27,7 +27,7 @@ export default class Template extends Vue {
     this.loadList();
   }
   getTitle(item) {
-    return item.project + this.moment(item.createdAt).format("YYYY-MM-DD hh:mm:ss");
+    return `#${item.sequence} ${item.players.length}人\t${this.config.statusLabel[item.status]}`;
   }
 
   onReachBottom() {
@@ -91,4 +91,11 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .title
   font-size 20upx
+u-cell-item >>> .u-cell
+  height: 120upx;
+  align-items: center;
+  .u-cell_title
+    font-size 30upx
+u-button.main >>> button
+  height 100upx
 </style>

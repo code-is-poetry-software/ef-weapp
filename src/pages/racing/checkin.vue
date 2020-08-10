@@ -8,14 +8,12 @@
     </view>
     <view class="select-bar">
       <u-radio-group v-model="form.sequence" @change="radioGroupChange">
-        <u-radio @change="radioChange" v-for="(item, index) in list" :key="index" :name="item.sequence">
-          {{ item.sequence }}
-        </u-radio>
+        <u-radio @change="radioChange" v-for="(item, index) in list" :key="index" :name="item.sequence"> #{{ item.sequence }} / {{ item.players.length }}人 </u-radio>
       </u-radio-group>
     </view>
 
     <view style="position: absolute; bottom:0; left:0; z-index; 10;width: 100%">
-      <u-button shape="square" @click="updateCourse" :disabled="!curentSelectdCourse">安排竞赛</u-button>
+      <u-button class="main" type="primary" shape="square" :ripple="true" @click="updateCourse" :disabled="!curentSelectdCourse">加入到排场</u-button>
     </view>
   </view>
 </template>
@@ -123,4 +121,7 @@ export default class Template extends Vue {
   .select-bar
     display flex
     justify-content center
+    padding 50upx
+u-button.main >>> button
+  height 100upx
 </style>
