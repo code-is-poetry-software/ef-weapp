@@ -34,8 +34,8 @@
         <home-menuitem @click="e => navigateTo({ url: '/pages/user/index', checkAuth: true })" text="我的潮玩ID" />
       </view>
     </view>
-    <home-menuitem v-if="user.role == 'manager' && !user.project" @click="goStore" text="场次管理" />
-    <home-menuitem v-if="user.role == 'manager' && user.project" @click="goCoach" text="教练入口" />
+    <home-menuitem v-if="user.role == 'manager'" @click="goStore" text="场次管理" />
+    <home-menuitem v-if="user.role == 'manager'" @click="goCoach" text="教练入口" />
   </view>
 </template>
 

@@ -3,8 +3,12 @@
     <u-popup v-model="showLogin" mode="bottom" border-radius="40">
       <view class="content">
         <view class="action-bar">
-          <u-button @click="close">暂不登录</u-button>
-          <u-button class="u-m-l-20" open-type="getUserInfo" @getuserinfo="wechatGetUserInfo" withcredentials="true">微信登录</u-button>
+          <button-normal class="button" @click="close">
+            <view style="color: #0090d9;">暂不登录</view>
+          </button-normal>
+          <button-normal class="u-m-l-20">
+            <button class="button-empty" open-type="getUserInfo" @getuserinfo="wechatGetUserInfo" withcredentials="true" style="color: #0090d9;">微信登录</button>
+          </button-normal>
         </view>
       </view>
     </u-popup>
@@ -47,6 +51,7 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .login
   .content
+    background #d3f1fe
     text-align center
     height 500upx
     padding 100upx 0 0 0

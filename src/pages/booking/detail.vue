@@ -17,10 +17,10 @@
       </view>
     </view>
     <text class="text-remind" style="font-size: 23upx;">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
-    <view v-if="isOwner && item">
+    <view v-if="item">
       <view style="margin-bottom: 72upx;" v-if="userTickets">
         <view v-for="project in userTickets.projects" :key="project._id">
-          <booking-item selectable :item="item" :project="project" :active="project.active" @click="seletProject(project)" />
+          <booking-item :selectable="isOwner" :item="item" :project="project" :active="project.active" @click="seletProject(project)" />
         </view>
       </view>
     </view>

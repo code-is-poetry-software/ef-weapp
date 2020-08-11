@@ -100,4 +100,12 @@ body
     bottom 4upx
 .u-grid-item-box
   padding 10upx 0 !important
+.button-empty
+  border none
+  color inherit
+  padding 0
+  line-height unset
+  background-color transparent
+  &:after
+    display none
 </style>
