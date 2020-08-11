@@ -11,11 +11,11 @@
         </u-grid>
       </view>
       <view v-if="item.start && !item.end">
-        <view style="text-align: center; font-size: 100upx; color: #0090d9;">{{ timeBetween }}</view>
+        <view style="text-align: center; font-size: 100upx; color: #0090d9; font-family: Gotham-Bold">{{ timeBetween }}</view>
         <view style="margin-top: 155upx;">
           <view class="button-Arrow" @click="endGame">
             <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
-            <view class="text"> 结&nbsp&nbsp&nbsp束 </view>
+            <view class="text"> 结&nbsp;&nbsp;&nbsp;束 </view>
           </view>
         </view>
       </view>
@@ -23,7 +23,7 @@
         <view style="margin-top: 105upx;">
           <view class="button-Arrow" @click="startGame">
             <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
-            <view class="text"> 开&nbsp&nbsp&nbsp始 </view>
+            <view class="text"> 开&nbsp;&nbsp;&nbsp;始 </view>
           </view>
         </view>
       </view>
@@ -52,7 +52,7 @@ export default class Template extends Vue {
 
   get timeBetween() {
     if (!this.item.start) return "";
-    return this.moment(this.now.diff(this.item.start)).format("mm’ss");
+    return this.moment(this.now.diff(this.item.start)).format("mm:ss");
   }
 
   get type() {
