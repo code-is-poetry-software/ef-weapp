@@ -13,6 +13,7 @@ import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 import buttonBg from "../../static/image/button-mode.png";
 // @ts-ignore
 import buttonBgActive from "../../static/image/button-mode-active.png";
+import { storeStore } from "@/store/store";
 
 @Component
 export default class Template extends Vue {
@@ -24,7 +25,25 @@ export default class Template extends Vue {
 
   clearAmountOnNextChange = false;
 
+  get curStore() {
+    return storeStore.curStore;
+  }
+
   onClick() {
+    const { promptMessage } = this.curStore.projects.find(i => i.name == this.text) || {};
+    if (promptMessage) {
+      return uni.showModal({
+        title: "提醒",
+        content: promptMessage,
+        showCancel: false,
+        success: () => {
+          this.handleKeyboard();
+        }
+      });
+    }
+    this.handleKeyboard();
+  }
+  handleKeyboard() {
     this.show = true;
     if (this.amount) {
       this.clearAmountOnNextChange = true;
