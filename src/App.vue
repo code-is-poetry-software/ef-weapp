@@ -108,4 +108,7 @@ body
   background-color transparent
   &:after
     display none
+.u-size-default
+  height 100upx
+  line-height 100upx
 </style>

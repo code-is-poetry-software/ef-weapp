@@ -50,7 +50,7 @@
       </view>
     </view>
     <u-popup v-model="showShare" mode="bottom">
-      <u-button open-type="share" @click="share">确认分享</u-button>
+      <u-button class="main" type="primary" open-type="share" @click="share">确认分享</u-button>
     </u-popup>
   </view>
 </template>
@@ -272,4 +272,6 @@ export default class PaymentSuccess extends Vue {
       color white
       right 19upx
       top 5upx
+  u-button.main >>> button
+    height 100upx
 </style>
