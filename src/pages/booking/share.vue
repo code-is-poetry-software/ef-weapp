@@ -80,7 +80,7 @@ export default class BookingDetail extends Vue {
   }
 
   async handleBooking() {
-    uni.showLoading();
+    uni.showLoading({});
     const code = this.code;
     const res = await api.joinBooking({ code, preview: false });
 

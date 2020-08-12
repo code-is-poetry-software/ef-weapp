@@ -31,7 +31,7 @@ export default class Template extends Vue {
 
   onClick() {
     const { promptMessage } = this.curStore.projects.find(i => i.name == this.text) || {};
-    if (promptMessage) {
+    if (promptMessage && !this.show) {
       return uni.showModal({
         title: "提醒",
         content: promptMessage,

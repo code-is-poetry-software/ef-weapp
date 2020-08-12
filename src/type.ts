@@ -61,8 +61,8 @@ export interface Store {
     name: string;
     price: number;
     promptMessage: string;
+    waitingCourses?: number;
   }>;
-  waitingCourses?: number;
 }
 
 export interface Course {

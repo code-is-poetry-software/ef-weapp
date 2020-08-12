@@ -9,31 +9,10 @@
     </view>
     <view class="text-success">您已成功缴费锁定</view>
 
-    <view style="position: relative;">
-      <img style="width: 572upx; height: 368upx;" src="/static/image/img-share.png" mode="widthFix" />
-      <view class="qrcode">
-        <canvas v-show="!qrcodeUrl" canvas-id="qrcode" style="width: 150px; height: 150px;" />
-        <img v-show="qrcodeUrl" :src="qrcodeUrl" style="width: 150px; height: 150px;" mode="widthFix" />
-      </view>
-    </view>
-    <text class="text-remind" style="font-size: 23upx;">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
-    <view v-if="item">
-      <view style="margin-bottom: 72upx;" v-if="userTickets">
-        <view v-for="project in userTickets.projects" :key="project._id">
-          <booking-item :selectable="isOwner" :item="item" :project="project" :active="project.active" @click="seletProject(project)" />
-        </view>
-      </view>
-    </view>
-    <view v-if="isOwner" style="margin-top: 46upx;">
-      <view class="button-invite" @click="inviteFriend">
-        <img class="img" src="/static/image/button-invite.png" mode="widthFix" />
-        <view class="text"> 邀请好友 </view>
-      </view>
-    </view>
-    <view style="margin-top: 50upx;">
+    <view style="margin: 50upx 0;">
       <view class="button-course" v-for="(item, index) in course" :key="index">
         <img class="img" src="/static/image/button-rank1.png" style="height: 154upx;" mode="widthFix" />
-        <view class="status">{{ config.statusLabel.waiting }}</view>
+        <view class="status">{{ config.statusLabel[item.status] }}</view>
         <view class="info">
           <view class="flex items-center">
             <view style="font-size: 16upx;">项目:</view>
@@ -46,6 +25,28 @@
             <view style="font-size: 28upx; margin-left: 40upx;">{{ item.players.length }}人场</view>
           </view>
         </view>
+      </view>
+    </view>
+
+    <view style="position: relative;">
+      <img style="width: 572upx; height: 368upx;" src="/static/image/img-share.png" mode="widthFix" />
+      <view class="qrcode">
+        <canvas v-show="!qrcodeUrl" canvas-id="qrcode" style="width: 150px; height: 150px;" />
+        <img v-show="qrcodeUrl" :src="qrcodeUrl" style="width: 150px; height: 150px;" mode="widthFix" />
+      </view>
+    </view>
+    <text class="text-remind" style="font-size: 23upx;">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
+    <view v-if="item">
+      <view style="margin-bottom: 72upx;" v-if="userTickets">
+        <view v-for="project in userTickets.projects" :key="project._id">
+          <booking-item v-if="project.count > 0" :selectable="isOwner" :item="item" :project="project" :active="project.active" @click="seletProject(project)" />
+        </view>
+      </view>
+    </view>
+    <view v-if="isOwner" style="margin-top: 46upx;">
+      <view class="button-invite" @click="inviteFriend">
+        <img class="img" src="/static/image/button-invite.png" mode="widthFix" />
+        <view class="text"> 邀请好友 </view>
       </view>
     </view>
     <u-popup v-model="showShare" mode="bottom">
@@ -69,6 +70,7 @@ export default class PaymentSuccess extends Vue {
   showShare = false;
   course: Course[] = [];
   config = config;
+  id = null;
 
   get user() {
     return authStore.user;
@@ -90,6 +92,7 @@ export default class PaymentSuccess extends Vue {
   timer: any = null;
   onLoad(data) {
     if (data.id) {
+      this.id = data.id;
       this.loadCourse();
       this.loadBooking(data.id).then(data => {
         if (!data) return;
@@ -98,8 +101,9 @@ export default class PaymentSuccess extends Vue {
           this.makeQrcode({ text: ticket.code });
         }
       });
-      this.timer = setInterval(() => {
-        this.loadCourse();
+      this.timer = setInterval(async () => {
+        await Promise.all([this.loadBooking, this.loadCourse]);
+        this.checkBooking();
       }, 10000);
     }
   }
@@ -131,7 +135,17 @@ export default class PaymentSuccess extends Vue {
     });
   }
 
-  async loadBooking(id) {
+  checkTimer: any = null;
+  checkBooking() {
+    if (this.userTickets) {
+      const valid = this.userTickets.projects.every(i => i.count > 0);
+      if (!valid) {
+        uni.navigateBack({});
+      }
+    }
+  }
+
+  async loadBooking(id = this.id) {
     const res = await api.getItem({ type: "booking", id });
     if (res.data) {
       this.item = res.data;
@@ -152,10 +166,9 @@ export default class PaymentSuccess extends Vue {
   onShareAppMessage(res) {
     const that = this;
     const path = `/pages/booking/share?code=${this.code}`;
-    console.log(path);
 
     return {
-      title: "邀请你参加游戏",
+      title: `${this.user.name}邀请您一起潮玩`,
       path
     };
   }

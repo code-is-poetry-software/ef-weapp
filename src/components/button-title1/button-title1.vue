@@ -1,6 +1,6 @@
 <template>
   <view class="button-title" @click="$emit('click')">
-    <img class="img" src="/static/image/arrow-3.png" @click="uni.navigateBack()" mode="widthFix" />
+    <img class="img" src="/static/image/arrow-3.png" @click="uni.navigateBack({})" mode="widthFix" />
     <view class="text">{{ text }}</view>
   </view>
 </template>

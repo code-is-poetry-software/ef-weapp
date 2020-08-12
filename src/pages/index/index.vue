@@ -21,7 +21,7 @@
           <view v-for="ticket in booking.tickets" :key="ticket._id">
             <view v-if="ticket.player.id === user.id">
               <view v-for="project in ticket.projects" :key="project._id">
-                <booking-item :item="booking" :project="project" @click="goBookingDetail(booking)" />
+                <booking-item v-if="project.count > 0" :item="booking" :project="project" @click="goBookingDetail(booking)" />
               </view>
             </view>
           </view>
@@ -61,8 +61,13 @@ export default class Index extends Vue {
   }
 
   onLoad(data) {
-    storeStore.loadStore();
+    //轮询店铺
+    storeStore.loadStore().then(() => {
+      storeStore.pollingStore();
+    });
+    //登录
     this.wechatLogin().then(async () => {
+      //从首页调booking详情
       if (data.bookingId) {
         uni.navigateTo({ url: `/pages/booking/detail?id=${data.bookingId}` });
       }

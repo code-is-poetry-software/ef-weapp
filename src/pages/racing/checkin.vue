@@ -3,7 +3,7 @@
     <with-bg />
     <view style="margin-bottom: 72upx;" v-if="userTickets">
       <view v-for="project in userTickets.projects" :key="project._id">
-        <booking-item selectable :item="booking" :project="project" :active="project.name == curProject" @click="seletProject(project)" :watingProjects="_.get(user, 'store.projects')" />
+        <booking-item selectable :item="booking" :project="project" :active="project.name == curProject" @click="seletProject(project)" />
       </view>
     </view>
     <view class="select-bar">
@@ -25,6 +25,7 @@ import { authStore } from "../../store/auth";
 import { Course, Booking } from "../../type";
 import { Moment } from "moment";
 import { moment } from "../../utils/moment";
+import { storeStore } from "@/store/store";
 
 @Component
 export default class Template extends Vue {
@@ -46,6 +47,10 @@ export default class Template extends Vue {
     return this.user.store?.projects.map(i => ({ label: i.name, value: i.name }));
   }
 
+  get storeProjects() {
+    return storeStore.projects;
+  }
+
   get userTickets() {
     return this.booking?.tickets[0];
   }
@@ -58,7 +63,7 @@ export default class Template extends Vue {
     this.curProject = project.name;
     this.list = [];
     this.loadData();
-    authStore.loadManagerStore();
+    storeStore.loadStore();
   }
 
   onLoad(data) {
@@ -66,7 +71,7 @@ export default class Template extends Vue {
       if (data.code) {
         this.code = data.code;
         this.loadBooking();
-        authStore.loadManagerStore();
+        storeStore.loadStore();
       }
     });
   }

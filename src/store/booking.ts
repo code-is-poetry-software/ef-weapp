@@ -31,7 +31,7 @@ class BookingStore extends VuexModule {
 
   handlePayment(paymentData) {
     return new Promise((resolve, reject) => {
-      uni.showLoading();
+      uni.showLoading({});
       uni.requestPayment({
         signType: "MD5",
         ...paymentData,

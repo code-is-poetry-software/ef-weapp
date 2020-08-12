@@ -7,6 +7,7 @@ import { Store } from "../type";
 class StoreStore extends VuexModule {
   stores: Array<Store> = [];
   curStoreId = 0;
+  projects: { [key: string]: Store["projects"][0] } = {};
 
   get curStore() {
     return this.stores[this.curStoreId];
@@ -18,10 +19,27 @@ class StoreStore extends VuexModule {
     this.curStoreId = curStoreId;
   }
 
+  loadStoreTimer: any = null;
+
+  @Action
+  pollingStore() {
+    if (this.loadStoreTimer) clearInterval(this.loadStoreTimer);
+    setInterval(async () => {
+      this.loadStore();
+    }, 10000);
+  }
+
   @Action
   async loadStore() {
     const res = await api.getList({ type: "store", data: { limit: 10, skip: 0, order: "name" } });
     this.stores = res.data;
+    const projects = {};
+    this.stores.forEach(i => {
+      i.projects.forEach(project => {
+        projects[project.name] = project;
+      });
+    });
+    this.projects = { ...projects };
   }
 }
 

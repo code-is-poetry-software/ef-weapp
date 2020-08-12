@@ -60,7 +60,7 @@ class AuthStore extends VuexModule {
   wechatGetUserInfo() {
     return new Promise((resolve, reject) => {
       const provider = "weixin";
-      uni.showLoading();
+      uni.showLoading({});
       uni.getUserInfo({
         provider,
         lang: "zh_CN",
@@ -95,7 +95,7 @@ class AuthStore extends VuexModule {
   wechatLogin() {
     return new Promise(async (resolve, reject) => {
       const provider = "weixin";
-      uni.showLoading();
+      uni.showLoading({});
       uni.login({
         provider,
         success: async loginRes => {
