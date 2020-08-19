@@ -111,4 +111,29 @@ body
 .u-size-default
   height 100upx
   line-height 100upx
+.button-course
+  position relative
+  display inline-block
+  align-items center
+  justify-content center
+  text-align left
+  .img
+    width 607upx
+    height 209upx
+  .info
+    position absolute
+    left 20upx
+    top 32upx
+    font-size 28upx
+    font-family Alibaba PuHuiTi
+    font-weight bold
+    letter-spacing 2px
+    color var(--text-primary)
+    z-index 1
+  .status
+    position absolute
+    font-size 20upx
+    color white
+    right 19upx
+    top 5upx
 </style>

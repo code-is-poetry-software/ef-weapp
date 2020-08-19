@@ -21,8 +21,9 @@
           <view class="flex items-center" style="margin-top: 20upx;">
             <view style="font-size: 16upx;">场次:</view>
             <view style="font-size: 28upx;">{{ item.date }}</view>
-            <view style="font-size: 28upx; margin-left: 20upx;">第{{ item.sequence }}场</view>
-            <view style="font-size: 28upx; margin-left: 40upx;">{{ item.players.length }}人场</view>
+            <view style="font-size: 28upx; margin-left: 20upx;">#{{ item.sequence }}</view>
+            <view style="font-size: 28upx; margin-left: 40upx;">{{ item.players.length }}玩家</view>
+            <view style="font-size: 28upx; margin-left: 40upx;" v-if="item.status == 'waiting'">等待{{ WaitingCourses(item.project) - 1 }}场</view>
           </view>
         </view>
       </view>
@@ -62,6 +63,7 @@ import { Booking, Course } from "../../type";
 import uQRCode from "../../../common/uqrcode";
 import { authStore } from "../../store/auth";
 import { config } from "../../../config";
+import { storeStore } from "../../store/store";
 
 @Component
 export default class PaymentSuccess extends Vue {
@@ -74,6 +76,13 @@ export default class PaymentSuccess extends Vue {
 
   get user() {
     return authStore.user;
+  }
+
+  get storeProjects() {
+    return storeStore.projects;
+  }
+  WaitingCourses(project) {
+    return this.storeProjects[project]?.waitingCourses || 0;
   }
 
   get userTickets() {
@@ -247,31 +256,6 @@ export default class PaymentSuccess extends Vue {
       letter-spacing 2px
       color white
       z-index 1
-  .button-course
-    position relative
-    display inline-block
-    align-items center
-    justify-content center
-    text-align left
-    .img
-      width 607upx
-      height 209upx
-    .info
-      position absolute
-      left 20upx
-      top 32upx
-      font-size 28upx
-      font-family Alibaba PuHuiTi
-      font-weight bold
-      letter-spacing 2px
-      color var(--text-primary)
-      z-index 1
-    .status
-      position absolute
-      font-size 20upx
-      color white
-      right 19upx
-      top 5upx
   u-button.main >>> button
     height 100upx
 </style>

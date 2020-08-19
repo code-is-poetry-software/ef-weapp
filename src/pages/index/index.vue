@@ -16,6 +16,27 @@
       <view style="margin-bottom: 40upx; margin-top: 20upx;" @click="e => goCreateBooking({ url: '/pages/game/uav', name: 'EF安亭潮玩公园' })">
         <img style="width: 600upx; height: 188upx;" src="/static/image/button-uav.png" mode="widthFix" />
       </view>
+
+      <view style="margin: 50upx 0;">
+        <view class="button-course" v-for="(item, index) in course" :key="index">
+          <img class="img" src="/static/image/button-rank1.png" style="height: 154upx;" mode="widthFix" />
+          <view class="status">{{ config.statusLabel[item.status] }}</view>
+          <view class="info">
+            <view class="flex items-center">
+              <view style="font-size: 16upx;">项目:</view>
+              <view style="font-size: 28upx;">{{ item.project }} </view>
+            </view>
+            <view class="flex items-center" style="margin-top: 20upx;">
+              <view style="font-size: 16upx;">场次:</view>
+              <view style="font-size: 28upx;">{{ item.date }}</view>
+              <view style="font-size: 28upx; margin-left: 20upx;">#{{ item.sequence }}</view>
+              <view style="font-size: 28upx; margin-left: 40upx;">{{ item.players.length }}玩家</view>
+              <view style="font-size: 28upx; margin-left: 40upx;" v-if="item.status == 'waiting'">等待{{ WaitingCourses(item.project) - 1 }}场</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
       <view style="margin-bottom: 20upx;">
         <view v-for="booking in userBookings" :key="booking.id">
           <view v-for="ticket in booking.tickets" :key="ticket._id">
@@ -46,9 +67,19 @@ import { utils } from "../../utils";
 import { storeStore } from "../../store/store";
 import { bookingStore } from "../../store/booking";
 import * as api from "../../../common/vmeitime-http";
+import { Course } from "../../type";
 
 @Component
 export default class Index extends Vue {
+  course: Course[] = [];
+
+  get storeProjects() {
+    return storeStore.projects;
+  }
+  WaitingCourses(project) {
+    return this.storeProjects[project]?.waitingCourses || 0;
+  }
+
   get token() {
     return authStore.token;
   }
@@ -71,13 +102,15 @@ export default class Index extends Vue {
       if (data.bookingId) {
         uni.navigateTo({ url: `/pages/booking/detail?id=${data.bookingId}` });
       }
-      await bookingStore.loadUserBooking();
+      await Promise.all([bookingStore.loadUserBooking(), this.loadCourse()]);
+      ;
     });
   }
 
   onShow() {
     if (!this.token) return;
     bookingStore.loadUserBooking();
+    this.loadCourse();
   }
 
   onShareAppMessage(res) {
@@ -92,6 +125,13 @@ export default class Index extends Vue {
       await authStore.wechatLogin();
     } catch (err) {
       utils.helper.errorHandler(err);
+    }
+  }
+
+  async loadCourse() {
+    const res = await api.getList({ type: "course", data: { player: this.user.id, status: "checking,waiting,started" } });
+    if (res.data) {
+      this.course = res.data;
     }
   }
 

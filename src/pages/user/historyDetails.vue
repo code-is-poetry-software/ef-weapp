@@ -1,20 +1,20 @@
 <template>
   <view class="historyDetails page">
     <with-bg />
-    <view style="padding:140upx 62upx 113upx 58upx" class="flex justify-between align-center">
+    <view style="padding: 140upx 62upx 113upx 58upx;" class="flex justify-between align-center">
       <button-title1 text="潮玩记录" />
       <icon-details />
     </view>
-    <view style="margin: 0 auto 18upx;text-align:center">
+    <view style="margin: 0 auto 18upx; text-align: center;">
       <view class="tabs">
         <button-tab styleClass="font-size: 24rpx;left:22rpx;top: 11rpx;" :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
-        <img style="width: 63upx;margin-left: 20upx" src="/static/image/img-dot1.png" mode="widthFix" />
+        <img style="width: 63upx; margin-left: 20upx;" src="/static/image/img-dot1.png" mode="widthFix" />
       </view>
     </view>
     <view class="list">
       <view class="list-item" v-for="item in list" :key="item">
         <view style="margin-bottom: 14upx;">
-          <button-rank3 :item="item" type="2" />
+          <button-rank3 :item="item" type="2" @click="goDetail(item)" />
         </view>
       </view>
     </view>
@@ -58,6 +58,8 @@ export default class Template extends Vue {
     }
     this.loading = false;
   }
+
+  goDetail(item) {}
 
   selectTab(item) {
     this.list = [];

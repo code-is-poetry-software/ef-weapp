@@ -92,8 +92,8 @@ export default class Template extends Vue {
 .title
   font-size 20upx
 u-cell-item >>> .u-cell
-  height: 120upx;
-  align-items: center;
+  height 120upx
+  align-items center
   .u-cell_title
     font-size 30upx
 u-button.main >>> button

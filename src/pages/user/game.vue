@@ -7,7 +7,7 @@
     </view>
     <view class="tabs" style="margin: 0 0 18upx 0;">
       <button-tab1 :active="item.value == tab.curTab" v-for="item in tab.tabs" :key="item.value" @click="selectTab(item)" :text="item.label" />
-      <img style="width: 63upx; margin-left: 20upx;height: 9upx;" src="/static/image/img-dot1.png" mode="widthFix" />
+      <img style="width: 63upx; margin-left: 20upx; height: 9upx;" src="/static/image/img-dot1.png" mode="widthFix" />
     </view>
     <view class="list">
       <view class="list-item" v-for="booking in list" :key="booking.id">
@@ -73,11 +73,13 @@ export default class Template extends Vue {
 
   async goBookingDetail(item) {
     const payArgs = this._.get(item, "payments.0.payArgs");
-
+    console.log(item);
     if (payArgs) {
       await bookingStore.handlePayment(payArgs);
     }
-    uni.navigateTo({ url: `/pages/booking/detail?id=${item.id}` });
+    if (item.status == "booked") {
+      uni.navigateTo({ url: `/pages/booking/detail?id=${item.id}` });
+    }
   }
 }
 </script>
