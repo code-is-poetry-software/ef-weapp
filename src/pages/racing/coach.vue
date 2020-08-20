@@ -12,14 +12,14 @@
       </view>
 
       <view v-if="item.start && !item.end">
-        <view style="text-align: center; font-size: 100upx; color: #0090d9;">{{ status === "reset" ? "00’00" : timeBetween }}</view>
+        <view class="time-between">{{ status === "reset" ? "00:00" : timeBetween }}</view>
         <view style="margin-top: 85upx;">
           <button-time @click="reset" />
         </view>
         <view style="margin-top: 85upx;" v-if="status == 'init'">
           <view class="button-Arrow" @click="endGame">
             <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
-            <view class="text"> 结&nbsp&nbsp&nbsp束 </view>
+            <view class="text"> 结&nbsp;&nbsp;&nbsp;束 </view>
           </view>
         </view>
       </view>
@@ -27,7 +27,7 @@
         <view style="margin-top: 105upx;">
           <view class="button-Arrow" @click="startGame">
             <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
-            <view class="text"> 开&nbsp&nbsp&nbsp始 </view>
+            <view class="text"> 开&nbsp;&nbsp;&nbsp;始 </view>
           </view>
         </view>
       </view>
@@ -59,7 +59,7 @@ export default class Template extends Vue {
   get timeBetween() {
     if (!this.item?.checkpoints?.length) return "";
     const latestCheckpoint = this.item.checkpoints[this.item.checkpoints.length - 1];
-    return this.moment(this.now.diff(latestCheckpoint)).format("mm’ss");
+    return this.moment(this.now.diff(latestCheckpoint)).format("mm:ss");
   }
 
   get type() {
@@ -90,9 +90,8 @@ export default class Template extends Vue {
     this.status = "reset";
   }
 
-  onShow(){
-        this.loadItem();
-
+  onShow() {
+    this.loadItem();
   }
 
   goUserDetail(user) {
@@ -197,4 +196,9 @@ export default class Template extends Vue {
       position absolute
       color White
       font-size 100upx
+  .time-between
+    text-align: center;
+    font-size: 100upx;
+    color: #0090d9;
+    font-family: Gotham-Bold, san-serif;
 </style>

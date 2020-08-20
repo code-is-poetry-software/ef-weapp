@@ -6,7 +6,7 @@
     <view class="user-share column-center">
       <button-avatar :user="user" />
       <view class="share-text">
-        邀请您一起加入潮玩队伍！
+        邀请您一起潮玩！
       </view>
     </view>
     <view v-if="booking">
