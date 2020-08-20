@@ -10,16 +10,20 @@
           </u-grid-item>
         </u-grid>
       </view>
+
       <view v-if="item.start && !item.end">
-        <view style="text-align: center; font-size: 100upx; color: #0090d9;">{{ timeBetween }}</view>
-        <view style="margin-top: 155upx;">
+        <view style="text-align: center; font-size: 100upx; color: #0090d9;">{{ status === "reset" ? "00’00" : timeBetween }}</view>
+        <view style="margin-top: 85upx;">
+          <button-time @click="reset" />
+        </view>
+        <view style="margin-top: 85upx;" v-if="status == 'init'">
           <view class="button-Arrow" @click="endGame">
             <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
             <view class="text"> 结&nbsp&nbsp&nbsp束 </view>
           </view>
         </view>
       </view>
-      <view v-else>
+      <view v-if="!item.start || status == 'reset'">
         <view style="margin-top: 105upx;">
           <view class="button-Arrow" @click="startGame">
             <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
@@ -50,9 +54,12 @@ export default class Template extends Vue {
 
   now: Moment = this.moment();
 
+  status: "init" | "reset" = "init";
+
   get timeBetween() {
-    if (!this.item.start) return "";
-    return this.moment(this.now.diff(this.item.start)).format("mm’ss");
+    if (!this.item?.checkpoints?.length) return "";
+    const latestCheckpoint = this.item.checkpoints[this.item.checkpoints.length-1]
+    return this.moment(this.now.diff(latestCheckpoint)).format("mm’ss");
   }
 
   get type() {
@@ -79,36 +86,60 @@ export default class Template extends Vue {
     });
   }
 
+  reset() {
+    this.status = "reset";
+  }
+
   goUserDetail(item) {
     uni.navigateTo({ url: `/pages/racing/user?id=${item.id}&equipmentNum=${item.equipmentNum}` });
   }
 
   async startGame() {
-    const res = await api.handleItem({
-      type: "course",
-      id: this.item.id,
-      method: "PUT",
-      data: {
-        startNow: true
+    uni.showModal({
+      title: "提醒",
+      content: this.item.start ? "确认创建检查点" : "确认开始",
+      showCancel: false,
+      success: async () => {
+        const res = await api.handleItem({
+          type: "course",
+          id: this.item.id,
+          method: "PUT",
+          data: this.item.start
+            ? {
+                checkpoint: true
+              }
+            : {
+                startNow: true,
+                checkpoint: true
+              }
+        });
+        this.status = "init"
+        if (res.data) {
+          this.item = res.data;
+        }
+        this.checkTime();
       }
     });
-    if (res.data) {
-      this.item = res.data;
-    }
-    this.checkTime();
   }
 
   async endGame() {
-    const res = await api.handleItem({
-      type: "course",
-      id: this.item.id,
-      method: "PUT",
-      data: {
-        endNow: true
+    uni.showModal({
+      title: "提醒",
+      content: "确认结束",
+      showCancel: false,
+      success: async () => {
+        const res = await api.handleItem({
+          type: "course",
+          id: this.item.id,
+          method: "PUT",
+          data: {
+            endNow: true
+          }
+        });
+        this.item = {};
+        this.loadItem();
       }
     });
-    this.item = {};
-    this.loadItem();
   }
 
   checkTimeInterval: any;
