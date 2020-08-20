@@ -28,10 +28,13 @@
             </view>
             <view class="flex items-center" style="margin-top: 20upx;">
               <view style="font-size: 16upx;">场次:</view>
-              <view style="font-size: 28upx;">{{ item.date }}</view>
+              <view style="font-size: 28upx;">{{ item.date.substr(5) }}</view>
               <view style="font-size: 28upx; margin-left: 20upx;">#{{ item.sequence }}</view>
               <view style="font-size: 28upx; margin-left: 40upx;">{{ item.players.length }}玩家</view>
-              <view style="font-size: 28upx; margin-left: 40upx;" v-if="item.status == 'waiting'">等待{{ WaitingCourses(item.project) - 1 }}场</view>
+              <view style="font-size: 28upx; margin-left: 40upx;" v-if="item.status == 'waiting'">
+                <text v-if="WaitingCourses(item.project) > 1">等待{{ WaitingCourses(item.project) - 1 }}场</text>
+                <text v-else>GO!</text>
+              </view>
             </view>
           </view>
         </view>
@@ -70,12 +73,10 @@ import * as api from "../../../common/vmeitime-http";
 import { Course } from "../../type";
 import { config } from "../../../config";
 
-
 @Component
 export default class Index extends Vue {
   course: Course[] = [];
   config = config;
-
 
   get storeProjects() {
     return storeStore.projects;
@@ -107,7 +108,6 @@ export default class Index extends Vue {
         uni.navigateTo({ url: `/pages/booking/detail?id=${data.bookingId}` });
       }
       await Promise.all([bookingStore.loadUserBooking(), this.loadCourse()]);
-      ;
     });
   }
 
