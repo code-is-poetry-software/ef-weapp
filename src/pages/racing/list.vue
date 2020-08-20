@@ -67,6 +67,7 @@ export default class Template extends Vue {
     uni.scanCode({
       success: async data => {
         const code = data.result;
+        console.log(code);
         uni.navigateTo({ url: `/pages/racing/checkin?code=${code}` });
       }
     });

@@ -6,10 +6,15 @@
         <booking-item selectable :item="booking" :project="project" :active="project.name == curProject" @click="seletProject(project)" />
       </view>
     </view>
-    <view class="select-bar">
+    <!-- <view class="select-bar">
       <u-radio-group v-model="form.sequence" @change="radioGroupChange">
         <u-radio @change="radioChange" v-for="(item, index) in list" :key="index" :name="item.sequence"> #{{ item.sequence }} / {{ item.players.length }}人 </u-radio>
       </u-radio-group>
+    </view> -->
+    <view>
+      <view v-for="(item, index) in list" :key="index" style="margin: 20upx;">
+        <u-button throttle-time="50" :type="form.sequence == item.sequence ? 'primary' : 'default'" @click="radioChange(item)">#{{ item.sequence }} / {{ item.players.length }}人</u-button>
+      </view>
     </view>
 
     <view style="position: absolute; bottom:0; left:0; z-index; 10;width: 100%">
@@ -82,10 +87,8 @@ export default class Template extends Vue {
       this.booking = res.data;
     }
   }
-  radioChange(e) {}
-
-  radioGroupChange(e) {
-    this.form.sequence = e;
+  radioChange(e) {
+    this.form.sequence = e.sequence;
   }
 
   goUserDetail(item) {
