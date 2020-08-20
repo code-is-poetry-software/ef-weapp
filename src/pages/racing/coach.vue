@@ -87,7 +87,14 @@ export default class Template extends Vue {
   }
 
   reset() {
-    this.status = "reset";
+    uni.showModal({
+      title: "提醒",
+      content: "确认重置",
+      success: async e => {
+        if (!e.confirm) return;
+        this.status = "reset";
+      }
+    });
   }
 
   onShow() {
@@ -101,8 +108,8 @@ export default class Template extends Vue {
     uni.showModal({
       title: "提醒",
       content: this.item.start ? "确认创建检查点" : "确认开始",
-      showCancel: false,
-      success: async () => {
+      success: async e => {
+        if (!e.confirm) return;
         const res = await api.handleItem({
           type: "course",
           id: this.item.id,
@@ -118,7 +125,7 @@ export default class Template extends Vue {
         });
         this.status = "init";
         if (res.data) {
-          this.item = res.data;
+          this.item = { ...res.data, checkpoints: [this.moment().format("YYYY-MM-DD hh:mm:ss")] };
         }
         this.checkTime();
       }
@@ -129,8 +136,8 @@ export default class Template extends Vue {
     uni.showModal({
       title: "提醒",
       content: "确认结束",
-      showCancel: false,
-      success: async () => {
+      success: async e => {
+        if (!e.confirm) return;
         const res = await api.handleItem({
           type: "course",
           id: this.item.id,
