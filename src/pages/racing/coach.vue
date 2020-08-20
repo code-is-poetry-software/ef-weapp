@@ -5,8 +5,8 @@
       <button-pattern-switcher :activeItem.sync="item.project" :items="projects" :disabled="type === 'detail'" />
       <view style="margin: 80upx;" v-if="item.players">
         <u-grid :col="3" :border="false">
-          <u-grid-item v-for="item in item.players" :key="item">
-            <button-avatar2 type="small" :item="item" @click="goUserDetail(item)" />
+          <u-grid-item v-for="user in item.players" :key="user.id">
+            <button-avatar2 type="small" :item="user" @click="goUserDetail(user)" />
           </u-grid-item>
         </u-grid>
       </view>
@@ -58,7 +58,7 @@ export default class Template extends Vue {
 
   get timeBetween() {
     if (!this.item?.checkpoints?.length) return "";
-    const latestCheckpoint = this.item.checkpoints[this.item.checkpoints.length-1]
+    const latestCheckpoint = this.item.checkpoints[this.item.checkpoints.length - 1];
     return this.moment(this.now.diff(latestCheckpoint)).format("mm’ss");
   }
 
@@ -90,10 +90,14 @@ export default class Template extends Vue {
     this.status = "reset";
   }
 
-  goUserDetail(item) {
-    uni.navigateTo({ url: `/pages/racing/user?id=${item.id}&equipmentNum=${item.equipmentNum}` });
+  onShow(){
+        this.loadItem();
+
   }
 
+  goUserDetail(user) {
+    uni.navigateTo({ url: `/pages/racing/user?id=${user.id}&equipmentNum=${user.equipmentNum}&project=${this.item.project}&courseId=${this.item.id}` });
+  }
   async startGame() {
     uni.showModal({
       title: "提醒",
@@ -113,7 +117,7 @@ export default class Template extends Vue {
                 checkpoint: true
               }
         });
-        this.status = "init"
+        this.status = "init";
         if (res.data) {
           this.item = res.data;
         }

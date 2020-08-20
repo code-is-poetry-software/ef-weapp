@@ -60,6 +60,7 @@ export interface Store {
   projects: Array<{
     name: string;
     price: number;
+    equipments: { num: string }[];
     promptMessage: string;
     waitingCourses?: number;
   }>;

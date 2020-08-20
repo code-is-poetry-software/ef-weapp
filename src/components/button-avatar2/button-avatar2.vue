@@ -21,7 +21,8 @@ export default class Template extends Vue {
 
   get name() {
     if (this.item.equipmentNum) {
-      return nzhcn.encodeS(this.item.equipmentNum) + "号无人机";
+      return this.item.equipmentNum
+      // return nzhcn.encodeS(this.item.equipmentNum) + "号无人机";
     }
     return this.item.name;
   }

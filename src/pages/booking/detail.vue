@@ -7,7 +7,7 @@
     <view style="margin-bottom: 72upx;">
       <img style="width: 128upx; height: 128upx;" src="/static/image/img3.png" mode="widthFix" />
     </view>
-    <view class="text-success">您已成功缴费锁定</view>
+    <view class="text-success" v-if="course.length">您已核销成功</view>
 
     <view style="margin: 50upx 0;">
       <view class="button-course" v-for="(item, index) in course" :key="index">

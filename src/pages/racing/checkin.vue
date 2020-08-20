@@ -91,10 +91,6 @@ export default class Template extends Vue {
     this.form.sequence = e.sequence;
   }
 
-  goUserDetail(item) {
-    uni.navigateTo({ url: `/pages/racing/user?id=${item.id}&equipmentNum=${item.equipmentNum}` });
-  }
-
   async loadData() {
     const res = await api.getList({
       type: "course",
