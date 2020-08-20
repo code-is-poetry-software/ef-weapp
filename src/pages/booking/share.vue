@@ -1,5 +1,7 @@
 <template>
   <view class="share column-center">
+    <get-phonenumber />
+
     <view>
       <img class="icon-user" src="/static/image/icon-user.png" @click="navigateTo({ url: '/pages/user/index' })" mode="widthFix" />
     </view>
@@ -80,6 +82,7 @@ export default class BookingDetail extends Vue {
   }
 
   async handleBooking() {
+    await utils.hooks.checkMobile();
     uni.showLoading({});
     const code = this.code;
     const res = await api.joinBooking({ code, preview: false });
