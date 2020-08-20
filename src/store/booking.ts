@@ -25,7 +25,7 @@ class BookingStore extends VuexModule {
       await this.handlePayment(payArgs);
     }
     if (res.data.id) {
-      uni.navigateTo({ url: `/pages/booking/detail?id=${res.data.id}` });
+      uni.redirectTo({ url: `/pages/booking/detail?id=${res.data.id}` });
     }
   }
 
