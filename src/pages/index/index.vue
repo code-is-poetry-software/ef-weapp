@@ -68,10 +68,14 @@ import { storeStore } from "../../store/store";
 import { bookingStore } from "../../store/booking";
 import * as api from "../../../common/vmeitime-http";
 import { Course } from "../../type";
+import { config } from "../../../config";
+
 
 @Component
 export default class Index extends Vue {
   course: Course[] = [];
+  config = config;
+
 
   get storeProjects() {
     return storeStore.projects;
