@@ -111,7 +111,7 @@ export default class PaymentSuccess extends Vue {
         }
       });
       this.timer = setInterval(async () => {
-        await Promise.all([this.loadBooking, this.loadCourse]);
+        await Promise.all([this.loadBooking(), this.loadCourse()]);
         this.checkBooking();
       }, 10000);
     }
