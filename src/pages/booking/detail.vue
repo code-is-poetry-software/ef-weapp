@@ -7,7 +7,7 @@
     <view style="margin-bottom: 72upx;">
       <img style="width: 128upx; height: 128upx;" src="/static/image/img3.png" mode="widthFix" />
     </view>
-    <view class="text-success">{{course.length ? "您已核销成功" :"您已成功缴费锁定"}}</view>
+    <view class="text-success">{{ course.length ? "您已核销成功" : "您已成功缴费锁定" }}</view>
 
     <view style="margin: 50upx 0;">
       <view class="button-course" v-for="(item, index) in course" :key="index">
@@ -150,8 +150,8 @@ export default class PaymentSuccess extends Vue {
   checkTimer: any = null;
   checkBooking() {
     if (this.userTickets) {
-      const valid = this.userTickets.projects.every(i => i.count > 0);
-      if (!valid) {
+      const empty = this.userTickets.projects.every(i => i.count === 0);
+      if (empty) {
         uni.navigateBack({});
       }
     }
