@@ -3,7 +3,7 @@
     <with-bg />
     <view style="margin-bottom: 72upx;" v-if="userTickets">
       <view v-for="project in userTickets.projects" :key="project._id">
-        <booking-item selectable :item="booking" :project="project" :active="project.name == curProject" @click="seletProject(project)" />
+        <booking-item selectable :item="booking" :project="project" :active="project.name == curProject" @click="selectProject(project)" />
       </view>
     </view>
     <!-- <view class="select-bar">
@@ -64,7 +64,7 @@ export default class Template extends Vue {
     return this.list.find(i => i.sequence == this.form.sequence);
   }
 
-  seletProject(project) {
+  selectProject(project) {
     this.curProject = project.name;
     this.list = [];
     this.loadData();
@@ -128,4 +128,5 @@ export default class Template extends Vue {
     padding 50upx
 u-button.main >>> button
   height 100upx
+  border-radius 0
 </style>
