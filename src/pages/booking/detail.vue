@@ -43,7 +43,7 @@
     <view v-if="item">
       <view style="margin-bottom: 72upx;" v-if="userTickets">
         <view v-for="project in userTickets.projects" :key="project._id">
-          <booking-item v-if="project.count > 0" :selectable="isOwner" :item="item" :project="project" :active="project.active" @click="seletProject(project)" />
+          <booking-item v-if="project.count > 0" :selectable="isOwner" :item="item" :project="project" :active="invitationProjectIds.includes(project._id)" @click="selectProject(project)" />
         </view>
       </view>
     </view>
@@ -76,6 +76,7 @@ export default class PaymentSuccess extends Vue {
   course: Course[] = [];
   config = config;
   id = null;
+  invitationProjectIds: string[] = [];
 
   get user() {
     return authStore.user;
@@ -99,7 +100,7 @@ export default class PaymentSuccess extends Vue {
 
   get invitationProjects() {
     if (!this.userTickets) return [];
-    return this.userTickets.projects.filter(i => i.active).map(i => ({ name: i.name, count: 1 }));
+    return this.userTickets.projects.filter(i => this.invitationProjectIds.includes(i._id)).map(i => ({ name: i.name, count: 1 }));
   }
   timer: any = null;
   onLoad(data) {
@@ -124,8 +125,12 @@ export default class PaymentSuccess extends Vue {
     clearInterval(this.timer);
   }
 
-  seletProject(project) {
-    this.$set(project, "active", !project.active);
+  selectProject(project) {
+    if (this.invitationProjectIds.includes(project._id)) {
+      this.invitationProjectIds = this.invitationProjectIds.filter(id => id !== project.id);
+    } else {
+      this.invitationProjectIds.push(project._id);
+    }
   }
 
   qrcodeUrl = "";
@@ -161,9 +166,6 @@ export default class PaymentSuccess extends Vue {
     const res = await api.getItem({ type: "booking", id });
     if (res.data) {
       this.item = res.data;
-      if (this.item) {
-        this.item.projects = this.item.projects.map(i => ({ ...i, active: false }));
-      }
       return this.item;
     }
   }
