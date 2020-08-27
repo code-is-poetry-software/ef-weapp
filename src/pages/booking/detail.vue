@@ -263,4 +263,5 @@ export default class PaymentSuccess extends Vue {
       z-index 1
   u-button.main >>> button
     height 100upx
+    border-radius 0
 </style>
