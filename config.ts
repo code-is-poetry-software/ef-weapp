@@ -10,5 +10,5 @@ export const config = {
     started: "已开始",
     ended: "已结束"
   },
-  gameExternalUrl: "https://www.apex-timing.com.cn/gokarts/leaderboards.php?center=224"
+  gameExternalUrl: "https://timing.electricformula.cn/gokarts/leaderboards.php?center=224"
 };
