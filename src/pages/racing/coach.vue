@@ -1,7 +1,7 @@
 <template>
   <view class="checkin page">
     <with-bg />
-    <view v-if="item.id">
+    <view v-if="item.id && item.players.length">
       <button-pattern-switcher :activeItem.sync="item.project" :items="projects" :disabled="type === 'detail'" />
       <view style="margin: 80upx;" v-if="item.players">
         <u-grid :col="3" :border="false">
@@ -162,7 +162,7 @@ export default class Template extends Vue {
   }
 
   async loadItem() {
-    const res = await api.getList({ type: "course", data: { status: "waiting,started", limit: 1, order: "sequence" } });
+    const res = await api.getList({ type: "course", data: { status: "checking,waiting,started", limit: 1, order: "sequence" } });
     this.item = {};
     if (res.data[0]) {
       this.item = res.data[0];
