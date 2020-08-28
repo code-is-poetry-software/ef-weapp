@@ -9,5 +9,6 @@ export const config = {
     checking: "检票中",
     started: "已开始",
     ended: "已结束"
-  }
+  },
+  gameExternalUrl: "https://www.apex-timing.com.cn/gokarts/leaderboards.php?center=224"
 };
