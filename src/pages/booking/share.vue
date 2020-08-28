@@ -12,17 +12,19 @@
       </view>
     </view>
     <view v-if="booking">
-      <view class="share-info" v-for="item in projects" :key="item._id">
+      <view class="share-info">
         <img class="absolute" style="width: 100%; z-index: -1;" src="/static/image/view1.png" mode="widthFix" />
         <view class="text" style="display: flex;">
           <text class="field-text">
             场次:
           </text>
-          <text v-if="booking" style="font-size: 21px; margin-top: -10upx;"> {{ booking.date }}\n{{ booking.checkInAt }} </text>
+          <text v-if="booking" style="font-size: 21px; margin-top: -10upx;"> {{ moment(booking.date).format("MM-DD") }}&nbsp;{{ booking.checkInAt }} </text>
         </view>
         <view class="text" style="margin-top: 21upx;">
-          <span class="field-text">项目:</span>
-          <span class="field-text2">{{ item.name }}</span>
+          <view v-for="item in projects" :key="item._id">
+            <text class="field-text">项目:</text>
+            <text class="field-text2">{{ item.name }}</text>
+          </view>
         </view>
       </view>
     </view>
@@ -131,9 +133,9 @@ export default class BookingDetail extends Vue {
         font-size 20upx
         margin-right 18upx
   .field-text2
-    position absolute
-    font-size 51upx
-    top 173upx
+    // position absolute
+    font-size 31upx
+    // top 173upx
   .remind
     margin-top 210upx
     text-align center

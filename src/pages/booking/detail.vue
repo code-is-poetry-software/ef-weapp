@@ -180,7 +180,6 @@ export default class PaymentSuccess extends Vue {
   onShareAppMessage(res) {
     const that = this;
     const path = `/pages/booking/share?code=${this.code}`;
-
     return {
       title: `${this.user.name}邀请您一起潮玩`,
       path
@@ -203,6 +202,7 @@ export default class PaymentSuccess extends Vue {
     if (!res.data.tickets) return;
     const { code } = this._.last(res.data.tickets) as any;
     this.code = code;
+    console.log(this.code);
     this.showShare = true;
   }
 }
