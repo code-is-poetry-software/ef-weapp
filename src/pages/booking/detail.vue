@@ -35,8 +35,7 @@
     <view style="position: relative;">
       <img style="width: 572upx; height: 368upx;" src="/static/image/img-share.png" mode="widthFix" />
       <view class="qrcode">
-        <canvas v-show="!qrcodeUrl" canvas-id="qrcode" style="width: 150px; height: 150px;" />
-        <img v-show="qrcodeUrl" :src="qrcodeUrl" style="width: 150px; height: 150px;" mode="widthFix" />
+        <img v-show="qrcodeUrl" :src="qrcodeUrl" style="width: 200px; height: 200px;" mode="widthFix" />
       </view>
     </view>
     <text class="text-remind" style="font-size: 23upx;">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
@@ -63,7 +62,6 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import * as api from "../../../common/vmeitime-http";
 import { Booking, Course } from "../../type";
-import uQRCode from "../../../common/uqrcode";
 import { authStore } from "../../store/auth";
 import { config } from "../../../config";
 import { storeStore } from "../../store/store";
@@ -111,7 +109,7 @@ export default class PaymentSuccess extends Vue {
         if (!data) return;
         const ticket = data.tickets.find(i => i.player?.id === this.user.id);
         if (ticket) {
-          this.makeQrcode({ text: ticket.code });
+          this.getQrcodeImageUrl({ text: ticket.code });
         }
       });
       this.timer = setInterval(async () => {
@@ -134,22 +132,8 @@ export default class PaymentSuccess extends Vue {
   }
 
   qrcodeUrl = "";
-  makeQrcode({ text }) {
-    uQRCode.make({
-      canvasId: "qrcode",
-      componentInstance: this,
-      text,
-      size: 150,
-      margin: 10,
-      backgroundColor: "#ffffff",
-      foregroundColor: "#000000",
-      fileType: "jpg",
-      correctLevel: uQRCode.defaults.correctLevel,
-      success: res => {
-        console.log(res);
-        this.qrcodeUrl = res;
-      }
-    });
+  getQrcodeImageUrl({ text }) {
+    this.qrcodeUrl = `${config.API_ENDPOINT}/qrcode-image/${text}`;
   }
 
   checkTimer: any = null;
@@ -240,7 +224,7 @@ export default class PaymentSuccess extends Vue {
     justify-content center
     align-items center
     width 100%
-    top 40upx
+    top -50upx
     left 0
   .button-invite
     position relative
