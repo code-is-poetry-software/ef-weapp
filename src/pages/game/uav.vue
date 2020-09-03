@@ -45,11 +45,11 @@
         ></u-select>
       </view>
       <view class="price-bar">
-        <button-price :text="price" />
+        <button-price :text="price" :text-origin="priceOrigin" />
       </view>
 
       <view class="column-center">
-        <button-pay @click="createBooking" text="立即支付" />
+        <button-pay @click="createBooking" text="立即支付" :disabled="!payable" />
         <view style="margin-top: 20upx;">
           <u-radio-group :value="submit.useBalance" v-if="balanceEnough">
             <u-radio name="useBalance" @change="radioChange">使用余额支付</u-radio>

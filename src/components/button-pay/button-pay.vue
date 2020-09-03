@@ -1,5 +1,5 @@
 <template>
-  <view class="button-pay" @click="onClick">
+  <view class="button-pay" @click="onClick" :class="{ disabled }">
     <img class="img" src="/static/image/button-pay.png" mode="widthFix" />
     <view class="text"> {{ text }} </view>
   </view>
@@ -28,11 +28,13 @@ export default class Template extends Vue {
   align-items center
   justify-content center
   background transparent
+  &.disabled
+    opacity 0.3
   &:after
     border none
   .img
     width 400upx
-		height 86upx
+  height 86upx
   .text
     position absolute
     font-size 50upx

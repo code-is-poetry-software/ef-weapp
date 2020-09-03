@@ -46,7 +46,7 @@
         ></u-select>
       </view>
       <view class="price-bar">
-        <button-price :text="price" />
+        <button-price :text="price" :text-origin="priceOrigin" />
       </view>
 
       <view class="column-center">
@@ -97,8 +97,8 @@ export default class Car extends Vue {
   mode = {
     modes: [
       { label: "动力方程小赛道", amount: "0", image: "/static/image/icon-car1.png" },
-      { label: "动力方程大赛道", amount: "0", image: "/static/image/icon-car2.png" },
-      { label: "动力方程超级赛道", amount: "0", image: "/static/image/icon-car3.png", size: "large" }
+      { label: "动力方程大赛道", amount: "0", image: "/static/image/icon-car2.png" }
+      // { label: "动力方程超级赛道", amount: "0", image: "/static/image/icon-car3.png", size: "large" }
     ]
   };
 
@@ -182,6 +182,7 @@ export default class Car extends Vue {
   }
 
   price = 0;
+  priceOrigin = null;
   loadingPrice = false;
   async getPrice({ force = false } = {}) {
     if (!force) {
@@ -196,6 +197,7 @@ export default class Car extends Vue {
       const res = await api.getBookingPrice({ store, date, checkInAt, projects });
       if (res.data) {
         this.price = res.data.price;
+        this.priceOrigin = res.data.priceOrigin;
       }
       this.loadingPrice = false;
     } catch (error) {
