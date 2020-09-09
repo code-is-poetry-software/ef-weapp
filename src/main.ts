@@ -33,6 +33,10 @@ Vue.prototype.navigateTo = async ({ url, checkAuth, checkMobile, redirect }: { u
   uni.navigateTo({ url });
 };
 
+Vue.prototype.navigateBack = () => {
+  uni.navigateBack();
+};
+
 const app = new Vue({
   ...App,
   store

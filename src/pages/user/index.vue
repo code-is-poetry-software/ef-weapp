@@ -3,7 +3,7 @@
     <with-bg />
     <get-phonenumber />
     <view style="padding: 140upx 0 183upx 58upx;">
-      <button-title1 text="导航" />
+      <button-title1 text="导航" @click="navigateBack" />
     </view>
 
     <view class="content">
