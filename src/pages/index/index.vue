@@ -148,7 +148,7 @@ export default class Index extends Vue {
 
   goCreateBooking({ url, name }: { url: string; name: string }) {
     storeStore.selectStore({ name });
-    this.navigateTo({ url, checkMobile: false });
+    this.navigateTo({ url, checkMobile: true, checkAuth: true });
   }
 
   async goBookingDetail(item) {
