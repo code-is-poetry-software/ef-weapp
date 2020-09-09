@@ -56,6 +56,7 @@
             <u-radio name="useBalance" @change="radioChange">使用余额支付</u-radio>
           </u-radio-group>
         </view>
+        <view v-if="curStore.disableClientBooking">暂未开放客户端预约</view>
       </view>
     </u-form>
   </view>
@@ -115,7 +116,7 @@ export default class Car extends Vue {
   }
 
   get payable() {
-    return this.projects.some(i => i.count > 0) && this.form.checkInAt;
+    return this.projects.some(i => i.count > 0) && this.form.checkInAt && !this.curStore.disableClientBooking;
   }
 
   get checkInTimeOptions() {

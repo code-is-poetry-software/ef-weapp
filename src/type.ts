@@ -64,6 +64,7 @@ export interface Store {
     promptMessage: string;
     waitingCourses?: number;
   }>;
+  disableClientBooking?: boolean;
 }
 
 export interface Course {
