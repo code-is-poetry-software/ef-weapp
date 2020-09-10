@@ -51,6 +51,8 @@ export interface Payment {
   store: string;
   title: string;
   valid: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Store {

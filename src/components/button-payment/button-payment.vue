@@ -5,7 +5,7 @@
       <view style="font-size: 16upx;">项目:</view>
       <view style="font-size: 28upx; margin-left: 52upx; margin-top: -32upx;">{{ item.title.substr(0, 7) }} </view>
       <view style="font-size: 16upx; margin-top: 20upx;">时间: </view>
-      <view style="font-size: 28upx; margin-left: 52upx; margin-top: -32upx;">2020年6月8日10:16</view>
+      <view style="font-size: 28upx; margin-left: 52upx; margin-top: -32upx;">{{ moment(item.createdAt).format("YYYY年M月D日 HH:mm") }}</view>
     </view>
     <view class="status">
       <view style="font-size: 16upx;">费用：</view>

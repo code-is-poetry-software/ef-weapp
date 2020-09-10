@@ -4,26 +4,26 @@
     <view>
       <img class="icon-user" src="/static/image/icon-user.png" @click="navigateTo({ url: '/pages/user/index' })" mode="widthFix" />
     </view>
-    <view style="margin-bottom: 72upx;">
-      <img style="width: 128upx; height: 128upx;" src="/static/image/img3.png" mode="widthFix" />
+    <view style="margin-bottom: 72upx">
+      <img style="width: 128upx; height: 128upx" src="/static/image/img3.png" mode="widthFix" />
     </view>
     <view class="text-success">{{ course.length ? "您已核销成功" : "您已成功缴费锁定" }}</view>
 
-    <view style="margin: 50upx 0;">
+    <view style="margin: 50upx 0">
       <view class="button-course" v-for="(item, index) in course" :key="index">
-        <img class="img" src="/static/image/button-rank1.png" style="height: 154upx;" mode="widthFix" />
+        <img class="img" src="/static/image/button-rank1.png" style="height: 154upx" mode="widthFix" />
         <view class="status">{{ config.statusLabel[item.status] }}</view>
         <view class="info">
           <view class="flex items-center">
-            <view style="font-size: 16upx;">项目:</view>
-            <view style="font-size: 28upx;">{{ item.project }} </view>
+            <view style="font-size: 16upx">项目:</view>
+            <view style="font-size: 28upx">{{ item.project }} </view>
           </view>
-          <view class="flex items-center" style="margin-top: 20upx;">
-            <view style="font-size: 16upx;">场次:</view>
-            <view style="font-size: 28upx;">{{ item.date.substr(5) }}</view>
-            <view style="font-size: 28upx; margin-left: 20upx;">#{{ item.sequence }}</view>
-            <view style="font-size: 28upx; margin-left: 40upx;">{{ item.players.length }}玩家</view>
-            <view style="font-size: 28upx; margin-left: 40upx;" v-if="item.status == 'waiting'">
+          <view class="flex items-center" style="margin-top: 20upx">
+            <view style="font-size: 16upx">场次:</view>
+            <view style="font-size: 28upx">{{ item.date.substr(5) }}</view>
+            <view style="font-size: 28upx; margin-left: 20upx">#{{ item.sequence }}</view>
+            <view style="font-size: 28upx; margin-left: 40upx">{{ item.players.length }}玩家</view>
+            <view style="font-size: 28upx; margin-left: 40upx" v-if="item.status == 'waiting'">
               <text v-if="WaitingCourses(item.project) > 1">等待{{ WaitingCourses(item.project) - 1 }}场</text>
               <text v-else>GO!</text>
             </view>
@@ -32,21 +32,21 @@
       </view>
     </view>
 
-    <view style="position: relative;">
-      <img style="width: 572upx; height: 368upx;" src="/static/image/img-share.png" mode="widthFix" />
+    <view style="position: relative">
+      <img style="width: 572upx; height: 368upx" src="/static/image/img-share.png" mode="widthFix" />
       <view class="qrcode">
         <img v-show="qrcodeUrl" :src="qrcodeUrl" style="width: 200px; height: 200px;" mode="widthFix" />
       </view>
     </view>
-    <text class="text-remind" style="font-size: 23upx;">为避免入园后长时间等待\n 请10:00入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
+    <text class="text-remind" style="font-size: 23upx" v-if="item">为避免入园后长时间等待\n 请{{ item.checkInAt }}入场，时间段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
     <view v-if="item">
-      <view style="margin-bottom: 72upx;" v-if="userTickets">
+      <view style="margin-bottom: 72upx" v-if="userTickets">
         <view v-for="project in userTickets.projects" :key="project._id">
           <booking-item v-if="project.count > 0" :selectable="isOwner" :item="item" :project="project" :active="invitationProjectIds.includes(project._id)" @click="selectProject(project)" />
         </view>
       </view>
     </view>
-    <view v-if="isOwner" style="margin-top: 46upx;">
+    <view v-if="isOwner" style="margin-top: 46upx">
       <view class="button-invite" @click="inviteFriend">
         <img class="img" src="/static/image/button-invite.png" mode="widthFix" />
         <view class="text"> 邀请好友 </view>

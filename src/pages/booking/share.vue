@@ -7,20 +7,16 @@
     </view>
     <view class="user-share column-center">
       <button-avatar :user="user" />
-      <view class="share-text">
-        邀请您一起潮玩！
-      </view>
+      <view class="share-text"> 邀请您一起潮玩！ </view>
     </view>
     <view v-if="booking">
       <view class="share-info">
-        <img class="absolute" style="width: 100%; z-index: -1;" src="/static/image/view1.png" mode="widthFix" />
-        <view class="text" style="display: flex;">
-          <text class="field-text">
-            场次:
-          </text>
-          <text v-if="booking" style="font-size: 21px; margin-top: -10upx;"> {{ moment(booking.date).format("MM-DD") }}&nbsp;{{ booking.checkInAt }} </text>
+        <img class="absolute" style="width: 100%; z-index: -1" src="/static/image/view1.png" mode="widthFix" />
+        <view class="text" style="display: flex">
+          <text class="field-text"> 场次: </text>
+          <text v-if="booking" style="font-size: 21px; margin-top: -10upx"> {{ moment(booking.date).format("MM-DD") }}&nbsp;{{ booking.checkInAt }} </text>
         </view>
-        <view class="text" style="margin-top: 21upx;">
+        <view class="text" style="margin-top: 21upx">
           <view v-for="item in projects" :key="item._id">
             <text class="field-text">项目:</text>
             <text class="field-text2">{{ item.name }}</text>
@@ -29,10 +25,10 @@
       </view>
     </view>
 
-    <view @click="handleBooking" style="margin-top: 100upx;">
+    <view @click="handleBooking" style="margin-top: 100upx">
       <button-pay text="立即加入" />
     </view>
-    <text class="remind">为避免入园后长期等待\n 请10:00入场，时段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
+    <text class="remind" v-if="booking">为避免入园后长期等待\n 请{{ booking.checkInAt }}入场，时段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
   </view>
 </template>
 
