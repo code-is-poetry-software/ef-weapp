@@ -6,7 +6,7 @@
       <img class="avatar-bg" :src="user.avatarUrl" mode="widthFix" style="height: 210upx;" />
       <img class="avatar" :src="user.avatarUrl" mode="widthFix" style="height: 150upx;" />
     </view>
-    <view v-if="!user.mobile" class="text2" @click="checkMobile">获取手机号</view>
+    <view v-if="!user.mobile" class="text2" @click="checkMobile">激活潮玩ID</view>
     <view class="info">
       <view class="text">ID: {{ user.name }}</view>
       <view class="text1">手机号: {{ user.mobile || "" }}</view>
