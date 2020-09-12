@@ -2,7 +2,7 @@
   <view class="get-phonenumber">
     <u-popup v-model="showGetMobile" mode="bottom" border-radius="40">
       <view class="content">
-        <text class="tilte">是否授权微信获得手机号?</text>
+        <text class="tilte">绑定手机激活潮玩ID</text>
         <view class="action-bar">
           <button-normal class="button" @click="close">
             <view style="color: #0090d9;">取消</view>
