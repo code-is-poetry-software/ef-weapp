@@ -35,7 +35,7 @@
         <u-select
           mode="single-column"
           v-model="checkIn.show"
-          :list="checkInTimeOptions"
+          :list="checkInTimeOptions.map(option=>option.period)"
           @confirm="
             e => {
               form.checkInAt = e[0].value;
@@ -120,10 +120,10 @@ export default class Car extends Vue {
     const checkInTimeOptions: { value: string | null; label: string }[] = this.curStore.checkInTimeOptions
       .filter(i => {
         if (this.date.selected.result > now.format("YYYY-MM-DD")) return true;
-        const end = i.split("-")[1];
+        const end = i.period.split("-")[1];
         return _moment().format("HH:mm") < end;
       })
-      .map(i => ({ value: i, label: i }));
+      .map(i => ({ value: i.period, label: i.period }));
     if (checkInTimeOptions.length === 0) {
       checkInTimeOptions.push({ value: null, label: "无可用时间段" });
     }

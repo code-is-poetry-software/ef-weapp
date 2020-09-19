@@ -58,7 +58,11 @@ export interface Payment {
 export interface Store {
   id: string;
   name: string;
-  checkInTimeOptions: Array<string>;
+  checkInTimeOptions: {
+    period: string;
+    limit?: number;
+    dayType?: "onDaysOnly" | "offDaysOnly";
+  }[];
   projects: Array<{
     name: string;
     price: number;
