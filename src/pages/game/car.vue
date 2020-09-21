@@ -36,7 +36,7 @@
         <u-select
           mode="single-column"
           v-model="checkIn.show"
-          :list="checkInTimeOptions.map(option=>option.period)"
+          :list="checkInTimeOptions"
           @confirm="
             e => {
               form.checkInAt = e[0].value;
