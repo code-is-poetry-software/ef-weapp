@@ -28,7 +28,14 @@
           <span class="with-border">{{ date.selected.day }}</span>
           <span class="color-blue" style="margin: 0 12upx;">日</span>
         </view>
-        <u-calendar v-model="date.show" mode="date" :max-date="maxDate" :min-date="today" @change="e => (date.selected = e)"></u-calendar>
+        <u-calendar
+          v-model="date.show"
+          mode="date"
+          :max-date="maxDate"
+          :min-date="today"
+          :change-year="false"
+          @change="e => (date.selected = e)"
+        ></u-calendar>
       </view>
       <view class="u-flex u-flex-row form-item" @click="checkIn.show = true">
         <button-title text="选择场次" />
@@ -74,7 +81,7 @@ const now = _moment();
 @Component
 export default class Car extends Vue {
   today = this.moment().format("YYYY-MM-DD");
-  maxDate = this.moment().add(1, "week").format("YYYY-MM-DD");
+  maxDate = this.moment().add(3, "weeks").format("YYYY-MM-DD");
   form: { checkInAt: string | null } = {
     checkInAt: ""
   };
