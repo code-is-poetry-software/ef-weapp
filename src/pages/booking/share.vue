@@ -28,7 +28,7 @@
     <view @click="handleBooking" style="margin-top: 100upx">
       <button-pay text="立即加入" />
     </view>
-    <text class="remind" v-if="booking">为避免入园后长期等待\n 请{{ booking.checkInAt }}入场，时段内尽早为您排场\n （注：12:00入园无法时段内排场）</text>
+    <text class="remind" v-if="booking">为避免入园后长期等待\n 请{{ booking.checkInAt }}入场，时段内尽早为您排场\n （注：请靠近前时段入园，后时段入园无法时段内排场）</text>
   </view>
 </template>
 
