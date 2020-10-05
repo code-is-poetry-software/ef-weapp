@@ -27,11 +27,17 @@ http.interceptor.response = response => {
   const duration = new Date() - global.requestStart[response.config.requestId];
   console.log(`Res <== (${duration}ms):`, response.config.url, response);
   //判断返回状态 执行相应操作
-  if (!response.statusCode || response.statusCode !== 200) {
+  if (!response.statusCode) {
     uni.showToast({
       icon: "none",
       duration: 3000,
-      title: _.get(response, "data.message") || response.errMsg
+      title: "网络连接错误"
+    });
+  } else if (response.statusCode !== 200) {
+    uni.showToast({
+      icon: "none",
+      duration: 3000,
+      title: _.get(response, "data.message") || "系统繁忙，请稍后重试"
     });
   }
   return response;
