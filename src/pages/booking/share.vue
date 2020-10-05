@@ -13,7 +13,7 @@
       <view class="share-info">
         <img class="absolute" style="width: 100%; z-index: -1" src="/static/image/view1.png" mode="widthFix" />
         <view class="text" style="display: flex">
-          <text class="field-text"> 场次: </text>
+          <text class="field-text"> 时段: </text>
           <text v-if="booking" style="font-size: 21px; margin-top: -10upx"> {{ moment(booking.date).format("MM-DD") }}&nbsp;{{ booking.checkInAt }} </text>
         </view>
         <view class="text" style="margin-top: 21upx">

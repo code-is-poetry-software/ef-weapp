@@ -5,7 +5,7 @@
     <view class="info">
       <view style="font-size: 16upx;">项目:</view>
       <view style="font-size: 28upx; margin-left: 51upx; margin-top: -32upx;">{{ project.name }} </view>
-      <view style="font-size: 16upx; margin-top: 20upx;">场次:</view>
+      <view style="font-size: 16upx; margin-top: 20upx;">时段:</view>
       <view style="font-size: 28upx; margin-left: 51upx; margin-top: -32upx;">{{ item.date }}</view>
       <view style="font-size: 43upx; margin-left: 268upx; margin-top: -54upx;">{{ item.checkInAt.substr(0, 5) }}</view>
       <view style="font-size: 28upx; margin-left: 422upx; margin-top: -48upx;">潮玩IDx{{ project.count }}</view>

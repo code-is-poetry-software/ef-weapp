@@ -27,7 +27,7 @@
               <view style="font-size: 28upx;">{{ item.project }} </view>
             </view>
             <view class="flex items-center" style="margin-top: 20upx;">
-              <view style="font-size: 16upx;">场次:</view>
+              <view style="font-size: 16upx;">时段:</view>
               <view style="font-size: 28upx;">{{ item.date.substr(5) }}</view>
               <view style="font-size: 28upx; margin-left: 20upx;">#{{ item.sequence }}</view>
               <view style="font-size: 28upx; margin-left: 40upx;">{{ item.players.length }}玩家</view>

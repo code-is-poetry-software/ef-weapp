@@ -30,7 +30,7 @@
         <u-calendar v-model="date.show" mode="date" :max-date="maxDate" :min-date="today" :change-year="false" @change="e => (date.selected = e)"></u-calendar>
       </view>
       <view class="u-flex u-flex-row form-item" @click="checkIn.show = true">
-        <button-title text="选择场次" />
+        <button-title text="选择时段" />
         <view class="with-border" style="margin: 20upx 0 0 20upx;">{{ checkIn.label }}</view>
         <u-select
           mode="single-column"

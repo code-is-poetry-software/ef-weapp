@@ -5,7 +5,7 @@
 
     <view class="info">
       <view class="flex">
-        <view class="text" style="margin: 0 8upx 0 0;">场次:</view>
+        <view class="text" style="margin: 0 8upx 0 0;">时段:</view>
         <view class="gotham-bold" style="font-size: 23upx; margin-top: -6upx;">{{ item.date }} {{ item.checkInAt }}</view>
       </view>
       <view class="flex">
