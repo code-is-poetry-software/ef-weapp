@@ -81,7 +81,7 @@ const now = _moment();
 @Component
 export default class Car extends Vue {
   today = this.moment().format("YYYY-MM-DD");
-  maxDate = this.moment().add(3, "weeks").format("YYYY-MM-DD");
+  maxDate = this.moment().add(10, "days").format("YYYY-MM-DD");
   form: { checkInAt: string | null } = {
     checkInAt: ""
   };
