@@ -20,12 +20,9 @@
       <view class="u-flex u-flex-row form-item" @click="date.show = true">
         <button-title text="选择日期" />
         <view style="margin: 20upx 0 0 20upx;">
-          <span class="with-border">{{ date.selected.year }}</span>
-          <span class="color-blue" style="margin: 0 12upx;">年</span>
-          <span class="with-border">{{ date.selected.month }}</span>
-          <span class="color-blue" style="margin: 0 12upx;">月</span>
+          <span class="with-border" style="margin-right:12upx">{{ date.selected.year }}</span>
+          <span class="with-border" style="margin-right:12upx">{{ date.selected.month }}</span>
           <span class="with-border">{{ date.selected.day }}</span>
-          <span class="color-blue" style="margin: 0 12upx;">日</span>
         </view>
         <u-calendar
           v-model="date.show"
