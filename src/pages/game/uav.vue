@@ -193,6 +193,7 @@ export default class Car extends Vue {
   }
 
   price = 0;
+  priceOrigin = null;
   loadingPrice = false;
   async getPrice({ force = false } = {}) {
     if (!force) {
@@ -207,6 +208,7 @@ export default class Car extends Vue {
       const res = await api.getBookingPrice({ store, date, checkInAt, projects });
       if (res.data) {
         this.price = res.data.price;
+        this.priceOrigin = res.data.priceOrigin;
       }
       this.loadingPrice = false;
     } catch (error) {
