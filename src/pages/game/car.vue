@@ -229,6 +229,9 @@ export default class Car extends Vue {
     align-items center
     .list-item
       padding-bottom 20upx
+      /deep/ .button-mode
+        .text
+          left 80upx
   .form
     .form-item
       margin 18upx 0

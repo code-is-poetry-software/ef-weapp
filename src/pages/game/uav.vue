@@ -100,8 +100,8 @@ export default class Car extends Vue {
 
   mode = {
     modes: [
-      { label: "赛车电竞", amount: "0" },
-      { label: "对战无人机", amount: "0" }
+      { label: "动力方程赛车电竞", amount: "0" },
+      { label: "动力方程对战无人机", amount: "0" }
       // { label: "竞速无人机", amount: "0", size: "large" }
     ]
   };

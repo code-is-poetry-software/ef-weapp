@@ -80,7 +80,7 @@ export default class Template extends Vue {
     height 150upx
   .text
     position absolute
-    left 80upx
+    left 50upx
     top 35upx
     font-size 33upx
     font-family Alibaba PuHuiTi
