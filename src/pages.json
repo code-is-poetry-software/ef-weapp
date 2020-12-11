@@ -31,13 +31,13 @@
     {
       "path": "pages/game/car",
       "style": {
-        "navigationBarTitleText": "动力方程卡丁车"
+        "navigationBarTitleText": "电动赛车"
       }
     },
     {
       "path": "pages/game/uav",
       "style": {
-        "navigationBarTitleText": "潮玩无人机"
+        "navigationBarTitleText": "科技潮玩"
       }
     },
     {
