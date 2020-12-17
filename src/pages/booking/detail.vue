@@ -2,7 +2,7 @@
   <view class="booking-detail column-center page">
     <with-bg />
     <view>
-      <img class="icon-user" src="/static/image/icon-user.png" @click="navigateTo({ url: '/pages/user/index' })" mode="widthFix" />
+      <img class="icon-user" src="/static/image/icon-details.png" @click="navigateTo({ url: '/pages/index/index', redirect: true })" mode="widthFix" />
     </view>
     <view style="margin-bottom: 72upx">
       <img style="width: 128upx; height: 128upx" src="/static/image/img3.png" mode="widthFix" />
