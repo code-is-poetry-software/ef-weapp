@@ -101,8 +101,8 @@ export default class Car extends Vue {
 
   mode = {
     modes: [
-      { label: "儿童小赛道", amount: "0", image: "/static/image/icon-car1.png" },
-      { label: "成人大赛道", amount: "0", image: "/static/image/icon-car2.png" }
+      { label: "电动入门赛车", amount: "0", image: "/static/image/icon-car1.png" },
+      { label: "电动BOOST赛车", amount: "0", image: "/static/image/icon-car2.png" }
       // { label: "动力方程超级赛道", amount: "0", image: "/static/image/icon-car3.png", size: "large" }
     ]
   };
