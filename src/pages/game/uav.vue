@@ -94,6 +94,7 @@ export default class Car extends Vue {
     show: false,
     label: ""
   };
+  checkInTimeOptions: { value: string; label: string }[] = [];
   submit = {
     useBalance: "useBalance"
   };
@@ -120,20 +121,6 @@ export default class Car extends Vue {
     return this.mode.modes.some(i => Number(i.amount) > 0) && this.form.checkInAt && !this.curStore.disableClientBooking;
   }
 
-  get checkInTimeOptions() {
-    const checkInTimeOptions: { value: string | null; label: string }[] = this.curStore.checkInTimeOptions
-      .filter(i => {
-        if (this.date.selected.result > now.format("YYYY-MM-DD")) return true;
-        const end = i.period.split("-")[1];
-        return _moment().format("HH:mm") < end;
-      })
-      .map(i => ({ value: i.period, label: i.period }));
-    if (checkInTimeOptions.length === 0) {
-      checkInTimeOptions.push({ value: null, label: "无可用时间段" });
-    }
-    return checkInTimeOptions;
-  }
-
   get balanceEnough() {
     if (!this.user.balance) return false;
     return this.user.balance > 0;
@@ -150,9 +137,10 @@ export default class Car extends Vue {
     this.getPrice({ force: true });
   }
 
-  @Watch("date.selected.result")
-  onDateChange() {
-    this.initData();
+  @Watch("date.selected.result", { immediate: true }) async onLoadCheckInTimeOptions(date) {
+    const { data } = await api.getStoreCheckInTimeOptions({ storeId: this.curStore.id, date });
+    this.checkInTimeOptions = data;
+    this.setCheckInAt();
   }
 
   async mounted() {
@@ -161,10 +149,9 @@ export default class Car extends Vue {
       await storeStore.loadStore();
     }
     this.getPrice();
-    this.initData();
   }
 
-  initData() {
+  setCheckInAt() {
     if (!this.form.checkInAt && this.checkInTimeOptions.length > 0) {
       this.form.checkInAt = this.checkInTimeOptions[0].value;
       this.checkIn.label = this.checkInTimeOptions[0].label;

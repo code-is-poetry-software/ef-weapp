@@ -162,6 +162,13 @@ export const joinBooking = ({ code, preview }) => {
   });
 };
 
+export const getStoreCheckInTimeOptions = ({ storeId, date }) => {
+  return http.request({
+    url: `/store/${storeId}/check-in-time-options/${date}`,
+    method: "GET"
+  });
+};
+
 export const handleType = ({ type, data, method = "POST" }) => {
   return http.request({
     url: `/${type}`,
