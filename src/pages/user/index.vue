@@ -19,7 +19,7 @@
             <button-userinfo label="积 分" :value="points || 0" />
           </view>
           <view class="card">
-            <button-userinfo label="玩家等级" value="萌新玩家" />
+            <button-userinfo label="玩家等级" :value="user.level" />
           </view>
         </view>
 
