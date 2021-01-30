@@ -41,12 +41,6 @@
       }
     },
     {
-      "path": "pages/game/wuhan",
-      "style": {
-        "navigationBarTitleText": "EF武汉体验"
-      }
-    },
-    {
       "path": "pages/booking/share",
       "style": {
         "navigationBarTitleText": "加入潮玩项目"
@@ -192,11 +186,6 @@
         "name": "racing/coach",
         "path": "pages/racing/coach",
         "query": ""
-      },
-      {
-        "name": "武汉体验购票",
-        "path": "pages/index/index",
-        "query": "game=wuhan"
       }
     ]
   }

@@ -100,9 +100,6 @@ export default class Index extends Vue {
     //轮询店铺
     storeStore.loadStore().then(() => {
       storeStore.pollingStore();
-      if (data.game === "wuhan") {
-        this.goCreateBooking({ url: "/pages/game/wuhan", name: "EF武汉体验" });
-      }
     });
     //登录
     this.wechatLogin().then(async () => {
