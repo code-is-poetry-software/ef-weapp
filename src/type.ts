@@ -69,6 +69,7 @@ export interface Store {
     equipments: { num: string }[];
     promptMessage: string;
     waitingCourses?: number;
+    firstWaitingCourseSequence?: number;
   }>;
   disableClientBooking?: boolean;
 }

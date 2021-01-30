@@ -32,7 +32,7 @@
               <view style="font-size: 28upx; margin-left: 20upx;">#{{ item.sequence }}</view>
               <view style="font-size: 28upx; margin-left: 40upx;">{{ item.players.length }}玩家</view>
               <view style="font-size: 28upx; margin-left: 40upx;" v-if="item.status == 'waiting'">
-                <text v-if="WaitingCourses(item.project) > 1">等待{{ WaitingCourses(item.project) - 1 }}场</text>
+                <text v-if="getWaitingCourses(item.project, item.sequence) > 0">等待{{ getWaitingCourses(item.project, item.sequence) }}场</text>
                 <text v-else>GO!</text>
               </view>
             </view>
@@ -81,8 +81,12 @@ export default class Index extends Vue {
   get storeProjects() {
     return storeStore.projects;
   }
-  WaitingCourses(project) {
-    return this.storeProjects[project]?.waitingCourses || 0;
+  getWaitingCourses(project, before) {
+    if (!before) {
+      return this.storeProjects[project]?.waitingCourses || 0;
+    } else {
+      return before - (this.storeProjects[project]?.firstWaitingCourseSequence || 0);
+    }
   }
 
   get token() {
