@@ -59,9 +59,9 @@ export default class UserIndex extends Vue {
   }
 
   onLoad() {
-    if (process.env.NODE_ENV == "development") {
-      authStore.wechatLogin();
-    }
+    // if (process.env.NODE_ENV == "development") {
+    authStore.wechatLogin();
+    // }
   }
 
   async getPhoneNumber(res) {
