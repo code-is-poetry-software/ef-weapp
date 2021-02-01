@@ -37,11 +37,14 @@ export default class Template extends Vue {
     color #0090D9
     z-index 1
     font-style italic
+    height 100%
+    display flex
+    align-items center
     .price
       font-family Gotham-Bold
       color #666666
     .price.price-origin
       text-decoration line-through
       color #aaa
-      font-size 80%
+      font-size 75%
 </style>

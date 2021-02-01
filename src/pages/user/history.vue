@@ -9,12 +9,12 @@
       <view class="icon-ranking" @click="$emit('click')">
         <view class="info">
           <img class="rankingr" src="/static/image/icon-ranking.png" mode="widthFix" />
-          <view class="text">35</view>
+          <view class="text">{{ user.courseCount || 0 }}</view>
         </view>
         <view class="info2">
-          <view class="text2">CONFIRME</view>
+          <view class="text2">EXP.</view>
           <img class="button-tab-active" src="/static/image/button-tab-active.png" mode="widthFix" />
-          <img class="progres" src="/static/image/icon-progres.png" mode="widthFix" />
+          <img v-for="i in user.exp || 0" :key="i" class="progres" src="/static/image/icon-progres.png" mode="widthFix" :class="'exp-'+i" />
         </view>
       </view>
     </view>
@@ -189,7 +189,7 @@ export default class Template extends Vue {
     position absolute
     color #0090D9
     top 17upx
-    left 46upx
+    left 295upx
   .text3
     position absolute
     color #0090D9
@@ -263,6 +263,7 @@ export default class Template extends Vue {
     top 255upx
     left 144upx
     font-size 18px
+    width 50upx
   .text2
     position absolute
     top 216upx
@@ -274,4 +275,12 @@ export default class Template extends Vue {
     height 55upx
     top 285upx
     left 266upx
+    &.exp-1
+      left 314upx
+    &.exp-2
+      left 362upx
+    &.exp-3
+      left 410upx
+    &.exp-4
+      left 458upx
 </style>

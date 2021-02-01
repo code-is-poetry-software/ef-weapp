@@ -51,7 +51,7 @@ export default class UserIndex extends Vue {
   }
 
   get balance() {
-    return Number(this.user.balance).toFixed(0);
+    return +Number(this.user.balance).toFixed(2);
   }
 
   get points() {
