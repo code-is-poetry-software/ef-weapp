@@ -2,6 +2,8 @@ import store from "./";
 import { VuexModule, Module, Action } from "vuex-class-modules";
 import * as api from "../../common/vmeitime-http";
 import { Store } from "../type";
+import { bookingStore } from "./booking";
+import { courseStore } from "./course";
 
 @Module({ generateMutationSetters: true })
 class StoreStore extends VuexModule {
@@ -17,16 +19,6 @@ class StoreStore extends VuexModule {
   selectStore({ name }: { name: string }) {
     const curStoreId = this.stores.findIndex(i => i.name == name);
     this.curStoreId = curStoreId;
-  }
-
-  loadStoreTimer: any = null;
-
-  @Action
-  pollingStore() {
-    if (this.loadStoreTimer) clearInterval(this.loadStoreTimer);
-    setInterval(async () => {
-      this.loadStore();
-    }, 10000);
   }
 
   @Action

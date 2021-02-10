@@ -10,7 +10,7 @@
     <view class="text-success">{{ course.length ? "您已核销成功" : "您已成功缴费锁定" }}</view>
 
     <view style="margin: 50upx 0">
-      <view class="button-course" v-for="(item, index) in course" :key="index">
+      <view class="button-course" v-for="(item, index) in userCourses" :key="index">
         <img class="img" src="/static/image/button-rank1.png" style="height: 154upx" mode="widthFix" />
         <view class="status">{{ config.statusLabel[item.status] }}</view>
         <view class="info">
@@ -20,12 +20,11 @@
           </view>
           <view class="flex items-center" style="margin-top: 20upx">
             <view style="font-size: 16upx">时段:</view>
-            <view style="font-size: 28upx">{{ item.date.substr(5) }}</view>
+            <view style="font-size: 28upx">{{ item.checkInAt }}</view>
             <view style="font-size: 28upx; margin-left: 20upx">#{{ item.sequence }}</view>
             <view style="font-size: 28upx; margin-left: 40upx">{{ item.players.length }}玩家</view>
             <view style="font-size: 28upx; margin-left: 40upx" v-if="item.status == 'waiting'">
-              <text v-if="getWaitingCourses(item.project, item.sequence) > 0">等待{{ getWaitingCourses(item.project, item.sequence) }}场</text>
-              <text v-else>GO!</text>
+              <text>等待{{ getWaitingCourses(item.project, item.sequence) }}场</text>
             </view>
           </view>
         </view>
@@ -65,13 +64,13 @@ import { Booking, Course } from "../../type";
 import { authStore } from "../../store/auth";
 import { config } from "../../../config";
 import { storeStore } from "../../store/store";
+import { courseStore } from "@/store/course";
 
 @Component
 export default class PaymentSuccess extends Vue {
   item: Booking | null = null;
   code: string = "";
   showShare = false;
-  course: Course[] = [];
   config = config;
   id = null;
   invitationProjectIds: string[] = [];
@@ -83,11 +82,16 @@ export default class PaymentSuccess extends Vue {
   get storeProjects() {
     return storeStore.projects;
   }
+
+  get userCourses() {
+    return courseStore.userCourses;
+  }
+
   getWaitingCourses(project, before) {
     if (!before) {
       return this.storeProjects[project]?.waitingCourses || 0;
     } else {
-      return before - (this.storeProjects[project]?.firstWaitingCourseSequence || 0);
+      return before - (this.storeProjects[project]?.firstWaitingCourseSequence || 0) + 1;
     }
   }
 
@@ -104,11 +108,11 @@ export default class PaymentSuccess extends Vue {
     if (!this.userTickets) return [];
     return this.userTickets.projects.filter(i => this.invitationProjectIds.includes(i._id)).map(i => ({ name: i.name, count: 1 }));
   }
-  timer: any = null;
+
   onLoad(data) {
     if (data.id) {
       this.id = data.id;
-      this.loadCourse();
+      courseStore.loadUserCourse();
       this.loadBooking(data.id).then(data => {
         if (!data) return;
         const ticket = data.tickets.find(i => i.player?.id === this.user.id);
@@ -116,15 +120,7 @@ export default class PaymentSuccess extends Vue {
           this.getQrcodeImageUrl({ text: ticket.code });
         }
       });
-      this.timer = setInterval(async () => {
-        await Promise.all([this.loadBooking(), this.loadCourse()]);
-        this.checkBooking();
-      }, 10000);
     }
-  }
-
-  onUnload() {
-    clearInterval(this.timer);
   }
 
   selectProject(project) {
@@ -141,12 +137,11 @@ export default class PaymentSuccess extends Vue {
   }
 
   checkTimer: any = null;
+
+  @Watch("userTickets")
   checkBooking() {
-    if (this.userTickets) {
-      const empty = this.userTickets.projects.every(i => i.count === 0);
-      if (empty) {
-        uni.navigateBack({});
-      }
+    if (this.userTickets && this.userTickets.projects.every(i => i.count === 0)) {
+      uni.navigateBack({});
     }
   }
 
@@ -155,13 +150,6 @@ export default class PaymentSuccess extends Vue {
     if (res.data) {
       this.item = res.data;
       return this.item;
-    }
-  }
-
-  async loadCourse() {
-    const res = await api.getList({ type: "course", data: { player: this.user.id, status: "checking,waiting,started" } });
-    if (res.data) {
-      this.course = res.data;
     }
   }
 
