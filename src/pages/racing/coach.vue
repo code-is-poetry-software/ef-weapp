@@ -1,7 +1,8 @@
 <template>
   <view class="checkin page">
     <with-bg />
-    <view v-if="item.id && item.players.length">
+    <view v-if="item.id">
+      <view class="sequence"># {{item.sequence}}</view>
       <button-pattern-switcher :activeItem.sync="item.project" :items="projects" :disabled="type === 'detail'" />
       <view style="margin: 80upx;" v-if="item.players">
         <u-grid :col="3" :border="false">
@@ -24,10 +25,16 @@
         </view>
       </view>
       <view v-if="!item.start || status == 'reset'">
-        <view style="margin-top: 105upx;">
+        <view style="margin-top: 85upx;" v-if="item.players.length">
           <view class="button-Arrow" @click="startGame">
             <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
             <view class="text"> 开&nbsp;&nbsp;&nbsp;始 </view>
+          </view>
+        </view>
+        <view style="margin-top: 85upx;" v-else>
+          <view class="button-Arrow" @click="skipGame">
+            <img class="arrow2" src="/static/image/button-Arrow_2.png" mode="widthFix" />
+            <view class="text"> 跳&nbsp;&nbsp;&nbsp;过 </view>
           </view>
         </view>
       </view>
@@ -84,6 +91,10 @@ export default class Template extends Vue {
         this.loadItem();
       }, 10000);
     });
+  }
+
+  onUnload() {
+    clearInterval(this.timer);
   }
 
   reset() {
@@ -152,13 +163,32 @@ export default class Template extends Vue {
     });
   }
 
+  async skipGame() {
+    uni.showModal({
+      title: "提醒",
+      content: "确认跳过空场次",
+      success: async e => {
+        if (!e.confirm) return;
+        const res = await api.handleItem({
+          type: "course",
+          id: this.item.id,
+          method: "PUT",
+          data: {
+            skipNow: true
+          }
+        });
+        this.item = {};
+      }
+    });
+  }
+
   checkTimeInterval: any;
+
   checkTime() {
     if (this.checkTimeInterval) clearInterval(this.checkTimeInterval);
-
     this.checkTimeInterval = setInterval(() => {
       this.now = this.moment();
-    }, 1000);
+    }, 100);
   }
 
   async loadItem() {
@@ -177,7 +207,13 @@ export default class Template extends Vue {
 <style lang="stylus" scoped>
 .checkin
   position relative
-  padding 200upx 0
+  padding 100upx 0 200upx
+  .sequence
+    text-align right
+    margin -60upx 80upx 0
+    color #0090d9
+    font-family Gotham-Bold, san-serif
+    font-size 50upx
   .button-diamond
     position relative
     display flex
@@ -204,8 +240,8 @@ export default class Template extends Vue {
       color White
       font-size 100upx
   .time-between
-    text-align: center;
-    font-size: 100upx;
-    color: #0090d9;
-    font-family: Gotham-Bold, san-serif;
+    text-align center
+    font-size 100upx
+    color #0090d9
+    font-family Gotham-Bold, san-serif
 </style>
