@@ -20,7 +20,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class RankIndex extends Vue {
-  projects = ["竞速无人机", "对战无人机", "动力方程赛车"];
+  projects = ["无人机足球", "FPV无人机", "动力方程赛车"];
 
   goDetail(item: string) {
     if (item == "动力方程赛车") {
