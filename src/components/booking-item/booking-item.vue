@@ -14,7 +14,7 @@
         <view style="font-size: 15upx; margin: 7upx 8upx 0 20upx;">数量:</view>
         <view style="font-size: 38upx; margin-top: -12upx;">{{ project.count }}</view>
         <view style="font-size: 15upx; margin: 7upx 8upx 0 10upx;">等待:</view>
-        <view style="font-size: 38upx; margin-top: -12upx;">{{ WaitingCourses }}</view>
+        <view style="font-size: 38upx; margin-top: -12upx;">{{ waitingCourses }}</view>
       </view>
     </view>
   </view>
@@ -36,7 +36,7 @@ export default class Template extends Vue {
     return storeStore.projects;
   }
 
-  get WaitingCourses() {
+  get waitingCourses() {
     return this.storeProjects[this.project.name]?.waitingCourses;
   }
 }
